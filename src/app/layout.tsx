@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SocialsFooter from "../../components/SocialsFooter";
-  
+import Head from "next/head";
+import Script from "next/script";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -15,8 +17,69 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Punyakrit Singh Makhni | Portfolio",
-  description: "Personal portfolio of Punyakrit Singh Makhni showcasing web development projects, skills, and experience. Full-stack developer specializing in modern web technologies.",
-  keywords: ["Punyakrit Singh Makhni", "portfolio", "web developer", "full-stack developer", "React developer", "Next.js developer", "TypeScript developer", "JavaScript developer", "frontend developer", "backend developer", "UI/UX designer", "software engineer", "web application developer", "mobile app developer", "responsive web design", "modern web development", "React.js", "Node.js", "MongoDB", "PostgreSQL", "GraphQL", "REST API", "Git", "GitHub", "AWS", "Vercel", "Netlify", "CSS3", "HTML5", "Tailwind CSS", "Bootstrap", "Redux", "Zustand", "Prisma", "Docker", "Kubernetes", "CI/CD", "agile development", "scrum", "test-driven development", "unit testing", "integration testing", "performance optimization", "SEO optimization", "accessibility", "responsive design", "progressive web app", "PWA", "microservices", "serverless", "cloud computing", "database design", "API development", "web security", "authentication", "authorization", "JWT", "OAuth", "OpenID Connect"],
+  description:
+    "Personal portfolio of Punyakrit Singh Makhni showcasing web development projects, skills, and experience. Full-stack developer specializing in modern web technologies.",
+  keywords: [
+    "Punyakrit Singh Makhni",
+    "portfolio",
+    "web developer",
+    "full-stack developer",
+    "React developer",
+    "Next.js developer",
+    "TypeScript developer",
+    "JavaScript developer",
+    "frontend developer",
+    "backend developer",
+    "UI/UX designer",
+    "software engineer",
+    "web application developer",
+    "mobile app developer",
+    "responsive web design",
+    "modern web development",
+    "React.js",
+    "Node.js",
+    "MongoDB",
+    "PostgreSQL",
+    "GraphQL",
+    "REST API",
+    "Git",
+    "GitHub",
+    "AWS",
+    "Vercel",
+    "Netlify",
+    "CSS3",
+    "HTML5",
+    "Tailwind CSS",
+    "Bootstrap",
+    "Redux",
+    "Zustand",
+    "Prisma",
+    "Docker",
+    "Kubernetes",
+    "CI/CD",
+    "agile development",
+    "scrum",
+    "test-driven development",
+    "unit testing",
+    "integration testing",
+    "performance optimization",
+    "SEO optimization",
+    "accessibility",
+    "responsive design",
+    "progressive web app",
+    "PWA",
+    "microservices",
+    "serverless",
+    "cloud computing",
+    "database design",
+    "API development",
+    "web security",
+    "authentication",
+    "authorization",
+    "JWT",
+    "OAuth",
+    "OpenID Connect",
+  ],
   authors: [{ name: "Punyakrit Singh Makhni" }],
   creator: "Punyakrit Singh Makhni",
   publisher: "Punyakrit Singh Makhni",
@@ -31,7 +94,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Punyakrit Singh Makhni | Portfolio",
-    description: "Personal portfolio of Punyakrit Singh Makhni showcasing web development projects, skills, and experience.",
+    description:
+      "Personal portfolio of Punyakrit Singh Makhni showcasing web development projects, skills, and experience.",
     url: "https://punyakrit.dev",
     siteName: "Punyakrit Singh Makhni Portfolio",
     images: [
@@ -48,7 +112,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Punyakrit Singh Makhni | Portfolio",
-    description: "Personal portfolio of Punyakrit Singh Makhni showcasing web development projects, skills, and experience.",
+    description:
+      "Personal portfolio of Punyakrit Singh Makhni showcasing web development projects, skills, and experience.",
     images: ["/img.png"],
   },
   robots: {
@@ -80,6 +145,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <Head>
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-GH95JVWL77"
+        ></Script>
+        <Script>
+          {`
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GH95JVWL77');`}
+        </Script>
+      </Head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
