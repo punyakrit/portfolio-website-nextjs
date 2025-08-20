@@ -1,0 +1,27 @@
+{
+  "name": "Punyakrit Singh Makhni - Portfolio",
+  "short_name": "Punyakrit Portfolio",
+  "description": "Personal portfolio of Punyakrit Singh Makhni showcasing web development projects and skills",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/img.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/img.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "productivity", "utilities"],
+  "lang": "en",
+  "dir": "ltr"
+}

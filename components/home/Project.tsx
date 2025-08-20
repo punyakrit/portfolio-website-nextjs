@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { ExternalLink, Github, ChevronDown, ChevronUp } from "lucide-react";
+import { ExternalLink, Github, ChevronDown } from "lucide-react";
 
 const ProjectArray = [
   {
@@ -80,23 +80,6 @@ const containerVariants = {
     transition: {
       staggerChildren: 0.2,
       delayChildren: 6.5,
-    },
-  },
-};
-
-const cardVariants = {
-  hidden: {
-    opacity: 0,
-    y: 30,
-    scale: 0.95,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.6,
-      ease: [0.25, 0.46, 0.45, 0.94],
     },
   },
 };

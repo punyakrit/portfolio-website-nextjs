@@ -25,11 +25,11 @@ function AboutMe() {
         transition={{ duration: 1.2, delay: 1.6 }}
         whileHover={{ color: "rgba(255, 255, 255, 0.9)" }}
       >
-        I'm Punyakrit, a full-stack developer who loves taking ideas from 0 →
-        100 and turning them into products people actually use. When I'm not
-        buried in commits or spinning up APIs, you'll catch me tinkering with
+        I&apos;m Punyakrit, a full-stack developer who loves taking ideas from 0 →
+        100 and turning them into products people actually use. When I&apos;m not
+        buried in commits or spinning up APIs, you&apos;ll catch me tinkering with
         side projects, experimenting with new frameworks, or building tools just
-        for the fun of it. Always curious, always building — let's create
+        for the fun of it. Always curious, always building — let&apos;s create
         something exceptional.
       </motion.p>
     </motion.div>

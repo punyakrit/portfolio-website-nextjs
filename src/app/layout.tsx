@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Punyakrit Singh Makhni | Portfolio",
   description: "Personal portfolio of Punyakrit Singh Makhni showcasing web development projects, skills, and experience. Full-stack developer specializing in modern web technologies.",
-  keywords: ["Punyakrit Singh Makhni", "portfolio", "web developer", "full-stack", "React", "Next.js", "TypeScript", "JavaScript"],
+  keywords: ["Punyakrit Singh Makhni", "portfolio", "web developer", "full-stack developer", "React developer", "Next.js developer", "TypeScript developer", "JavaScript developer", "frontend developer", "backend developer", "UI/UX designer", "software engineer", "web application developer", "mobile app developer", "responsive web design", "modern web development", "React.js", "Node.js", "MongoDB", "PostgreSQL", "GraphQL", "REST API", "Git", "GitHub", "AWS", "Vercel", "Netlify", "CSS3", "HTML5", "Tailwind CSS", "Bootstrap", "Redux", "Zustand", "Prisma", "Docker", "Kubernetes", "CI/CD", "agile development", "scrum", "test-driven development", "unit testing", "integration testing", "performance optimization", "SEO optimization", "accessibility", "responsive design", "progressive web app", "PWA", "microservices", "serverless", "cloud computing", "database design", "API development", "web security", "authentication", "authorization", "JWT", "OAuth", "OpenID Connect"],
   authors: [{ name: "Punyakrit Singh Makhni" }],
   creator: "Punyakrit Singh Makhni",
   publisher: "Punyakrit Singh Makhni",
@@ -61,6 +61,15 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
+  },
+  manifest: "/manifest.json",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
+  other: {
+    "google-site-verification": "your-google-verification-code",
+    "msvalidate.01": "your-bing-verification-code",
   },
 };
 

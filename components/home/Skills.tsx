@@ -4,7 +4,7 @@ import React from "react";
 
 import { FaJs } from "react-icons/fa";
 import { FaReact, FaNodeJs, FaDocker, FaAws, FaGithub, FaGitAlt } from "react-icons/fa6";
-import { SiTypescript, SiNextdotjs, SiTailwindcss, SiPython, SiCplusplus, SiHono, SiPostgresql, SiPrisma, SiDjango, SiShadcnui, SiFramer, SiExpress, SiMongodb, SiRedis, SiPostman, SiC, SiSqlite, SiLinux, SiVercel, SiFigma } from "react-icons/si";
+import { SiTypescript, SiNextdotjs, SiTailwindcss, SiPython, SiCplusplus, SiPostgresql, SiPrisma, SiShadcnui, SiFramer, SiExpress, SiMongodb, SiRedis, SiPostman, SiC, SiSqlite, SiLinux, SiVercel, SiFigma } from "react-icons/si";
 
 const skills = [
   { name: "JavaScript", icon: <FaJs /> },

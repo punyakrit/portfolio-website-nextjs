@@ -28,7 +28,7 @@ function Present() {
       >
         Currently I work as a Full-Stack Developer at AgentProd, where I build
         and ship production-grade web applications. In my free time I freelance
-        & work on my own projects! I'm always looking for new things to work on,
+        & work on my own projects! I&apos;m always looking for new things to work on,
         so if you are hiring, feel free to reach-out.{" "}
         <Link
           href="https://cal.com/punyakrit"
