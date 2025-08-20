@@ -64,7 +64,7 @@ function Experience() {
       >
         {ExperienceArray.map((experience, index) => (
           <motion.div 
-            key={experience.company}
+            key={`punyakrit-experience-${index}`}
             // variants={cardVariants}
             whileHover={{ 
               scale: 1.02,

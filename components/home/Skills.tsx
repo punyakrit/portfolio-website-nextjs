@@ -67,7 +67,7 @@ function Skills() {
       >
         {skills.map((skill, index) => (
           <motion.div 
-            key={skill.name} 
+            key={`punyakrit-skill-${index}`} 
             className="flex items-center gap-2 border border-white/10 rounded-md p-2 cursor-pointer  hover:bg-white/10 transition-colors"
             initial={{ opacity: 0, y: 20, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
