@@ -49,7 +49,7 @@ function SocialsFooter() {
             alt="Profile" 
             width={32} 
             height={32} 
-            className="rounded-2xl border-2 border-white/20 hover:border-white/40 transition-colors duration-300" 
+            className="rounded-2xl border-2 border-white/20 hover:border-white/40 transition-colors duration-300 " 
             />
             </Link>
         </div>
