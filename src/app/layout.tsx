@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SocialsFooter from "../../components/SocialsFooter";
-import Head from "next/head";
+
 import Script from "next/script";
 
 const geistSans = Geist({
@@ -145,20 +145,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <Head>
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-GH95JVWL77"
-        ></Script>
-        <Script>
-          {`
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-GH95JVWL77"
+      />
+      <Script id="google-analytics">
+        {`
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'G-GH95JVWL77');`}
-        </Script>
-      </Head>
+      </Script>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
