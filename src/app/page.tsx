@@ -4,10 +4,11 @@ import IntroSection from "../../components/home/IntroSection";
 import { motion } from "motion/react";
 import AboutMe from "../../components/home/AboutMe";
 import Present from "../../components/home/Present";
+import Skills from "../../components/home/Skills";
 
 function page() {
   return (
-    <main className="container mx-auto max-w-3xl overflow-hidden">
+    <main className="container mx-auto max-w-3xl overflow-hidden px-4">
       <div className="flex flex-col ">
         <section>
           <IntroSection />
@@ -31,7 +32,14 @@ function page() {
         <section className="mt-10">
           <Present />
         </section>
+        <section className="mt-10">
+          <Skills />
+        </section>
+        <section className="mt-10">
+          
+        </section>
       </div>
+
     </main>
   );
 }
