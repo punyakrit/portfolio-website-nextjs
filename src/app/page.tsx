@@ -5,6 +5,7 @@ import { motion } from "motion/react";
 import AboutMe from "../../components/home/AboutMe";
 import Present from "../../components/home/Present";
 import Skills from "../../components/home/Skills";
+import Experience from "../../components/home/Experience";
 
 function page() {
   return (
@@ -35,8 +36,8 @@ function page() {
         <section className="mt-10">
           <Skills />
         </section>
-        <section className="mt-10">
-          
+        <section className="mt-10 mb-20">
+          <Experience />
         </section>
       </div>
 
