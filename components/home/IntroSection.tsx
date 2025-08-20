@@ -7,14 +7,14 @@ import { motion } from "motion/react";
 function IntroSection() {
   const [isHovered, setIsHovered] = useState(false);
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
-  
+
   const texts = [
     "I'm a software engineer",
-    "I'm a product builder", 
+    "I'm a product builder",
     "I'm a problem solver",
     "I'm a creative developer",
     "I'm a tech enthusiast",
-    "I'm a software engineer"
+    "I'm a software engineer",
   ];
 
   useEffect(() => {
@@ -31,7 +31,7 @@ function IntroSection() {
   }, [isHovered, texts.length]);
 
   return (
-    <motion.div 
+    <motion.div
       className="flex flex-col gap-4 py-6 mt-6 px-4"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -47,26 +47,25 @@ function IntroSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            
           >
-            <Image
-              src="/img.png"
-              alt="Profile"
-              width={100}
-              height={100}
-              className="rounded-2xl border-2 border-white/20 hover:border-white/40 transition-colors duration-300"
-              priority
-            />
+            <div className="relative w-24 h-24 ">
+              <Image
+                src="/img.png"
+                alt="Profile"
+                fill
+                className="rounded-2xl border-2 border-white/20 hover:border-white/40 transition-colors duration-300 object-cover"
+                priority
+              />
+            </div>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-           
             className="cursor-pointer pr-20"
           >
-            <motion.h1 
+            <motion.h1
               className="text-2xl font-bold text-nowrap"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -74,7 +73,7 @@ function IntroSection() {
             >
               Hello, I'm Punyakrit
             </motion.h1>
-            <motion.p 
+            <motion.p
               className="text-white/70 text-nowrap relative h-6 overflow-hidden"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -86,9 +85,9 @@ function IntroSection() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                transition={{ 
+                transition={{
                   duration: 0.6,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
               >
                 {texts[currentTextIndex]}
@@ -96,7 +95,7 @@ function IntroSection() {
             </motion.p>
           </motion.div>
         </div>
-        
+
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -105,7 +104,7 @@ function IntroSection() {
           whileTap={{ scale: 0.95 }}
           className="group"
         >
-          <Link href={'/'}>
+          <Link href={"/"}>
             <div className="text-md text-white/70 font-semibold md:flex hidden text-nowrap relative">
               <span>Hiring? Check out My CV.</span>
               <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out origin-center" />

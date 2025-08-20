@@ -6,6 +6,7 @@ import AboutMe from "../../components/home/AboutMe";
 import Present from "../../components/home/Present";
 import Skills from "../../components/home/Skills";
 import Experience from "../../components/home/Experience";
+import Project from "../../components/home/Project";
 
 function page() {
   return (
@@ -36,9 +37,13 @@ function page() {
         <section className="mt-10">
           <Skills />
         </section>
-        <section className="mt-10 mb-20">
+        <section className="mt-10 ">
           <Experience />
         </section>
+        <section className="mt-10 mb-20 ">
+          <Project />
+        </section>
+
       </div>
 
     </main>
