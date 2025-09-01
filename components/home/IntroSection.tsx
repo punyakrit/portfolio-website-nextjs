@@ -50,7 +50,7 @@ function IntroSection() {
           >
             <div className="relative w-24 h-24 ">
               <Image
-                src="/img.png"
+                src="/img.jpg"
                 alt="Profile"
                 fill
                 className="rounded-2xl border-2 border-white/20 hover:border-white/40 transition-colors duration-300 object-cover"
