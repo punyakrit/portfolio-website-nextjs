@@ -138,12 +138,7 @@ function Project() {
                     >
                       {project.name}
                     </motion.h2>
-                    <motion.p
-                      className="text-sm leading-relaxed text-white/70 group-hover:text-white/80 transition-colors duration-300"
-                      transition={{ duration: 0.4, delay: 7.3 }}
-                    >
-                      {project.description}
-                    </motion.p>
+                   
                   </div>
 
                   <div className="flex gap-2 ml-4">
@@ -182,6 +177,12 @@ function Project() {
                     </motion.a>
                   </div>
                 </div>
+                <motion.p
+                      className="text-sm leading-relaxed text-white/70 group-hover:text-white/80 transition-colors duration-300"
+                      transition={{ duration: 0.4, delay: 7.3 }}
+                    >
+                      {project.description}
+                    </motion.p>
 
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((tech, techIndex) => (
