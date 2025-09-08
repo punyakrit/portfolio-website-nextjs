@@ -100,7 +100,7 @@ export const metadata: Metadata = {
     siteName: "Punyakrit Singh Makhni Portfolio",
     images: [
       {
-        url: "/img.png",
+        url: "/ui.png",
         width: 1200,
         height: 630,
         alt: "Punyakrit Singh Makhni Portfolio Preview",
@@ -114,7 +114,7 @@ export const metadata: Metadata = {
     title: "Punyakrit Singh Makhni | Portfolio",
     description:
       "Personal portfolio of Punyakrit Singh Makhni showcasing web development projects, skills, and experience.",
-    images: ["/img.png"],
+    images: ["/ui.png"],
   },
   robots: {
     index: true,
