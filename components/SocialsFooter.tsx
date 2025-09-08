@@ -45,11 +45,11 @@ function SocialsFooter() {
           <div className="bg-white/20 w-px h-6 mx-1"></div>
           <Link href="/" className="cursor-pointer">
           <Image 
-            src="/img.png" 
+            src="/img.jpg" 
             alt="Profile" 
             width={32} 
             height={32} 
-            className="rounded-2xl border-2 border-white/20 hover:border-white/40 transition-colors duration-300 " 
+            className="rounded-lg  hover:border-white/40 transition-colors duration-300 object-cover aspect-square" 
             />
             </Link>
         </div>
