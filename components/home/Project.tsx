@@ -5,6 +5,22 @@ import { ExternalLink, Github, ChevronDown, Play, X } from "lucide-react";
 
 const ProjectArray = [
   {
+      name: "Codelens",
+      description:
+        "CodeLens is an AI-powered GitHub code analysis and collaboration tool that streamlines development workflows. It enables natural language code search, auto-generated documentation, and AI-assisted pull requests — all synced in real time with GitHub. With vector embeddings and Gemini AI, it provides deep insights and faster collaboration.",
+      url: "https://codelens.punyakrit.dev",
+      github: "https://github.com/punyakrit/codelens",
+      // video: "/pulse.mp4",
+      tech: [
+        "Next.js",
+        "Prisma",
+        "PostgreSQL",
+        "GitHub API",
+        "Gemini API",
+        "Vector Database",
+      ],
+  },
+  {
     name: "Pulse",
     description:
       "Pulse is a website uptime and performance monitoring platform that helps teams keep their services reliable. It continuously checks websites, logs performance metrics, and alerts on downtime — with a clean dashboard for real-time insights and historical trends.",
@@ -49,29 +65,7 @@ const ProjectArray = [
       "TypeScript",
     ],
   },
-  {
-    name: "SolWeb",
-    description:
-      "SolWeb is a blockchain analytics platform that lets users explore the Solana network through interactive visualizations and real-time insights. By entering any Solana wallet address, users can track transactions, analyze wallet interactions, and discover patterns.",
-    url: "https://solweb.punyakrit.dev/",
-    github: "https://github.com/punyakrit/solweb",
-    tech: ["Next.js", "Tailwind CSS", "TypeScript", "Solana Web3.js"],
-  },
-  {
-    name: "Notexa",
-    description:
-      "Notexa is a modern note-taking platform with authentication, subscriptions, and theme support. Built with Next.js, Supabase, and Kinde Auth, it lets users create, sort, and organize notes effortlessly. Integrated with Stripe for payments, it's designed as a scalable SaaS-style application with a clean, intuitive UI.",
-    url: "https://notes.punyakrit.dev",
-    github: "https://github.com/punyakrit/notes-sass",
-    tech: [
-      "Next.js",
-      "Supabase",
-      "Kinde Auth",
-      "Stripe",
-      "Tailwind CSS",
-      "TypeScript",
-    ],
-  },
+  
 ];
 
 const containerVariants = {
