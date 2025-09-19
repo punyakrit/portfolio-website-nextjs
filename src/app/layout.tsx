@@ -4,6 +4,7 @@ import "./globals.css";
 import SocialsFooter from "../../components/SocialsFooter";
 
 import Script from "next/script";
+import { ThemeProvider } from "../../components/Ui";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -160,7 +161,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+       <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+          {children}
+          </ThemeProvider>
         <SocialsFooter />
       </body>
     </html>
