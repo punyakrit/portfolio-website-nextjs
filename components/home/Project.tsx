@@ -10,7 +10,7 @@ const ProjectArray = [
         "CodeLens is an AI-powered GitHub code analysis and collaboration tool that streamlines development workflows. It enables natural language code search, auto-generated documentation, and AI-assisted pull requests — all synced in real time with GitHub. With vector embeddings and Gemini AI, it provides deep insights and faster collaboration.",
       url: "https://codelens.punyakrit.dev",
       github: "https://github.com/punyakrit/codelens",
-      // video: "/pulse.mp4",
+      video: "/codelens.mp4",
       tech: [
         "Next.js",
         "Prisma",
