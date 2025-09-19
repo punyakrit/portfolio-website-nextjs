@@ -10,7 +10,7 @@ const ProjectArray = [
         "CodeLens is an AI-powered GitHub code analysis and collaboration tool that streamlines development workflows. It enables natural language code search, auto-generated documentation, and AI-assisted pull requests — all synced in real time with GitHub. With vector embeddings and Gemini AI, it provides deep insights and faster collaboration.",
       url: "https://codelens.punyakrit.dev",
       github: "https://github.com/punyakrit/codelens",
-      video: "/codelens.mp4",
+      video: "https://nooskjgrslpgyitgkovi.supabase.co/storage/v1/object/public/video-upload/codelens.mp4",
       tech: [
         "Next.js",
         "Prisma",
@@ -26,7 +26,7 @@ const ProjectArray = [
       "Pulse is a website uptime and performance monitoring platform that helps teams keep their services reliable. It continuously checks websites, logs performance metrics, and alerts on downtime — with a clean dashboard for real-time insights and historical trends.",
     url: "https://pulse.punyakrit.dev",
     github: "https://github.com/punyakrit/pulse",
-    video: "/pulse.mp4",
+    video: "https://nooskjgrslpgyitgkovi.supabase.co/storage/v1/object/public/video-upload/pulse%20(1).mp4",
     tech: [
       "React",
       "Next.js",
