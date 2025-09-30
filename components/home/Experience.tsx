@@ -34,7 +34,7 @@ function Experience() {
       transition={{ duration: 0.6, delay: 4.4 }}
     >
       <motion.h1 
-        className="text-2xl font-bold mb-3"
+        className="text-lg sm:text-2xl font-bold mb-3"
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, delay: 4.8 }}
@@ -58,10 +58,10 @@ function Experience() {
             }}
             whileTap={{ scale: 0.98 }}
           >
-            <div className="group relative overflow-hidden border border-white/20 rounded-xl p-6 hover:border-white/30 transition-all duration-300">
-              <div className="relative flex gap-4 items-start">
+            <div className="group relative overflow-hidden border border-white/20 rounded-xl p-4 sm:p-6 hover:border-white/30 transition-all duration-300">
+              <div className="relative flex gap-3 sm:gap-4 items-start">
                 <motion.div 
-                  className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center border border-white/20"
+                  className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center border border-white/20"
                   whileHover={{ 
                     scale: 1.1,
                     rotate: 5,
@@ -78,20 +78,20 @@ function Experience() {
                 
                 <div className="flex-1 space-y-2">
                   <motion.div 
-                    className="flex items-center justify-between"
+                    className="flex items-center justify-between gap-2"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 5.4 }}
                   >
                     <motion.h2 
-                      className="text-xl font-bold"
+                      className="text-lg sm:text-xl font-bold"
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.2, delay: 5.7 }}
                     >
                       {experience.company}
                     </motion.h2>
                     <motion.span 
-                      className="px-3 py-1 rounded-full text-xs font-medium border border-white/20"
+                      className="px-2 sm:px-3 py-1 rounded-full text-xs font-medium border border-white/20 flex-shrink-0"
                       whileHover={{ scale: 1.1 }}
                       transition={{ duration: 0.2, delay: 5.8 }}
                     >
@@ -100,7 +100,7 @@ function Experience() {
                   </motion.div>
                   
                   <motion.h3 
-                    className="text-lg font-semibold"
+                    className="text-base sm:text-lg font-semibold"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: 5.9 }}
@@ -109,7 +109,7 @@ function Experience() {
                   </motion.h3>
                   
                   <motion.p 
-                    className="text-sm leading-relaxed"
+                    className="text-xs sm:text-sm leading-relaxed"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: 6.0 }}

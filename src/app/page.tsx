@@ -11,7 +11,7 @@ import Footer from "../../components/home/Footer";
 
 function page() {
   return (
-    <main className="container mx-auto max-w-3xl overflow-hidden px-4">
+    <main className="container mx-auto max-w-3xl overflow-hidden px-4 sm:px-6 lg:px-8">
       <div className="flex flex-col ">
         <section>
           <IntroSection />
@@ -29,22 +29,22 @@ function page() {
             style={{ transformOrigin: "left" }}
           />
         </motion.div>
-        <section className="mt-10">
+        <section className="mt-8 sm:mt-10">
           <AboutMe />
         </section>
-        <section className="mt-10">
+        <section className="mt-8 sm:mt-10">
           <Present />
         </section>
-        <section className="mt-10">
+        <section className="mt-8 sm:mt-10">
           <Skills />
         </section>
-        <section className="mt-10 ">
+        <section className="mt-8 sm:mt-10">
           <Experience />
         </section>
-        <section className="mt-10  ">
+        <section className="mt-8 sm:mt-10">
           <Project />
         </section>
-        <footer className="mt-10">
+        <footer className="mt-8 sm:mt-10 pb-20 sm:pb-10">
           <Footer />
         </footer>
 

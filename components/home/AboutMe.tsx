@@ -10,7 +10,7 @@ function AboutMe() {
       className=""
     >
       <motion.h1 
-        className="text-xl font-bold"
+        className="text-lg sm:text-xl font-bold"
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 1.4 }}
@@ -19,7 +19,7 @@ function AboutMe() {
         About Me
       </motion.h1>
       <motion.p 
-        className="text-white/70 text-md leading-relaxed"
+        className="text-white/70 text-sm sm:text-md leading-relaxed"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, delay: 1.6 }}

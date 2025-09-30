@@ -32,15 +32,15 @@ function IntroSection() {
 
   return (
     <motion.div
-      className="flex flex-col gap-4 py-6 mt-6 px-4"
+      className="flex flex-col gap-4 py-4 sm:py-6 mt-4 sm:mt-6 px-2 sm:px-4"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
     >
-      <div className="flex justify-between items-end gap-4">
-        <div className="flex items-center gap-4">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4">
+        <div className="flex items-center gap-3 sm:gap-4">
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -48,7 +48,7 @@ function IntroSection() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <div className="relative w-24 h-24 ">
+            <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24">
               <Image
                 src="/img.jpg"
                 alt="Profile"
@@ -63,10 +63,10 @@ function IntroSection() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="cursor-pointer pr-20"
+            className="cursor-pointer pr-0 sm:pr-20"
           >
             <motion.h1
-              className="text-2xl font-bold text-nowrap"
+              className="text-xl sm:text-2xl font-bold"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.6 }}
@@ -74,7 +74,7 @@ function IntroSection() {
               Hello, I&apos;m Punyakrit
             </motion.h1>
             <motion.p
-              className="text-white/70 text-nowrap relative h-6 overflow-hidden"
+              className="text-white/70 text-sm sm:text-base relative h-6 overflow-hidden"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.8 }}
@@ -105,7 +105,7 @@ function IntroSection() {
           className="group"
         >
           <Link href={"https://drive.google.com/file/d/1AtkKO6T7xh413kU_ch7NrtblN9NU0QT0/view?usp=sharing"} target="_blank">
-            <div className="text-md text-white/70 font-semibold md:flex hidden text-nowrap relative">
+            <div className="text-sm sm:text-md text-white/70 font-semibold sm:flex hidden relative">
               <span>Hiring? Check out My CV.</span>
               <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out origin-center" />
             </div>

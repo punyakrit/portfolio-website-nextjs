@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   title: "Punyakrit Singh Makhni | Portfolio",
   description:
     "Personal portfolio of Punyakrit Singh Makhni showcasing web development projects, skills, and experience. Full-stack developer specializing in modern web technologies.",
+  viewport: "width=device-width, initial-scale=1",
   keywords: [
     "Punyakrit Singh Makhni",
     "portfolio",

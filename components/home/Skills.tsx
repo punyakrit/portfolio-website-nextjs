@@ -43,7 +43,7 @@ function Skills() {
       className=" "
     >
       <motion.h1 
-        className="text-xl font-bold"
+        className="text-lg sm:text-xl font-bold"
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, delay: 3.0 }}
@@ -68,7 +68,7 @@ function Skills() {
         {skills.map((skill, index) => (
           <motion.div 
             key={`punyakrit-skill-${index}`} 
-            className="flex items-center gap-2 border border-white/10 rounded-md p-2 cursor-pointer  hover:bg-white/10 transition-colors"
+            className="flex items-center gap-1 sm:gap-2 border border-white/10 rounded-md p-1.5 sm:p-2 cursor-pointer hover:bg-white/10 transition-colors"
             initial={{ opacity: 0, y: 20, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ 
@@ -98,6 +98,7 @@ function Skills() {
               {skill.icon}
             </motion.div>
             <motion.span
+              className="text-xs sm:text-sm"
               whileHover={{ color: "#60a5fa" }}
               transition={{ duration: 0.2 }}
             >

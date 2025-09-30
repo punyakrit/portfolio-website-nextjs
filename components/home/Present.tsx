@@ -11,7 +11,7 @@ function Present() {
       className=""
     >
       <motion.h1
-        className="text-xl font-bold"
+        className="text-lg sm:text-xl font-bold"
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 2.2 }}
@@ -20,7 +20,7 @@ function Present() {
         Present
       </motion.h1>
       <motion.p
-        className="text-white/70 text-md leading-relaxed"
+        className="text-white/70 text-sm sm:text-md leading-relaxed"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, delay: 2.4 }}
@@ -33,7 +33,7 @@ function Present() {
         <Link
           href="https://cal.com/punyakrit"
           target="_blank"
-          className="text-white/70 text-md underline leading-relaxed"
+          className="text-white/70 text-sm sm:text-md underline leading-relaxed"
         >
           Contact me.
         </Link>
