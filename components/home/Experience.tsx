@@ -7,9 +7,16 @@ const ExperienceArray = [
   {
     company: "AgentProd",
     position: "Full-Stack Software Engineer",
-    date: "2024 - Present",
+    date: "Jun 2024 - Sept 2025",
     description:
       "Part of a lean startup team where I own features from idea to production. Shipped web apps using Next.js, Supabase, and FastAPI, and managed deployments with Docker + EC2. Comfortable wearing multiple hats and moving fast.",
+  },
+  {
+    company: "Freelance",
+    position: "Full-Stack Developer",
+    date: "Jan 2023 - May 2024",
+    description:
+      "Working with diverse clients to build custom web applications and solutions. Specializing in React, Next.js, Node.js, and modern web technologies. Delivered projects ranging from local businesses to SaaS applications.",
   },
 ];
 

@@ -26,16 +26,15 @@ function Present() {
         transition={{ duration: 1.2, delay: 2.4 }}
         whileHover={{ color: "rgba(255, 255, 255, 0.9)" }}
       >
-        Currently I work as a Full-Stack Developer at AgentProd, where I build
-        and ship production-grade web applications. In my free time I freelance
-        & work on my own projects! I&apos;m always looking for new things to work on,
-        so if you are hiring, feel free to reach-out.{" "}
+        Currently I&apos;m focused on building innovative projects like Codelens, Pulse, and Arcane. 
+        I love creating full-stack applications that solve real problems and push the boundaries of what&apos;s possible. 
+        Always excited to collaborate on new ideas and take on challenging projects.{" "}
         <Link
           href="https://cal.com/punyakrit"
           target="_blank"
           className="text-white/70 text-sm sm:text-md underline leading-relaxed"
         >
-          Contact me.
+          Let&apos;s work together.
         </Link>
       </motion.p>
     </motion.div>
