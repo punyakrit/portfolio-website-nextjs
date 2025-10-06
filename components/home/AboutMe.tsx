@@ -19,19 +19,20 @@ function AboutMe() {
         About Me
       </motion.h1>
       <motion.p 
-        className="text-white/70 text-sm sm:text-md leading-relaxed"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2, delay: 1.6 }}
-        whileHover={{ color: "rgba(255, 255, 255, 0.9)" }}
-      >
-        I&apos;m Punyakrit, a full-stack developer who loves taking ideas from 0 →
-        100 and turning them into products people actually use. When I&apos;m not
-        buried in commits or spinning up APIs, you&apos;ll catch me tinkering with
-        side projects, experimenting with new frameworks, or building tools just
-        for the fun of it. Always curious, always building — let&apos;s create
-        something exceptional.
-      </motion.p>
+  className="text-white/70 text-sm sm:text-md leading-relaxed"
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1.2, delay: 1.6 }}
+  whileHover={{ color: "rgba(255, 255, 255, 0.9)" }}
+>
+  I&apos;m Punyakrit, a full-stack developer who thrives on turning ambitious 
+  ideas into production-ready products. With 2+ years shipping features at 
+  startups, I bring expertise in React, Node.js, and cloud technologies to 
+  build applications that scale. I believe great code tells a story - clean, 
+  efficient, and purposeful. When I&apos;m not solving complex problems, 
+  I&apos;m contributing to open source or experimenting with the latest tech. 
+  Always curious, always shipping - let&apos;s create something remarkable.
+</motion.p>
     </motion.div>
   );
 }

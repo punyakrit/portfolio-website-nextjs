@@ -104,7 +104,7 @@ function IntroSection() {
           whileTap={{ scale: 0.95 }}
           className="group"
         >
-          <Link href={"https://drive.google.com/file/d/1AtkKO6T7xh413kU_ch7NrtblN9NU0QT0/view?usp=sharing"} target="_blank">
+          <Link href={"https://drive.google.com/file/d/1Bd8AEiYk9OyTV6Oe0UqGDjuLKLjZcqcK/view?usp=sharing"} target="_blank">
             <div className="text-sm sm:text-md text-white/70 font-semibold sm:flex hidden relative">
               <span>Hiring? Check out My CV.</span>
               <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out origin-center" />
