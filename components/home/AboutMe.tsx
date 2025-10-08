@@ -6,14 +6,14 @@ function AboutMe() {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.8 }}
+      transition={{ duration: 0.4, delay: 0.6 }}
       className=""
     >
       <motion.h1 
         className="text-lg sm:text-xl font-bold"
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 1.4 }}
+        transition={{ duration: 0.3, delay: 0.7 }}
         whileHover={{ scale: 1.02 }}
       >
         About Me
@@ -22,7 +22,7 @@ function AboutMe() {
   className="text-white/70 text-sm sm:text-md leading-relaxed"
   initial={{ opacity: 0, y: 20 }}
   animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 1.2, delay: 1.6 }}
+  transition={{ duration: 0.3, delay: 0.75 }}
   whileHover={{ color: "rgba(255, 255, 255, 0.9)" }}
 >
   I&apos;m Punyakrit, a full-stack developer who thrives on turning ambitious 

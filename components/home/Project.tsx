@@ -73,8 +73,8 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
-      delayChildren: 6.5,
+      staggerChildren: 0.15,
+      delayChildren: 2.7,
     },
   },
 };
@@ -101,13 +101,13 @@ function Project() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 6.5 }}
+        transition={{ duration: 0.4, delay: 2.5 }}
       >
         <motion.h1
           className="text-lg sm:text-2xl font-bold mb-4 sm:mb-6"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 6.7 }}
+          transition={{ duration: 0.3, delay: 2.6 }}
         >
           Projects
         </motion.h1>
@@ -128,7 +128,7 @@ function Project() {
                   <div className="flex-1">
                     <motion.h2
                       className="text-lg sm:text-xl font-bold mb-2 transition-colors duration-300"
-                      transition={{ duration: 0.2, delay: 7 }}
+                      transition={{ duration: 0.2 }}
                     >
                       {project.name}
                     </motion.h2>
@@ -174,7 +174,7 @@ function Project() {
                 </div>
                 <motion.p
                       className="text-xs sm:text-sm leading-relaxed text-white/70 group-hover:text-white/80 transition-colors duration-300"
-                      transition={{ duration: 0.4, delay: 7.3 }}
+                      transition={{ duration: 0.2 }}
                     >
                       {project.description}
                     </motion.p>
@@ -184,7 +184,7 @@ function Project() {
                     <motion.span
                       key={`punyakrit-project-tech-${techIndex}`}
                       className="px-2 sm:px-3 py-1 text-xs font-medium rounded-full border border-white/20 bg-white/5 hover:bg-white/10 hover:border-white/30 transition-all duration-300"
-                      transition={{ duration: 0.5, delay: 7.7 }}
+                      transition={{ duration: 0.2 }}
                     >
                       {tech}
                     </motion.span>
@@ -200,7 +200,7 @@ function Project() {
             className="flex justify-center mt-4 sm:mt-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 6.9 }}
+            transition={{ duration: 0.3, delay: 3.2 }}
           >
             <motion.button
               onClick={() => setShowAll(!showAll)}

@@ -39,14 +39,14 @@ function Skills() {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 3.0 }}
+      transition={{ duration: 0.4, delay: 1.1 }}
       className=" "
     >
       <motion.h1 
         className="text-lg sm:text-xl font-bold"
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5, delay: 3.0 }}
+        transition={{ duration: 0.3, delay: 1.2 }}
       >
         Skills
       </motion.h1>
@@ -59,8 +59,8 @@ function Skills() {
           visible: {
             opacity: 1,
             transition: {
-              staggerChildren: 0.05,
-              delayChildren: 3.2,
+              staggerChildren: 0.03,
+              delayChildren: 1.3,
             },
           },
         }}
@@ -72,8 +72,8 @@ function Skills() {
             initial={{ opacity: 0, y: 20, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ 
-              duration: 0.4, 
-              delay: 3.2 + (index * 0.05),
+              duration: 0.3, 
+              delay: 1.3 + (index * 0.03),
               ease: "easeOut"
             }}
             whileHover={{ 
@@ -93,7 +93,7 @@ function Skills() {
                 scale: 1.2,
                 color: "#60a5fa"
               }}
-              transition={{ duration: 0.6, delay: 3.3 }}
+              transition={{ duration: 0.6 }}
             >
               {skill.icon}
             </motion.div>

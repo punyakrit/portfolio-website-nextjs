@@ -35,7 +35,7 @@ function IntroSection() {
       className="flex flex-col gap-4 py-4 sm:py-6 mt-4 sm:mt-6 px-2 sm:px-4"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.4 }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
     >
@@ -44,7 +44,7 @@ function IntroSection() {
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -62,14 +62,14 @@ function IntroSection() {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            transition={{ duration: 0.4, delay: 0.15 }}
             className="cursor-pointer pr-0 sm:pr-20"
           >
             <motion.h1
               className="text-xl sm:text-2xl font-bold"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
+              transition={{ duration: 0.3, delay: 0.2 }}
             >
               Hello, I&apos;m Punyakrit
             </motion.h1>
@@ -77,7 +77,7 @@ function IntroSection() {
               className="text-white/70 text-sm sm:text-base relative h-6 overflow-hidden"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.8 }}
+              transition={{ duration: 0.3, delay: 0.25 }}
             >
               <motion.span
                 key={currentTextIndex}
@@ -99,7 +99,7 @@ function IntroSection() {
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 1.0 }}
+          transition={{ duration: 0.4, delay: 0.3 }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className="group"

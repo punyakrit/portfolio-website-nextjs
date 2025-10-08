@@ -7,14 +7,14 @@ function Present() {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 2 }}
+      transition={{ duration: 0.4, delay: 0.85 }}
       className=""
     >
       <motion.h1
         className="text-lg sm:text-xl font-bold"
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 2.2 }}
+        transition={{ duration: 0.3, delay: 0.95 }}
         whileHover={{ scale: 1.02 }}
       >
         Present
@@ -23,7 +23,7 @@ function Present() {
         className="text-white/70 text-sm sm:text-md leading-relaxed"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2, delay: 2.4 }}
+        transition={{ duration: 0.3, delay: 1.0 }}
         whileHover={{ color: "rgba(255, 255, 255, 0.9)" }}
       >
         Currently I&apos;m focused on building innovative projects like Codelens, Pulse, and Arcane. 
