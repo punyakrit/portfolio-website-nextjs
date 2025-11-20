@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 import Script from "next/script";
-import { ThemeProvider } from "next-themes";
+import { ThemeProvider } from "@/providers/theme-provider";
 import { env } from "@/lib/env";
 
 const geistSans = Geist({
@@ -140,9 +140,6 @@ export const metadata: Metadata = {
   },
 };
 
-
-
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -152,7 +149,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <Script
         async
-        src={`https://www.googletagmanager.com/gtag/js?id=${env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID as string}`}
+        src={`https://www.googletagmanager.com/gtag/js?id=${
+          env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID as string
+        }`}
       />
       <Script id="google-analytics">
         {`
@@ -168,18 +167,34 @@ export default function RootLayout({
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", '${env.NEXT_PUBLIC_CLARITY_ID as string}');`}
+    })(window, document, "clarity", "script", '${
+      env.NEXT_PUBLIC_CLARITY_ID as string
+    }');`}
       </Script>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background`}
       >
-       <ThemeProvider
-            attribute="class"
-            forcedTheme="dark"
-            disableTransitionOnChange
-          >
-          {children}
-          </ThemeProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="max-w-4xl mx-auto">
+            <div
+              className="
+      h-screen w-full
+      bg-[repeating-linear-gradient(135deg,rgba(255,255,255,0.03)_0_1px,transparent_1px_10px)]
+      border-x border-[#1b1b1b]
+      flex
+    "
+            >
+              <div className="flex-1 mx-12 h-full bg-[#121212] border-x border-[#1b1b1b] z-10">
+                {children}
+              </div>
+            </div>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );
