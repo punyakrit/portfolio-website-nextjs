@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fondamento, Geist, Geist_Mono, Poppins,  } from "next/font/google";
 import "./globals.css";
 
 import Script from "next/script";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { env } from "@/lib/env";
+import NarBar from "@/components/global/NarBar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,6 +16,20 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-poppins",
+});
+
+const fondamento = Fondamento({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-fondamento",
+});
+
+
 
 export const metadata: Metadata = {
   title: "Punyakrit Singh Makhni | Portfolio",
@@ -172,7 +187,7 @@ export default function RootLayout({
     }');`}
       </Script>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background`}
+        className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} ${fondamento.variable} antialiased dark:bg-[#121212] `}
       >
         <ThemeProvider
           attribute="class"
@@ -180,17 +195,21 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-4xl container mx-auto">
             <div
               className="
       h-screen w-full
-      bg-[repeating-linear-gradient(135deg,rgba(255,255,255,0.03)_0_1px,transparent_1px_10px)]
-      border-x border-[#1b1b1b]
+      bg-[repeating-linear-gradient(135deg,rgba(0,0,0,0.06)_0_1px,transparent_1px_6px)] dark:bg-[repeating-linear-gradient(135deg,rgba(255,255,255,0.06)_0_1px,transparent_1px_6px)]
+      border-x dark:border-[#1b1b1b]
       flex
     "
             >
-              <div className="flex-1 mx-12 h-full bg-[#121212] border-x border-[#1b1b1b] z-10">
+              <div className="flex-1 mx-12 h-full dark:bg-[#121212] bg-white border-x dark:border-[#1b1b1b] z-10">
+                <NarBar />
+                <div className="mt-20">
+
                 {children}
+                </div>
               </div>
             </div>
           </div>
