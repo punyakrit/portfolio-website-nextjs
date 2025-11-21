@@ -4,6 +4,7 @@ import logo from "../../../public/img.jpg";
 import { Button } from "../ui/button";
 import { ModeToggle } from "./ModeToggle";
 import Music from "./Music";
+import Link from "next/link";
 
 function NarBar() {
   return (
@@ -13,17 +14,19 @@ function NarBar() {
     >
       <div className=" flex justify-between ">
         <div className=" flex items-end gap-8">
+          <Link href="/" className="mb-3 text-lg cursor-pointer hover:underline delay-700">
           <Image
             src={logo}
             alt="logo"
             width={100}
             height={100}
-            className="w-16 h-16 rounded-2xl object-cover"
+            className="w-16 h-16 rounded-2xl object-cover "
           />
+          </Link>
           <div className="flex gap-4">
 
-          <div className="mb-3 text-lg cursor-pointer hover:underline delay-700">proof-of-work</div>
-          <div className="mb-3 text-lg cursor-pointer hover:underline transition duration-700">blogs</div>
+          <Link href="/pow" className="mb-3 text-lg cursor-pointer hover:underline delay-700">proof-of-work</Link>
+          <Link href="/blogs" className="mb-3 text-lg cursor-pointer hover:underline transition duration-700">blogs</Link>
           </div>
         </div>
         <div className=" flex gap-4 items-end">

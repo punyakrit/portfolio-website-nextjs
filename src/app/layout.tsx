@@ -29,8 +29,6 @@ const fondamento = Fondamento({
   variable: "--font-fondamento",
 });
 
-
-
 export const metadata: Metadata = {
   title: "Punyakrit Singh Makhni | Portfolio",
   description:
@@ -204,9 +202,9 @@ export default function RootLayout({
       flex
     "
             >
-              <div className="flex-1 mx-12 h-full dark:bg-[#121212] bg-white border-x dark:border-[#1b1b1b] z-10">
+              <div className="flex-1 mx-14 h-full dark:bg-[#121212] bg-white border-x dark:border-[#1b1b1b] z-10">
                 <NarBar />
-                <div className="mt-20">
+                <div className="mt-24">
 
                 {children}
                 </div>
