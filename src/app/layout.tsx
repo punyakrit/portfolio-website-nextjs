@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fondamento, Geist, Geist_Mono, Inter, Poppins,  } from "next/font/google";
 import "./globals.css";
-import SocialsFooter from "../../components/SocialsFooter";
 
 import Script from "next/script";
-import { ThemeProvider } from "../../components/Ui";
+import { ThemeProvider } from "@/providers/theme-provider";
+import { env } from "@/lib/env";
+import NavBar from "@/components/global/NavBar";
+import DevMode from "@/lib/DevMode";
+import RefreshOverlay from "@/components/global/RefreshOverlay";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,6 +17,24 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-poppins",
+});
+
+const fondamento = Fondamento({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-fondamento",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -140,9 +161,6 @@ export const metadata: Metadata = {
   },
 };
 
-
-
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -152,7 +170,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <Script
         async
-        src="https://www.googletagmanager.com/gtag/js?id=G-GH95JVWL77"
+        src={`https://www.googletagmanager.com/gtag/js?id=${
+          env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID as string
+        }`}
       />
       <Script id="google-analytics">
         {`
@@ -160,7 +180,7 @@ export default function RootLayout({
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-GH95JVWL77');`}
+  gtag('config', '${env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID as string}');`}
       </Script>
       <Script id="microsoft-clarity">
         {`
@@ -168,19 +188,40 @@ export default function RootLayout({
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "tpoy4vtmng");`}
+    })(window, document, "clarity", "script", '${
+      env.NEXT_PUBLIC_CLARITY_ID as string
+    }');`}
       </Script>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} ${fondamento.variable} ${inter.variable} antialiased dark:bg-[#121212] `}
       >
-       <ThemeProvider
-            attribute="class"
-            forcedTheme="dark"
-            disableTransitionOnChange
-          >
-          {children}
-          </ThemeProvider>
-        <SocialsFooter />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <RefreshOverlay />
+          <DevMode />
+          <div className="max-w-4xl container mx-auto">
+            <div
+              className="
+      h-full w-full
+      md:bg-[repeating-linear-gradient(135deg,rgba(0,0,0,0.06)_0_1px,transparent_1px_6px)] md:dark:bg-[repeating-linear-gradient(135deg,rgba(255,255,255,0.06)_0_1px,transparent_1px_6px)]
+      md:border-x md:dark:border-[#1b1b1b]
+      flex overflow-auto
+    "
+            >
+              <div className="flex-1 md:mx-14 h-full dark:bg-[#121212] bg-white border-x dark:border-[#1b1b1b] z-10">
+                <NavBar />
+                <div className="mt-12">
+
+                {children}
+                </div>
+              </div>
+            </div>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );
