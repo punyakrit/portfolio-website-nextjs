@@ -103,21 +103,21 @@ function Github() {
 
   if (loading) {
     return (
-      <div className='px-4 sm:px-6 md:px-8'>
-        <div className='flex items-center justify-between mb-4 sm:mb-6'>
-          <h2 className='text-2xl sm:text-3xl font-bold'>GitHub Activity</h2>
+      <div className='w-full max-w-full overflow-hidden px-4 sm:px-6 md:px-8'>
+        <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0 mb-4 sm:mb-6'>
+          <h2 className='text-xl sm:text-2xl md:text-3xl font-bold'>GitHub Activity</h2>
           <Link
             href={socials.github}
             target='_blank'
             rel='noopener noreferrer'
-            className='flex items-center gap-2 px-3 sm:px-4 py-2 bg-muted hover:bg-muted/80 rounded-md text-xs sm:text-sm font-medium transition-colors'
+            className='flex items-center justify-center sm:justify-start gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-muted hover:bg-muted/80 rounded-md text-xs sm:text-sm font-medium transition-colors w-fit'
           >
             <GithubIcon className='w-4 h-4 sm:w-5 sm:h-5' />
             <span>View Profile</span>
           </Link>
         </div>
-        <div className='w-full rounded-lg border border-border bg-card p-8 flex items-center justify-center'>
-          <p className='text-muted-foreground'>Loading contributions...</p>
+        <div className='w-full max-w-full rounded-lg border border-border bg-card p-6 sm:p-8 flex items-center justify-center'>
+          <p className='text-muted-foreground text-sm sm:text-base'>Loading contributions...</p>
         </div>
       </div>
     )
@@ -125,21 +125,21 @@ function Github() {
 
   if (error || !data) {
     return (
-      <div className='px-4 sm:px-6 md:px-8'>
-        <div className='flex items-center justify-between mb-4 sm:mb-6'>
-          <h2 className='text-2xl sm:text-3xl font-bold'>GitHub Contributions</h2>
+      <div className='w-full max-w-full overflow-hidden px-4 sm:px-6 md:px-8'>
+        <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0 mb-4 sm:mb-6'>
+          <h2 className='text-xl sm:text-2xl md:text-3xl font-bold'>GitHub Contributions</h2>
           <Link
             href={socials.github}
             target='_blank'
             rel='noopener noreferrer'
-            className='flex items-center gap-2 px-3 sm:px-4 py-2 bg-muted hover:bg-muted/80 rounded-md text-xs sm:text-sm font-medium transition-colors'
+            className='flex items-center justify-center sm:justify-start gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-muted hover:bg-muted/80 rounded-md text-xs sm:text-sm font-medium transition-colors w-fit'
           >
             <GithubIcon className='w-4 h-4 sm:w-5 sm:h-5' />
             <span>View Profile</span>
           </Link>
         </div>
-        <div className='w-full rounded-lg border border-border bg-card p-8 flex items-center justify-center'>
-          <p className='text-muted-foreground'>{error || 'Failed to load contributions'}</p>
+        <div className='w-full max-w-full rounded-lg border border-border bg-card p-6 sm:p-8 flex items-center justify-center'>
+          <p className='text-muted-foreground text-sm sm:text-base text-center'>{error || 'Failed to load contributions'}</p>
         </div>
       </div>
     )
@@ -168,61 +168,63 @@ function Github() {
   }
 
   return (
-    <div className='px-4 sm:px-6 md:px-8'>
-      <div className='flex items-center justify-between mb-4 sm:mb-6'>
-        <h2 className='text-2xl sm:text-3xl font-bold'>GitHub Contributions</h2>
+    <div className='w-full max-w-full overflow-hidden px-4 sm:px-6 md:px-8'>
+      <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0 mb-4 sm:mb-6'>
+        <h2 className='text-xl sm:text-2xl md:text-3xl font-bold'>GitHub Contributions</h2>
         <Link
           href={socials.github}
           target='_blank'
           rel='noopener noreferrer'
-          className='flex items-center gap-2 px-3 sm:px-4 py-2 bg-muted hover:bg-muted/80 rounded-md text-xs sm:text-sm font-medium transition-colors'
+          className='flex items-center justify-center sm:justify-start gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-muted hover:bg-muted/80 rounded-md text-xs sm:text-sm font-medium transition-colors w-fit'
         >
           <GithubIcon className='w-4 h-4 sm:w-5 sm:h-5' />
           <span>View Profile</span>
         </Link>
       </div>
-      <div className='w-full overflow-x-auto rounded-lg border border-border bg-card p-3 sm:p-4'>
-        <div className='inline-flex flex-col'>
-          <div className='flex gap-0.5 mb-1 text-[10px] sm:text-xs text-muted-foreground h-3 items-end'>
-            {weeks.map((_, weekIndex) => {
-              const monthLabel = getMonthLabel(weekIndex)
-              return (
-                <div 
-                  key={weekIndex} 
-                  className='w-2.5 text-left leading-none flex-shrink-0'
-                >
-                  {monthLabel}
+      <div className='w-full max-w-full rounded-lg border border-border bg-card overflow-hidden'>
+        <div className='w-full overflow-x-auto overflow-y-hidden p-2 sm:p-3 md:p-4'>
+          <div className='inline-flex flex-col min-w-max'>
+            <div className='flex gap-0.5 mb-1 text-[9px] sm:text-[10px] md:text-xs text-muted-foreground h-3 sm:h-4 items-end'>
+              {weeks.map((_, weekIndex) => {
+                const monthLabel = getMonthLabel(weekIndex)
+                return (
+                  <div 
+                    key={weekIndex} 
+                    className='w-2 sm:w-2.5 text-left leading-none flex-shrink-0'
+                  >
+                    {monthLabel}
+                  </div>
+                )
+              })}
+            </div>
+            <div className='flex gap-0.5'>
+              {weeks.map((week, weekIndex) => (
+                <div key={weekIndex} className='flex flex-col gap-0.5 flex-shrink-0'>
+                  {week.map((contribution, dayIndex) => (
+                    <div
+                      key={`${weekIndex}-${dayIndex}`}
+                      className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-sm flex-shrink-0 ${getLevelColor(contribution.level)} transition-colors ${contribution.date ? 'hover:ring-1 hover:ring-border cursor-pointer' : ''}`}
+                      title={contribution.date ? `${contribution.count} contributions on ${formatDate(contribution.date)}` : ''}
+                    />
+                  ))}
                 </div>
-              )
-            })}
-          </div>
-          <div className='flex gap-0.5'>
-            {weeks.map((week, weekIndex) => (
-              <div key={weekIndex} className='flex flex-col gap-0.5 flex-shrink-0'>
-                {week.map((contribution, dayIndex) => (
-                  <div
-                    key={`${weekIndex}-${dayIndex}`}
-                    className={`w-2.5 h-2.5 rounded-sm flex-shrink-0 ${getLevelColor(contribution.level)} transition-colors ${contribution.date ? 'hover:ring-1 hover:ring-border cursor-pointer' : ''}`}
-                    title={contribution.date ? `${contribution.count} contributions on ${formatDate(contribution.date)}` : ''}
-                  />
-                ))}
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
-        <div className='flex items-center justify-between mt-3 text-xs sm:text-sm text-muted-foreground'>
-          <span>{data.total.lastYear} contributions in the last year</span>
-          <div className='flex items-center gap-2'>
-            <span className='text-[10px] sm:text-xs'>Less</span>
+        <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0 px-2 sm:px-3 md:px-4 pb-2 sm:pb-3 md:pb-4 text-[10px] sm:text-xs md:text-sm text-muted-foreground border-t border-border'>
+          <span className='text-center sm:text-left whitespace-nowrap'>{data.total.lastYear} contributions in the last year</span>
+          <div className='flex items-center justify-center sm:justify-start gap-1.5 sm:gap-2 flex-shrink-0'>
+            <span className='text-[9px] sm:text-[10px] md:text-xs'>Less</span>
             <div className='flex gap-0.5'>
               {[0, 1, 2, 3, 4].map((level) => (
                 <div
                   key={level}
-                  className={`w-2.5 h-2.5 rounded-sm ${getLevelColor(level)}`}
+                  className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-sm ${getLevelColor(level)}`}
                 />
               ))}
             </div>
-            <span className='text-[10px] sm:text-xs'>More</span>
+            <span className='text-[9px] sm:text-[10px] md:text-xs'>More</span>
           </div>
         </div>
       </div>
