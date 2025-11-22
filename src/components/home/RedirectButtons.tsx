@@ -2,12 +2,10 @@
 import React from "react";
 import { Button } from "../ui/button";
 import { FileText, Send } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { socials } from "@/lib/socials";
 import Link from "next/link";
 
 function RedirectButtons() {
-  const router = useRouter();
   return (
     <div className="flex flex-wrap gap-2 sm:gap-4">
       <Link href={socials.resume} target="_blank">

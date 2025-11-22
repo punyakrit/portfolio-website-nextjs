@@ -1,5 +1,5 @@
 import { env } from "./env";
-import { skills } from "./skills";
+import { skills, Skill } from "./skills";
 import { getLinkIconByType } from "./linkIcons";
 
 export const getSkillByName = (name: string) => {
@@ -12,7 +12,7 @@ interface Experience {
     location: string;
     startDate: string;
     endDate: string;
-    tech: any[];
+    tech: Skill[];
     bullets: string[];
     links: {
         image: string;
@@ -54,7 +54,7 @@ export const experience: Readonly<Experience[]> = [
             getSkillByName("Supabase"),
             getSkillByName("GitHub"),
             getSkillByName("Vercel")
-        ].filter(Boolean),
+        ].filter((skill): skill is Skill => skill !== undefined),
         bullets: [
             "Owned and shipped the frontend and full-stack infrastructure for fast-moving product work — component system, routing, builds, and performance optimizations across multiple product areas.",
             "Led a multi-phase refactor toward component-driven architecture and stricter typing, which improved developer velocity and reduced regressions in production.",
@@ -99,7 +99,7 @@ export const experience: Readonly<Experience[]> = [
             getSkillByName("Stripe"),
             getSkillByName("Clerk"),
             getSkillByName("GitHub")
-        ].filter(Boolean),
+        ].filter((skill): skill is Skill => skill !== undefined),
         bullets: [
             "Built and shipped multiple independent products and MVPs (Pulse, Codelens, SchemaPilot) from 0→1 — product design, frontend, API, and deployments.",
             "Designed and implemented user-facing dashboards, auth flows, billing integrations, and data models using Next.js + Supabase / FastAPI + Postgres.",

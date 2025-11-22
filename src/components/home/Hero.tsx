@@ -21,7 +21,7 @@ function Hero() {
       }
       preloadImages()
     }
-  }, [])
+  }, [devMode, backgroundImages])
   
   useEffect(() => {
     if (devMode === "true") {
@@ -36,7 +36,7 @@ function Hero() {
       }, 600)
     }, 10000)
     return () => clearInterval(interval)
-  }, [])
+  }, [devMode, backgroundImages])
   
   return (
     <div className="relative">

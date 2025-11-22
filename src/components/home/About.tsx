@@ -15,7 +15,7 @@ function About() {
           className='h-24 w-24 sm:h-32 sm:w-32 md:h-36 md:w-36 rounded-full object-cover border shadow-lg border-white/20 dark:shadow-white/20'
         />
         <h1 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold my-4 mt-6 sm:mt-8 font-[family-name:var(--font-inter)] leading-tight'>
-          Hi, I'm Punyakrit — <span className='font-bold bg-gradient-to-r from-black/80 to-black/50 dark:from-white/80 dark:to-white/50 bg-clip-text text-transparent'>A Full Stack web developer.</span>
+          Hi, I&apos;m Punyakrit — <span className='font-bold bg-gradient-to-r from-black/80 to-black/50 dark:from-white/80 dark:to-white/50 bg-clip-text text-transparent'>A Full Stack web developer.</span>
         </h1>
         
         <p className='text-base sm:text-lg md:text-xl leading-relaxed dark:text-white/80 text-black/80 max-w-3xl mt-4 sm:mt-6'>
