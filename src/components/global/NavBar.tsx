@@ -34,9 +34,9 @@ function NavBar() {
             <Link href="/work" className="text-base md:text-lg cursor-pointer hover:underline delay-700">
               work
             </Link>
-            <Link href="/blogs" className="text-base md:text-lg cursor-pointer hover:underline transition duration-700">
+            {/* <Link href="/blogs" className="text-base md:text-lg cursor-pointer hover:underline transition duration-700">
               blogs
-            </Link>
+            </Link> */}
           </div>
         </div>
         <div className="flex gap-2 sm:gap-3 md:gap-4 items-center">
