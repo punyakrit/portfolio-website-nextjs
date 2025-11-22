@@ -5,6 +5,7 @@ import About from "@/components/home/About";
 import HorizontalLine from "@/components/global/HorizontalLine";
 import Experience from "@/components/home/Experience";
 import Projects from "@/components/pow/Projects";
+import Github from "@/components/home/Github";
 
 export const metadata: Metadata = {
   title: "Punyakrit Singh Makhni | Full-Stack Developer Portfolio",
@@ -35,6 +36,8 @@ function page() {
       <Experience completeView={false} />
       <HorizontalLine />  
       <Projects showAll={false} />
+      <HorizontalLine />
+      <Github />
       <HorizontalLine />
     </div>
   );
