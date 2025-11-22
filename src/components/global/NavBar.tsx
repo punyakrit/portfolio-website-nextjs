@@ -11,7 +11,7 @@ function NavBar() {
   const image = env.NEXT_PUBLIC_CLOUDFRONT_URL + "/img.jpg"
   return (
     <nav
-      className="h-20 backdrop-blur-sm fixed top-0 left-0 right-0 max-w-4xl mx-auto px-16 py-4"
+      className="h-20 backdrop-blur-sm fixed top-0 left-0 right-0 max-w-4xl mx-auto px-16 py-4 z-20"
       style={{ fontFamily: "var(--font-fondamento)" }}
     >
       <div className=" flex justify-between ">
@@ -27,15 +27,15 @@ function NavBar() {
           </Link>
           <div className="flex gap-4">
 
-          <Link href="/pow" className="mb-3 text-lg cursor-pointer hover:underline delay-700">proof-of-work</Link>
-          <Link href="/blogs" className="mb-3 text-lg cursor-pointer hover:underline transition duration-700">blogs</Link>
+          <Link href="/pow" className="mb-7 text-lg cursor-pointer hover:underline delay-700">proof-of-work</Link>
+          <Link href="/blogs" className="mb-7 text-lg cursor-pointer hover:underline transition duration-700">blogs</Link>
           </div>
         </div>
         <div className=" flex gap-4 items-end">
-          <div className="mb-2">
+          <div className="mb-6">
             <Music />
           </div>{" "}
-          <div className="mb-2">
+          <div className="mb-6">
             <ModeToggle />
           </div>
         </div>

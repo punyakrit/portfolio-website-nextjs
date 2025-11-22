@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fondamento, Geist, Geist_Mono, Poppins,  } from "next/font/google";
+import { Fondamento, Geist, Geist_Mono, Inter, Poppins,  } from "next/font/google";
 import "./globals.css";
 
 import Script from "next/script";
@@ -28,6 +28,12 @@ const fondamento = Fondamento({
   subsets: ["latin"],
   weight: ["400"],
   variable: "--font-fondamento",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -186,7 +192,7 @@ export default function RootLayout({
     }');`}
       </Script>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} ${fondamento.variable} antialiased dark:bg-[#121212] `}
+        className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} ${fondamento.variable} ${inter.variable} antialiased dark:bg-[#121212] `}
       >
         <ThemeProvider
           attribute="class"
@@ -198,15 +204,15 @@ export default function RootLayout({
           <div className="max-w-4xl container mx-auto">
             <div
               className="
-      h-screen w-full
+      h-full w-full
       bg-[repeating-linear-gradient(135deg,rgba(0,0,0,0.06)_0_1px,transparent_1px_6px)] dark:bg-[repeating-linear-gradient(135deg,rgba(255,255,255,0.06)_0_1px,transparent_1px_6px)]
       border-x dark:border-[#1b1b1b]
-      flex
+      flex overflow-auto
     "
             >
               <div className="flex-1 mx-14 h-full dark:bg-[#121212] bg-white border-x dark:border-[#1b1b1b] z-10">
                 <NavBar />
-                <div className="mt-24">
+                <div className="mt-12">
 
                 {children}
                 </div>
