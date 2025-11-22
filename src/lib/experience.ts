@@ -65,7 +65,7 @@ export const experience: Readonly<Experience[]> = [
         links: {
             image: `${env.NEXT_PUBLIC_CLOUDFRONT_URL}/agentprod_logo.jpeg`,
             companyUrl: {
-                url: "https://agentprod.com/",
+                url: "https://muzecmo.com/",
                 icon: getLinkIconByType("companyUrl")?.icon
             },
             githubUrl: {
