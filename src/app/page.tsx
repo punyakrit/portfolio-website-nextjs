@@ -9,7 +9,7 @@ function page() {
       <Hero />
       <About />
       <HorizontalLine />
-      <Experience />
+      <Experience completeView={false} />
       <HorizontalLine />  
     </div>
   );

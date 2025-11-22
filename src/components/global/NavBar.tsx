@@ -28,6 +28,7 @@ function NavBar() {
           <div className="flex gap-4">
 
           <Link href="/pow" className="mb-7 text-lg cursor-pointer hover:underline delay-700">proof-of-work</Link>
+          <Link href="/work" className="mb-7 text-lg cursor-pointer hover:underline delay-700">work</Link>
           <Link href="/blogs" className="mb-7 text-lg cursor-pointer hover:underline transition duration-700">blogs</Link>
           </div>
         </div>
