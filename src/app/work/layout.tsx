@@ -1,4 +1,3 @@
-import { Metadata } from "next"
 function WorkLayout({ children }: { children: React.ReactNode }) {
 
   return (
