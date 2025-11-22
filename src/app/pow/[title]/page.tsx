@@ -1,4 +1,5 @@
 import React from 'react'
+import type { Metadata } from 'next'
 import { projects } from '@/lib/projectsData'
 import { skills } from '@/lib/skills'
 import { notFound } from 'next/navigation'
@@ -12,6 +13,12 @@ function getSlug(title: string) {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/(^-|-$)/g, '')
+}
+
+export async function generateStaticParams() {
+  return projects.map((project) => ({
+    title: getSlug(project.title),
+  }))
 }
 
 function normalizeSlug(slug: string) {
@@ -56,6 +63,38 @@ function getTechIcon(techName: string) {
     )
   })
   return skill?.icon
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ title: string }> }): Promise<Metadata> {
+  const { title } = await params
+  const project = getProjectBySlug(title)
+
+  if (!project) {
+    return {
+      title: "Project Not Found | Punyakrit Singh Makhni",
+      description: "The requested project could not be found.",
+    }
+  }
+
+  const projectUrl = `https://punyakrit.dev/pow/${title}`
+  const techKeywords = project.tech.join(", ")
+
+  return {
+    title: `${project.title} | Punyakrit Singh Makhni`,
+    description: project.description,
+    keywords: [
+      project.title,
+      ...project.tech,
+      "web development project",
+      "full-stack project",
+      "open source",
+      techKeywords,
+    ],
+    alternates: {
+      canonical: `/pow/${title}`,
+    },
+    
+  }
 }
 
 export default async function ProjectPage({ params }: { params: Promise<{ title: string }> }) {

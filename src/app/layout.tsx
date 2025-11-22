@@ -38,9 +38,14 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Punyakrit Singh Makhni | Portfolio",
+  title: {
+    default: "Punyakrit Singh Makhni | Portfolio",
+    template: "%s | Punyakrit Singh Makhni",
+  },
   description:
     "Personal portfolio of Punyakrit Singh Makhni showcasing web development projects, skills, and experience. Full-stack developer specializing in modern web technologies.",
+  applicationName: "Punyakrit Singh Makhni Portfolio",
+  category: "Portfolio",
   viewport: "width=device-width, initial-scale=1",
   keywords: [
     "Punyakrit Singh Makhni",

@@ -1,7 +1,18 @@
 import React from 'react'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArrowLeft } from 'lucide-react'
+
+export const metadata: Metadata = {
+  title: "404 - Project Not Found | Punyakrit Singh Makhni",
+  description:
+    "The project you're looking for doesn't exist or has been moved. Return to the projects page to explore all available projects.",
+  robots: {
+    index: false,
+    follow: true,
+  },
+}
 
 export default function NotFound() {
   return (

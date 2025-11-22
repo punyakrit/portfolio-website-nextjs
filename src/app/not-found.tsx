@@ -1,7 +1,18 @@
 import React from 'react'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Home } from 'lucide-react'
+
+export const metadata: Metadata = {
+  title: "404 - Page Not Found | Punyakrit Singh Makhni",
+  description:
+    "The page you're looking for doesn't exist or has been moved. Return to the homepage or explore my projects and work experience.",
+  robots: {
+    index: false,
+    follow: true,
+  },
+}
 
 export default function NotFound() {
   return (
