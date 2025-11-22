@@ -207,12 +207,12 @@ export default function RootLayout({
             <div
               className="
       h-full w-full
-      bg-[repeating-linear-gradient(135deg,rgba(0,0,0,0.06)_0_1px,transparent_1px_6px)] dark:bg-[repeating-linear-gradient(135deg,rgba(255,255,255,0.06)_0_1px,transparent_1px_6px)]
-      border-x dark:border-[#1b1b1b]
+      md:bg-[repeating-linear-gradient(135deg,rgba(0,0,0,0.06)_0_1px,transparent_1px_6px)] md:dark:bg-[repeating-linear-gradient(135deg,rgba(255,255,255,0.06)_0_1px,transparent_1px_6px)]
+      md:border-x md:dark:border-[#1b1b1b]
       flex overflow-auto
     "
             >
-              <div className="flex-1 mx-14 h-full dark:bg-[#121212] bg-white border-x dark:border-[#1b1b1b] z-10">
+              <div className="flex-1 md:mx-14 h-full dark:bg-[#121212] bg-white border-x dark:border-[#1b1b1b] z-10">
                 <NavBar />
                 <div className="mt-12">
 
