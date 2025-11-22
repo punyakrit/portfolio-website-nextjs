@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/providers/theme-provider";
 import { env } from "@/lib/env";
 import NavBar from "@/components/global/NavBar";
 import DevMode from "@/lib/DevMode";
+import RefreshOverlay from "@/components/global/RefreshOverlay";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -200,6 +201,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <RefreshOverlay />
           <DevMode />
           <div className="max-w-4xl container mx-auto">
             <div

@@ -13,7 +13,7 @@ function About() {
         <p className='text-xl leading-relaxed dark:text-white/80 text-black/80 max-w-3xl mt-6'>
         I work across the stack with <span className='font-semibold dark:text-white text-black dark:bg-white/10 bg-black/5 px-2 py-0.5 rounded'>Next.js, FastAPI, and Postgres</span>, turning ideas into real products without overthinking the process. I care about clear UX, clean code, and shipping fast. From small tools to full production apps, I try to build things that feel good to use and easy to grow.
         </p>
-        <div className='flex gap-4 my-6 mb-2 justify-between'>
+        <div className='flex gap-4 my-6  justify-between'>
 
 
         <RedirectButtons />

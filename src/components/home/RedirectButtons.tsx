@@ -9,7 +9,7 @@ import Link from "next/link";
 function RedirectButtons() {
   const router = useRouter();
   return (
-    <div className="flex gap-4 my-6 mb-2">
+    <div className="flex gap-4 mt-6">
       <Link href={socials.resume} target="_blank">
         <Button className="flex gap-2 items-center cursor-pointer" variant="outline">
           <FileText /> Resume / CV

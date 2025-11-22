@@ -43,7 +43,7 @@ function MultiSocials({showAll}:{showAll: boolean}) {
     ]
   return (
     <TooltipProvider>
-        <div className="flex flex-wrap gap-3 my-6">
+        <div className="flex flex-wrap gap-3 mt-6">
             {socialLinks.map((social) => {
                 const Icon = social.icon
                 if (social.show && !showAll) return null
