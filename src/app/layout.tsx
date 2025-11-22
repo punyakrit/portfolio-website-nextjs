@@ -5,7 +5,8 @@ import "./globals.css";
 import Script from "next/script";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { env } from "@/lib/env";
-import NarBar from "@/components/global/NarBar";
+import NavBar from "@/components/global/NavBar";
+import DevMode from "@/lib/DevMode";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -193,6 +194,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <DevMode />
           <div className="max-w-4xl container mx-auto">
             <div
               className="
@@ -203,7 +205,7 @@ export default function RootLayout({
     "
             >
               <div className="flex-1 mx-14 h-full dark:bg-[#121212] bg-white border-x dark:border-[#1b1b1b] z-10">
-                <NarBar />
+                <NavBar />
                 <div className="mt-24">
 
                 {children}

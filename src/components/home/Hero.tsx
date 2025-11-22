@@ -1,17 +1,52 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
-import bg from "../../../public/bg.jpeg"
+import { bannerImages } from '@/lib/image'
+import { env } from '@/lib/env'
 function Hero() {
+  const devMode = env.NEXT_PUBLIC_DEV_MODE
+  const backgroundImages = bannerImages
+  const [backgroundImage, setBackgroundImage] = useState(
+    devMode === "true" ? backgroundImages[0] : backgroundImages[Math.floor(Math.random() * backgroundImages.length)]
+  )
+  const [opacity, setOpacity] = useState(1)
+  
+  useEffect(() => {
+    if (devMode !== "true") {
+      const preloadImages = () => {
+        backgroundImages.forEach((src) => {
+          const img = new window.Image()
+          img.src = src
+        })
+      }
+      preloadImages()
+    }
+  }, [])
+  
+  useEffect(() => {
+    if (devMode === "true") {
+      return
+    }
+    
+    const interval = setInterval(() => {
+      setOpacity(0)
+      setTimeout(() => {
+        setBackgroundImage(backgroundImages[Math.floor(Math.random() * backgroundImages.length)])
+        setOpacity(1)
+      }, 600)
+    }, 10000)
+    return () => clearInterval(interval)
+  }, [])
+  
   return (
     <div className="relative">
       <Image 
-        src={bg} 
+        src={backgroundImage} 
         alt="Banner" 
         width={1240} 
         height={900} 
-        className="rounded-xl w-full h-[200px] sm:h-[270px] object-cover" 
-        decoding="async"
-        loading="lazy"
+        className="rounded-xl w-full h-[200px] sm:h-[270px] object-cover transition-opacity duration-[600ms] ease-in-out" 
+        style={{ opacity }}
       />
       <div className="absolute top-0 left-0 right-0 h-[60px] bg-gradient-to-b dark:from-[#121212] from-[#fff] to-transparent"></div>
       <div className="absolute bottom-0 left-0 right-0 h-[60px] bg-gradient-to-t dark:from-[#121212] from-[#fff] to-transparent"></div>

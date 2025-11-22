@@ -64,7 +64,7 @@ function Music() {
     return (
       <>
         <audio ref={audioRef} src="/audio.mp3" loop />
-        <Button variant="ghost" size="icon" className="rounded-full" onClick={() => setPlay(!play)}>
+        <Button variant="ghost" size="icon" className="rounded-full" onClick={() => setPlay(!play) }>
           {play ? <Pause className="h-[1.2rem] w-[1.2rem] transition-all text-black dark:text-white" /> : <Play className="h-[1.2rem] w-[1.2rem] transition-all text-black dark:text-white" />}
         </Button>
       </>

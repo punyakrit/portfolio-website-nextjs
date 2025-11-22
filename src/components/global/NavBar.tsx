@@ -5,8 +5,10 @@ import { Button } from "../ui/button";
 import { ModeToggle } from "./ModeToggle";
 import Music from "./Music";
 import Link from "next/link";
+import { env } from "@/lib/env";
+function NavBar() {
 
-function NarBar() {
+  const image = env.NEXT_PUBLIC_CLOUDFRONT_URL + "/img.jpg"
   return (
     <nav
       className="h-20 backdrop-blur-sm fixed top-0 left-0 right-0 max-w-4xl mx-auto px-16 py-4"
@@ -16,7 +18,7 @@ function NarBar() {
         <div className=" flex items-end gap-8">
           <Link href="/" className="mb-3 text-lg cursor-pointer hover:underline delay-700">
           <Image
-            src={logo}
+            src={image}
             alt="logo"
             width={100}
             height={100}
@@ -42,4 +44,4 @@ function NarBar() {
   );
 }
 
-export default NarBar;
+export default NavBar;
