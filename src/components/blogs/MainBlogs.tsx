@@ -2,8 +2,15 @@ import React from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { FileText, PenTool } from 'lucide-react'
 
+interface Blog {
+  title: string
+  description: string
+  date: string
+  slug: string
+}
+
 function MainBlogs() {
-  const blogs: any[] = []
+  const blogs: Blog[] = []
 
   if (blogs.length === 0) {
     return (
@@ -17,7 +24,7 @@ function MainBlogs() {
               </div>
               <CardTitle className='text-xl'>No Blogs Yet</CardTitle>
               <CardDescription className='text-base'>
-                I'm currently working on some exciting blog posts. Check back soon for insights on web development, tech tutorials, and my coding journey!
+                I&apos;m currently working on some exciting blog posts. Check back soon for insights on web development, tech tutorials, and my coding journey!
               </CardDescription>
             </CardHeader>
             <CardContent className='text-center'>

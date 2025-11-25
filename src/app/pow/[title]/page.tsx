@@ -76,7 +76,6 @@ export async function generateMetadata({ params }: { params: Promise<{ title: st
     }
   }
 
-  const projectUrl = `https://punyakrit.dev/pow/${title}`
   const techKeywords = project.tech.join(", ")
 
   return {
