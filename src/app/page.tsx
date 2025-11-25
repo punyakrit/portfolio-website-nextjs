@@ -8,6 +8,8 @@ import Projects from "@/components/pow/Projects";
 import Github from "@/components/home/Github";
 import Stack from "@/components/home/Stack";
 import MainBlogs from "@/components/blogs/MainBlogs";
+import Cta from "@/components/home/Cta";
+
 export const metadata: Metadata = {
   title: "Punyakrit Singh Makhni | Full-Stack Developer Portfolio",
   description:
@@ -43,6 +45,8 @@ function page() {
       <Stack/>
       <HorizontalLine />
       <MainBlogs/>
+      <HorizontalLine />
+      <Cta />
       <HorizontalLine />
     </div>
   );
