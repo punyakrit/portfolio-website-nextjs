@@ -139,7 +139,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Punyakrit Singh Makhni | Full-Stack Developer",
+    title: "Punyakrit Singh Makhni | Portfolio",
     description:
       "Personal portfolio of Punyakrit Singh Makhni showcasing web development projects, skills, and experience.",
     images: ["/main.png"],
