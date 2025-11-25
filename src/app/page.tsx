@@ -41,7 +41,9 @@ function page() {
       <Projects showAll={false} />
       <HorizontalLine />
       <Github />
-      <HorizontalLine />
+      <div className="hidden md:block">
+        <HorizontalLine />
+      </div>
       <Stack/>
       <HorizontalLine />
       <MainBlogs/>
