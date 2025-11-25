@@ -6,7 +6,8 @@ import HorizontalLine from "@/components/global/HorizontalLine";
 import Experience from "@/components/home/Experience";
 import Projects from "@/components/pow/Projects";
 import Github from "@/components/home/Github";
-
+import Stack from "@/components/home/Stack";
+import MainBlogs from "@/components/blogs/MainBlogs";
 export const metadata: Metadata = {
   title: "Punyakrit Singh Makhni | Full-Stack Developer Portfolio",
   description:
@@ -38,6 +39,10 @@ function page() {
       <Projects showAll={false} />
       <HorizontalLine />
       <Github />
+      <HorizontalLine />
+      <Stack/>
+      <HorizontalLine />
+      <MainBlogs/>
       <HorizontalLine />
     </div>
   );

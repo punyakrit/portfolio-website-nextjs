@@ -1,5 +1,6 @@
 import React from 'react'
 import type { Metadata } from 'next'
+import MainBlogs from '@/components/blogs/MainBlogs'
 
 export const metadata: Metadata = {
   title: "Blogs | Punyakrit Singh Makhni",
@@ -23,8 +24,8 @@ export const metadata: Metadata = {
 
 function page() {
   return (
-    <div>page</div>
+    <div>< MainBlogs /></div>
   )
 }
 
-export default page
+export default page;  

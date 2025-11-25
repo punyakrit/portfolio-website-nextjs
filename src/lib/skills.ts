@@ -27,7 +27,9 @@ import {
   SiTestinglibrary,
   SiFigma,
   SiLinux,
-  SiNginx
+  SiNginx,
+  SiKubernetes,
+  SiSocketdotio
 } from 'react-icons/si';
 
 export interface Skill {
@@ -98,6 +100,11 @@ export const skills: Readonly<Skill[]> = [
     category: 'backend'
   },
   {
+    name: 'WebSockets',
+    icon: SiSocketdotio,
+    category: 'backend'
+  },
+  {
     name: 'PostgreSQL',
     icon: SiPostgresql,
     category: 'database'
@@ -140,6 +147,11 @@ export const skills: Readonly<Skill[]> = [
   {
     name: 'Linux',
     icon: SiLinux,
+    category: 'devops'
+  },
+  {
+    name: 'Kubernetes',
+    icon: SiKubernetes,
     category: 'devops'
   },
   {
