@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { Github, Linkedin, Mail, FileText, Calendar } from 'lucide-react'
+import { Github, Linkedin } from 'lucide-react'
 import { FaXTwitter } from 'react-icons/fa6'
 import { socials } from '@/lib/socials'
 

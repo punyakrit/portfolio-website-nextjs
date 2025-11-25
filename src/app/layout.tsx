@@ -139,7 +139,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Punyakrit Singh Makhni | Portfolio",
+    title: "Punyakrit Singh Makhni | Full-Stack Developer",
     description:
       "Personal portfolio of Punyakrit Singh Makhni showcasing web development projects, skills, and experience.",
     images: ["/main.png"],
@@ -157,8 +157,8 @@ export const metadata: Metadata = {
   },
   manifest: "/manifest.json",
   icons: {
-    icon: "/favicon.ico",
-    apple: "/favicon.ico",
+    icon: "/profile.jpeg",
+    apple: "/profile.jpeg",
   },
   other: {
     "google-site-verification": "your-google-verification-code",

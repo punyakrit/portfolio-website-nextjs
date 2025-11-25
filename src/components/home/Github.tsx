@@ -24,7 +24,7 @@ function Github() {
 
   if (!mounted) {
     return (
-      <div className='w-full max-w-full overflow-hidden px-4 sm:px-6 md:px-8'>
+      <div className='hidden md:block w-full max-w-full overflow-hidden px-4 sm:px-6 md:px-8'>
         <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0 mb-4 sm:mb-6 min-w-0'>
           <h2 className='text-xl sm:text-2xl md:text-3xl font-bold truncate'>GitHub Contributions</h2>
           <Link
@@ -45,8 +45,8 @@ function Github() {
   }
 
   return (
-    <div className='w-full max-w-full overflow-hidden px-4 sm:px-6 md:px-8'>
-      <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0 mb-4 sm:mb-6 min-w-0'>
+    <div className='hidden md:block px-4 sm:px-6 md:px-8'>
+      <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0 mb-4 sm:mb-6'>
         <h2 className='text-xl sm:text-2xl md:text-3xl font-bold truncate'>GitHub Contributions</h2>
         <Link
           href={socials.github}
@@ -58,33 +58,31 @@ function Github() {
           <span>View Profile</span>
         </Link>
       </div>
-      <div className='w-full max-w-full rounded-lg border border-border bg-card overflow-hidden'>
+      <div className='rounded-lg border border-border bg-card'>
         <motion.div
-          className="w-full max-w-full overflow-hidden bg-transparent backdrop-blur-none border-0 transition-shadow duration-300"
+          className="bg-transparent border-0 transition-shadow duration-300"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           <div 
-            className="w-full max-w-full overflow-x-auto overflow-y-hidden scrollbar-thin" 
+            className="overflow-x-auto overflow-y-hidden scrollbar-thin" 
             style={{ 
               WebkitOverflowScrolling: 'touch',
               scrollbarWidth: 'thin',
               msOverflowStyle: 'auto'
             }}
           >
-            <div className="inline-block min-w-full p-2 sm:p-3 md:p-4">
-              <div className="min-w-max">
-                <GitHubCalendar
-                  username={githubUsername}
-                  colorScheme={resolvedTheme as "light" | "dark"}
-                  fontSize={12}
-                  blockSize={10}
-                  blockMargin={2}
-                  showWeekdayLabels={true}
-                  theme={theme}
-                />
-              </div>
+            <div className="p-2 sm:p-3 md:p-4">
+              <GitHubCalendar
+                username={githubUsername}
+                colorScheme={resolvedTheme as "light" | "dark"}
+                fontSize={12}
+                blockSize={10}
+                blockMargin={2}
+                showWeekdayLabels={true}
+                theme={theme}
+              />
             </div>
           </div>
         </motion.div>
