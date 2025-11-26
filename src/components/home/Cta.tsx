@@ -2,7 +2,6 @@
 import React from 'react'
 import { socials } from '@/lib/socials'
 import { env } from '@/lib/env'
-import Image from 'next/image'
 
 function Cta() {
   const profileImage = env.NEXT_PUBLIC_CLOUDFRONT_URL + "/img.jpg"
@@ -48,13 +47,10 @@ function Cta() {
 
                     <div className="flex items-center gap-2 group-hover:gap-6 sm:group-hover:gap-12 transition-all duration-300 relative z-20">
                       <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full overflow-hidden flex-shrink-0">
-                        <Image 
+                        <img 
                           alt="Profile" 
-                          width={26} 
-                          height={26} 
                           className="w-full h-full object-cover" 
                           src={profileImage}
-                          style={{ color: 'transparent' }}
                         />
                       </div>
                       <div className="flex items-center gap-0 absolute left-[28px] sm:left-[30px] transform -translate-x-full opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">

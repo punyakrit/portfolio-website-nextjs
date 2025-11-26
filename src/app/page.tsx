@@ -49,8 +49,6 @@ function page() {
       <MainBlogs/>
       <HorizontalLine />
       <Cta />
-      <HorizontalLine />
-      <Footer />
     </div>
   );
 }

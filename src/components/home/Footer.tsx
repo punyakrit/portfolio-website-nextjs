@@ -55,7 +55,7 @@ function Footer() {
               href='https://github.com/punyakrit'
               target='_blank'
               rel='noopener noreferrer'
-              className='font-medium text-white hover:text-gray-300 transition-colors duration-200'
+              className='font-medium dark:text-white text-black hover:text-gray-300 transition-colors duration-200'
             >
               Punyakrit
             </Link>

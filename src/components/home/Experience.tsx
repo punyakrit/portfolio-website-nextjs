@@ -1,7 +1,6 @@
 "use client"
 import { experience } from '@/lib/experience'
 import React from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from '@/components/ui/tooltip'
@@ -23,11 +22,9 @@ function Experience({completeView}: {completeView: boolean}) {
       onClick={isClickable ? () => router.push('/work') : undefined}
     >
       <div className='flex items-start gap-2 sm:gap-3 flex-1'>
-        <Image 
+        <img 
           src={exp.links.image} 
           alt={exp.company} 
-          width={40} 
-          height={40} 
           className='rounded-full object-cover w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0'
         />    
         <div className='flex-1 min-w-0'>

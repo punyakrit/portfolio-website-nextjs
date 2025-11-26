@@ -1,6 +1,5 @@
 "use client"
 import React, { useEffect, useState } from 'react'
-import Image from 'next/image'
 import { bannerImages } from '@/lib/image'
 import { env } from '@/lib/env'
 function Hero() {
@@ -40,11 +39,9 @@ function Hero() {
   
   return (
     <div className="relative">
-      <Image 
+      <img 
         src={backgroundImage} 
         alt="Banner" 
-        width={1240} 
-        height={900} 
         className="rounded-xl w-full h-[200px] sm:h-[270px] object-cover transition-opacity duration-[600ms] ease-in-out" 
         style={{ opacity }}
       />

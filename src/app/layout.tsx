@@ -8,6 +8,8 @@ import { env } from "@/lib/env";
 import NavBar from "@/components/global/NavBar";
 import DevMode from "@/lib/DevMode";
 import RefreshOverlay from "@/components/global/RefreshOverlay";
+import Footer from "@/components/home/Footer";
+import HorizontalLine from "@/components/global/HorizontalLine";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -222,6 +224,9 @@ export default function RootLayout({
                 <div className="mt-12">
 
                 {children}
+                <HorizontalLine />
+                <Footer />
+          
                 </div>
               </div>
             </div>

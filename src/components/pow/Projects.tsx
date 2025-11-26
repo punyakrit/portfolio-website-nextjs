@@ -1,6 +1,5 @@
 "use client"
 import React from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { projects } from '@/lib/projectsData'
 import { skills } from '@/lib/skills'
@@ -51,11 +50,10 @@ function Projects({ showAll }: { showAll: boolean }) {
                 className='bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow'
               >
                 <div className='relative w-full h-48 sm:h-56 overflow-hidden bg-muted'>
-                  <Image
+                  <img
                     src={project.image}
                     alt={project.title}
-                    fill
-                    className='object-cover'
+                    className='w-full h-full object-cover'
                   />
                 </div>
                 
