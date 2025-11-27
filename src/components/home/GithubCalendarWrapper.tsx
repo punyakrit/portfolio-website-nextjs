@@ -78,3 +78,4 @@ const GithubCalendarWrapper = ({ username }: GithubCalendarWrapperProps) => {
 
 export default GithubCalendarWrapper
 
+

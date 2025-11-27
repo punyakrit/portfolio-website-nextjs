@@ -54,8 +54,7 @@ function Projects({ showAll }: { showAll: boolean }) {
                   <Image
                     src={project.image}
                     alt={project.title}
-                    width={100}
-                    height={100}
+                    fill
                     className='w-full h-full object-cover'
                   />
                 </div>
