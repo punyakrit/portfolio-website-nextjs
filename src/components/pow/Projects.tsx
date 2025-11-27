@@ -6,6 +6,7 @@ import { skills } from '@/lib/skills'
 import { Globe, Github, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from '@/components/ui/tooltip'
+import Image from 'next/image'
 
 function Projects({ showAll }: { showAll: boolean }) {
   const getSlug = (title: string) => {
@@ -50,9 +51,11 @@ function Projects({ showAll }: { showAll: boolean }) {
                 className='bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow'
               >
                 <div className='relative w-full h-48 sm:h-56 overflow-hidden bg-muted'>
-                  <img
+                  <Image
                     src={project.image}
                     alt={project.title}
+                    width={100}
+                    height={100}
                     className='w-full h-full object-cover'
                   />
                 </div>

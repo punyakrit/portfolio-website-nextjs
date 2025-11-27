@@ -8,20 +8,20 @@ function Cta() {
 
   return (
     <div className='px-4 sm:px-6 md:px-8'>
-      <div className='flex justify-center border-dashed border-2 border-white/5 rounded-2xl'>
+      <div className='flex justify-center border-dashed border-2 border-black/5 dark:border-white/5 rounded-2xl'>
         <div className='relative w-full max-w-4xl'>
           <div className='relative rounded-2xl p-12 sm:p-16 text-center'>
             <div className='relative z-10'>
-              <h2 className='text-2xl sm:text-3xl md:text-4xl font-medium text-white mb-8 leading-relaxed'>
+              <h2 className='text-2xl sm:text-3xl md:text-4xl font-medium text-black dark:text-white mb-8 leading-relaxed'>
                 Hey, you scrolled this far, let&apos;s talk.
               </h2>
               <div className="flex justify-center">
-                <div className="gradient bg-gradient-to-b from-[#252525] to-[#3B3B3B] rounded-lg p-[1px] relative overflow-hidden w-auto">
+                <div className="gradient bg-gradient-to-b from-gray-200 to-gray-300 dark:from-[#252525] dark:to-[#3B3B3B] rounded-lg p-[1px] relative overflow-hidden w-auto">
                   <a 
                     href={socials.cal} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="gradient h-full bg-[#1C1C1C] rounded-lg text-white text-sm sm:text-md px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-center transition-all group relative overflow-hidden touch-manipulation active:opacity-75"
+                    className="gradient h-full bg-white dark:bg-[#1C1C1C] rounded-lg text-black dark:text-white text-sm sm:text-md px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-center transition-all group relative overflow-hidden touch-manipulation active:opacity-75"
                     style={{ 
                       '--x': '-90.45457%',
                       '--spread': '90deg',
@@ -37,9 +37,8 @@ function Cta() {
                   >
                     {/* Shimmer Effect Layer */}
                     <div 
-                      className="absolute inset-0 opacity-30 group-hover:opacity-50 transition-opacity duration-500"
+                      className="absolute inset-0 opacity-30 group-hover:opacity-50 transition-opacity duration-500 bg-[linear-gradient(45deg,transparent_30%,rgba(0,0,0,0.1)_50%,transparent_70%)] dark:bg-[linear-gradient(45deg,transparent_30%,rgba(255,255,255,0.3)_50%,transparent_70%)]"
                       style={{
-                        background: 'linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.3) 50%, transparent 70%)',
                         backgroundSize: '200% 100%',
                         animation: 'shimmer 3s ease-in-out infinite',
                       }}
@@ -69,7 +68,7 @@ function Cta() {
                           <path d="M5 12h14"></path>
                           <path d="M12 5v14"></path>
                         </svg>
-                        <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-white/10 flex items-center justify-center text-[8px] sm:text-[10px]">
+                        <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-black/10 dark:bg-white/10 flex items-center justify-center text-[8px] sm:text-[10px]">
                           You
                         </div>
                       </div>

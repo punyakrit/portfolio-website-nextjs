@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import React, { useState } from "react";
 import { ModeToggle } from "./ModeToggle";
 import Music from "./Music";
@@ -18,10 +19,13 @@ function NavBar() {
       <div className="flex justify-between items-center h-full">
         <div className="flex items-center gap-4 sm:gap-6 md:gap-8">
           <Link href="/" className="cursor-pointer hover:underline delay-700">
-            <img
+            <Image
               src={image}
               alt="logo"
+              width={100}
+              height={100}
               className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-2xl object-cover"
+              loading='lazy'
             />
           </Link>
           <div className="hidden md:flex gap-4">
