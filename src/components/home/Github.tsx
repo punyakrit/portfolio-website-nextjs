@@ -21,7 +21,7 @@ function Github() {
           <span>View Profile</span>
         </Link>
       </div>
-      <div className='w-full max-w-full rounded-lg border border-border bg-card overflow-hidden'>
+      <div className='w-full  rounded-lg border border-border bg-card overflow-hidden'>
         <GithubCalendarWrapper username={githubUsername} />
       </div>
     </div>

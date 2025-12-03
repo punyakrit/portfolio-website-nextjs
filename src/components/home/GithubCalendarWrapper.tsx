@@ -51,15 +51,15 @@ const GithubCalendarWrapper = ({ username }: GithubCalendarWrapperProps) => {
       transition={{ duration: 0.5 }}
     >
       <div 
-        className="w-full max-w-full overflow-x-auto overflow-y-hidden scrollbar-thin" 
+        className="w-full max-w-full overflow-x-hidden overflow-y-hidden scrollbar-thin" 
         style={{ 
           WebkitOverflowScrolling: 'touch',
           scrollbarWidth: 'thin',
           msOverflowStyle: 'auto'
         }}
       >
-        <div className="inline-block min-w-full p-2 sm:p-3 md:p-4">
-          <div className="min-w-max">
+        <div className="inline-flex items-center justify-center min-w-full p-2 sm:p-3 md:p-4">
+          <div className="max-w-2xl ">
             <GitHubCalendar
               username={username}
               colorScheme={resolvedTheme as "light" | "dark"}
