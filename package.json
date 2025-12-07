@@ -30,6 +30,9 @@
     "tailwind-merge": "^3.4.0",
     "@tailwindcss/oxide": "^4"
   },
+  "optionalDependencies": {
+    "@tailwindcss/oxide-linux-x64-gnu": "^4"
+  },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
