@@ -69,7 +69,7 @@ async function page({ params }: { params: Promise<{ slug: string }> }) {
       </header>
       <div 
         dangerouslySetInnerHTML={{ __html: html }} 
-        className='prose prose-lg dark:prose-invert max-w-none prose-headings:font-bold prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-pre:bg-muted' 
+        className='prose prose-lg dark:prose-invert ' 
       />
     </article>
   )

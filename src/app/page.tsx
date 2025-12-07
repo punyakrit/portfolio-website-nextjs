@@ -7,7 +7,7 @@ import Experience from "@/components/home/Experience";
 import Projects from "@/components/pow/Projects";
 import Github from "@/components/home/Github";
 import Stack from "@/components/home/Stack";
-import MainBlogs from "@/components/blogs/MainBlogs";
+import BlogsSection from "@/components/blogs/BlogsSection";
 import Cta from "@/components/home/Cta";
 import Footer from "@/components/home/Footer";
 export const metadata: Metadata = {
@@ -46,7 +46,7 @@ function page() {
       </div>
       <Stack/>
       <HorizontalLine />
-      <MainBlogs/>
+      <BlogsSection isHome={true} />
       <HorizontalLine />
       <Cta />
     </div>
