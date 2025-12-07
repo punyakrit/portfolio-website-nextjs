@@ -16,12 +16,12 @@ const nextConfig: NextConfig = {
         hostname: "**.amazonaws.com",
       },
     ],
-    // make transforms predictable & limited to a few sizes
     deviceSizes: [320, 640, 1024, 1280, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256],
     formats: ["image/avif", "image/webp"],
-    minimumCacheTTL: 60 * 60 * 24, // 1 day — helps edge caches keep images longer
+    minimumCacheTTL: 60 * 60 * 24,
   },
+    serverExternalPackages: ["@tailwindcss/oxide"],
 };
 
 export default nextConfig;
