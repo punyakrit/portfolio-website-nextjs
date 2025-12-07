@@ -14,7 +14,7 @@ async function BlogsSection({ isHome = false }: { isHome?: boolean }) {
     })
   
   return (
-    <div className='px-2 md:px-8 md:my-32 my-24'>
+    <div className={`  ${isHome ? 'mb-0' : 'md:my-32 my-24 md:px-8 px-2 '}`}>
       <MainBlogs blogs={pageBlogs} isHome={isHome} />
     </div>
   )
