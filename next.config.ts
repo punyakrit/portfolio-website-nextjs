@@ -2,11 +2,18 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    // allow only your CloudFront domain (safer than wildcard)
     remotePatterns: [
       {
         protocol: "https",
         hostname: "d3uhdrv85r0gh2.cloudfront.net",
+      },
+      {
+        protocol: "https",
+        hostname: "prod-files-secure.s3.us-west-2.amazonaws.com",
+      },
+      {
+        protocol: "https",
+        hostname: "**.amazonaws.com",
       },
     ],
     // make transforms predictable & limited to a few sizes
