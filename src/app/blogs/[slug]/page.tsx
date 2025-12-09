@@ -48,7 +48,7 @@ function getBlogImage(blog: PageObjectResponse): string | null {
   if (mediaProp && mediaProp.type === 'files' && mediaProp.files && Array.isArray(mediaProp.files) && mediaProp.files.length > 0) {
     const file = mediaProp.files[0]
     if (file && file.type === 'file' && file.file) {
-      return file.file.url
+      return `/api/blog-image?blogId=${blog.id}`
     }
   }
   return null
