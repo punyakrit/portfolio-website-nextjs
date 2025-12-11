@@ -37,7 +37,7 @@ function Projects({ showAll }: { showAll: boolean }) {
     return skill?.icon
   }
 
-  const displayedProjects = showAll ? projects : projects.slice(0, 4)
+  const displayedProjects = showAll ? projects : projects.slice(0, 2)
 
   return (
     <TooltipProvider>
