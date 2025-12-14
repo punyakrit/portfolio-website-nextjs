@@ -1,17 +1,21 @@
 "use server"
+import { headers } from "next/headers"
 import { prisma } from "../db/prisma"
 
 export const upsertUser = async (username: string) => {
     try {   
+        const headersList = await headers()
+        const ip = headersList.get("x-forwarded-for") || headersList.get("x-real-ip") || "unknown"
         const user  = await prisma.user.upsert({
             where: {
                 id: username
             },
             update: {
-                id: username
+                ip: ip
             },
             create: {
-                id: username
+                id: username,
+                ip: ip
             }
         })
         return user
@@ -23,6 +27,8 @@ export const upsertUser = async (username: string) => {
 
 export const userLog = async (username: string) => {
     try {
+        const headersList = await headers()
+        const ip = headersList.get("x-forwarded-for") || headersList.get("x-real-ip") || "unknown"
         const existingLog = await prisma.userLog.findFirst({
             where: {
                 userId: username
@@ -36,7 +42,8 @@ export const userLog = async (username: string) => {
                 },
                 data: {
                     visitCount: { increment: 1 },
-                    lastVisitedAt: new Date()
+                    lastVisitedAt: new Date(),
+                    ip: ip
                 }
             })
             return userLog
@@ -46,7 +53,8 @@ export const userLog = async (username: string) => {
                     userId: username,
                     visitCount: 1,
                     lastVisitedAt: new Date(),
-                    createdAt: new Date()
+                    createdAt: new Date(),
+                    ip: ip
                 }
             })
             return userLog

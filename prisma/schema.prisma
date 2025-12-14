@@ -12,6 +12,8 @@ datasource db {
 model User {
   id String @id
   createdAt DateTime @default(now())
+  ip String
+  userLogs UserLog[]
 
   @@index([id])
 }
@@ -22,6 +24,8 @@ model UserLog{
   visitCount Int @default(0)
   lastVisitedAt DateTime @default(now())
   createdAt DateTime @default(now())
+  ip String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@index([lastVisitedAt])
