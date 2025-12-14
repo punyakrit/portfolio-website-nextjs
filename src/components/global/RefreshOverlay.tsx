@@ -1,10 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import useUsername from "@/hooks/useUsername";
 
 export default function RefreshOverlay() {
   const [isVisible, setIsVisible] = useState(true);
   const [shouldRender, setShouldRender] = useState(true);
+
+  const username = useUsername()
+  console.log(username)
 
   useEffect(() => {
     const timer = setTimeout(() => {
