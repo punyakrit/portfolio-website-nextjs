@@ -8,6 +8,7 @@ import { env } from "@/lib/env";
 import NavBar from "@/components/global/NavBar";
 import DevMode from "@/lib/DevMode";
 import RefreshOverlay from "@/components/global/RefreshOverlay";
+import FirstVisitNotification from "@/components/global/FirstVisitNotification";
 import Footer from "@/components/home/Footer";
 import HorizontalLine from "@/components/global/HorizontalLine";
 
@@ -209,6 +210,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <RefreshOverlay />
+          <FirstVisitNotification />
           <DevMode />
           <div className="max-w-4xl container mx-auto">
             <div

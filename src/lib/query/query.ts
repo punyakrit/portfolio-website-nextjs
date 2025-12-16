@@ -25,6 +25,21 @@ export const upsertUser = async (username: string) => {
     }
 }
 
+export const getVisitCount = async (username: string) => {
+    try {
+        const existingLog = await prisma.userLog.findFirst({
+            where: {
+                userId: username
+            }
+        })
+        return existingLog ? existingLog.visitCount : 0
+    }
+    catch (error) {
+        console.error(error)
+        return 0
+    }
+}
+
 export const userLog = async (username: string) => {
     try {
         const headersList = await headers()
@@ -46,7 +61,7 @@ export const userLog = async (username: string) => {
                     ip: ip
                 }
             })
-            return userLog
+            return { userLog, visitCount: userLog.visitCount }
         } else {
             const userLog = await prisma.userLog.create({
                 data: {
@@ -57,7 +72,7 @@ export const userLog = async (username: string) => {
                     ip: ip
                 }
             })
-            return userLog
+            return { userLog, visitCount: userLog.visitCount }
         }
     }
     catch (error) {
