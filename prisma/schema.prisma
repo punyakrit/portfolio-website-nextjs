@@ -14,7 +14,7 @@ model User {
   createdAt DateTime @default(now())
   ip String
   userLogs UserLog[]
-
+  blogsUser BlogsUser[]
   @@index([id])
 }
 
@@ -32,3 +32,19 @@ model UserLog{
   @@index([createdAt])
 }
 
+
+
+model BlogsUser {
+  id String @id @default(nanoid())
+  blogSlug String
+  isLiked Boolean @default(false)
+  Isviewed Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([blogSlug])
+  @@index([updatedAt])
+  @@index([isLiked])
+
+}

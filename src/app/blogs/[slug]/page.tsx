@@ -9,6 +9,7 @@ import { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 import Link from 'next/link'
 import { ArrowLeft, Calendar, Eye, Tag, Clock } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import BlogUserTracker from './BlogUserTracker'
 
 export const dynamicParams = false
 export const revalidate = 3600
@@ -98,9 +99,10 @@ function calculateReadingTime(html: string): number {
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+
+
   const { slug } = await params
   const blog = await fetchBySlug(slug)
-
   if (!blog) {
     return {
       title: 'Blog Not Found',
@@ -147,6 +149,7 @@ async function page({ params }: { params: Promise<{ slug: string }> }) {
 
   return (
     <article className='px-4 sm:px-6 md:px-8 py-8 sm:py-12 mt-14 max-w-5xl mx-auto'>
+      <BlogUserTracker slug={slug} />
       <div className='mb-8'>
         <Link href='/blogs'>
           <Button variant='ghost' className='mb-6 -ml-2' size='sm'>

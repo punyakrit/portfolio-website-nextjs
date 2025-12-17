@@ -91,3 +91,39 @@ export async function getUniqueUserCount() {
         return 0
     }
 }
+
+export async function createUserBlog(blogSlug: string, userId: string) {
+    try{
+        const existing = await prisma.blogsUser.findFirst({
+            where: {
+                blogSlug: blogSlug,
+                userId: userId
+            }
+        })
+
+        if (existing) {
+            return await prisma.blogsUser.update({
+                where: {
+                    id: existing.id
+                },
+                data: {
+                    Isviewed: true,
+                    updatedAt: new Date()
+                }
+            })
+        }
+
+        return await prisma.blogsUser.create({
+            data: {
+                blogSlug: blogSlug,
+                userId: userId,
+                Isviewed: true,
+                createdAt: new Date(),
+                updatedAt: new Date()
+            }
+        })
+    }catch(error){
+        console.error(error)
+        return null
+    }
+}
