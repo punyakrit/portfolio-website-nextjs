@@ -80,3 +80,14 @@ export const userLog = async (username: string) => {
         return null
     }
 }
+
+
+
+export async function getUniqueUserCount() {
+    try {
+        return await prisma.user.count()
+    } catch (error) {
+        console.error(error)
+        return 0
+    }
+}

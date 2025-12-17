@@ -3,8 +3,10 @@ import Link from 'next/link'
 import { Github, Linkedin } from 'lucide-react'
 import { FaXTwitter } from 'react-icons/fa6'
 import { socials } from '@/lib/socials'
+import { getUniqueUserCount } from '@/lib/query/query'
 
-function Footer() {
+async function Footer() {
+  const uniqueVisitors = await getUniqueUserCount()
   const socialLinks = [
     {
       name: 'X (Twitter)',
@@ -59,6 +61,10 @@ function Footer() {
             >
               Punyakrit
             </Link>
+          </div>
+
+          <div className='text-sm text-gray-500'>
+            Total Visitors: <span className='font-bold dark:text-white'>{uniqueVisitors.toLocaleString()}</span>
           </div>
         </div>
       </div>
