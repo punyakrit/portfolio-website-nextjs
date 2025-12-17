@@ -6,7 +6,6 @@ import { socials } from '@/lib/socials'
 import { getUniqueUserCount } from '@/lib/query/query'
 
 async function Footer() {
-  const uniqueVisitors = await getUniqueUserCount()
   const socialLinks = [
     {
       name: 'X (Twitter)',
@@ -63,9 +62,7 @@ async function Footer() {
             </Link>
           </div>
 
-          <div className='text-sm text-gray-500'>
-            Total Visitors: <span className='font-bold dark:text-white'>{uniqueVisitors.toLocaleString()}</span>
-          </div>
+          
         </div>
       </div>
     </footer>
