@@ -11,6 +11,7 @@ import { getUniqueUserCount } from "@/lib/query/query";
 function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const image = env.NEXT_PUBLIC_CLOUDFRONT_URL + "/img.jpg";
+  
   const [uniqueVisitors, setUniqueVisitors] = useState(0);
   useEffect(() => {
     const getUniqueVisitors = async () => {
