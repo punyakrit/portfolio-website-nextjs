@@ -10,6 +10,8 @@ import Link from 'next/link'
 import { ArrowLeft, Calendar, Eye, Tag, Clock } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import BlogUserTracker from './BlogUserTracker'
+import LikeButton from './LikeButton'
+import { getBlogReadCount } from '@/lib/query/query'
 
 export const dynamicParams = false
 export const revalidate = 3600
@@ -144,13 +146,13 @@ async function page({ params }: { params: Promise<{ slug: string }> }) {
   const imageUrl = getBlogImage(blog)
   const date = getBlogDate(blog)
   const tags = getBlogTags(blog)
-  const readCount = getReadCount(blog)
   const readingTime = calculateReadingTime(html)
+  const blogReadCount = await getBlogReadCount(slug)
 
   return (
     <article className='px-4 sm:px-6 md:px-8 py-8 sm:py-12 mt-14 max-w-5xl mx-auto'>
       <BlogUserTracker slug={slug} />
-      <div className='mb-8'>
+      <div className=''>
         <Link href='/blogs'>
           <Button variant='ghost' className='mb-6 -ml-2' size='sm'>
             <ArrowLeft className='w-4 h-4 mr-2' />
@@ -160,6 +162,24 @@ async function page({ params }: { params: Promise<{ slug: string }> }) {
       </div>
 
       <header className='mb-8'>
+        <h1 className='text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-4'>{title}</h1>
+        <div className='flex flex-wrap items-center justify-between gap-4 text-sm text-muted-foreground mb-6'>
+          <div className='flex flex-wrap items-center gap-4'>
+            <div className='flex items-center gap-2'>
+              <Calendar className='h-4 w-4' />
+              <span>{date}</span>
+            </div>
+            <div className='flex items-center gap-2'>
+              <Clock className='h-4 w-4' />
+              <span>{readingTime} min read</span>
+            </div>
+            <div className='flex items-center gap-2'>
+              <Eye className='h-4 w-4' />
+              <span>{blogReadCount} {blogReadCount === 1 ? 'view' : 'views'}</span>
+            </div>
+          </div>
+          <LikeButton slug={slug} />
+        </div>
         {imageUrl && (
           <div className='relative w-full h-64 sm:h-80 md:h-96 mb-8 rounded-xl overflow-hidden bg-muted'>
             <img
@@ -173,25 +193,6 @@ async function page({ params }: { params: Promise<{ slug: string }> }) {
         )}
         
         <div className='space-y-4'>
-          <h1 className='text-4xl sm:text-5xl md:text-6xl font-bold leading-tight'>{title}</h1>
-          
-          <div className='flex flex-wrap items-center gap-4 text-sm text-muted-foreground'>
-            <div className='flex items-center gap-2'>
-              <Calendar className='h-4 w-4' />
-              <span>{date}</span>
-            </div>
-            <div className='flex items-center gap-2'>
-              <Clock className='h-4 w-4' />
-              <span>{readingTime} min read</span>
-            </div>
-            {readCount !== null && (
-              <div className='flex items-center gap-2'>
-                <Eye className='h-4 w-4' />
-                <span>{readCount} views</span>
-              </div>
-            )}
-          </div>
-
           {tags.length > 0 && (
             <div className='flex flex-wrap gap-2 pt-2'>
               {tags.map((tag, index) => (

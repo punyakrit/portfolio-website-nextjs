@@ -127,3 +127,110 @@ export async function createUserBlog(blogSlug: string, userId: string) {
         return null
     }
 }
+
+
+export async function getBlogReadCount(blogSlug: string) {
+    try {
+        const count = await prisma.blogsUser.count({
+            where: {
+                blogSlug: blogSlug
+            }
+        })
+        return count
+    }
+    catch (error) {
+        console.error(error)
+        return 0
+    }
+}
+
+export async function likeBlog(blogSlug: string, userId: string) {
+    try {
+        const existing = await prisma.blogsUser.findFirst({
+            where: {
+                blogSlug: blogSlug,
+                userId: userId
+            }
+        })
+        if (existing) {
+            return await prisma.blogsUser.update({
+                where: {
+                    id: existing.id
+                },
+                data: {
+                    isLiked: true
+                }
+            })
+        }
+        return await prisma.blogsUser.create({
+            data: {
+                blogSlug: blogSlug,
+                userId: userId,
+                Isviewed: true,
+                isLiked: true
+            }
+        })
+    }
+    catch (error) {
+        console.error(error)
+        return 0
+    }
+}
+
+
+export async function dislikeBlog(blogSlug: string, userId: string) {
+    try {
+        const existing = await prisma.blogsUser.findFirst({
+            where: {
+                blogSlug: blogSlug,
+                userId: userId
+            }
+        })
+        if (existing) {
+            return await prisma.blogsUser.update({
+                where: {
+                    id: existing.id
+                },
+                data: {
+                    isLiked: false
+                }
+            })
+        }
+    }
+    catch (error) {
+        console.error(error)
+        return 0
+    }
+}
+
+export async function getBlogLikeCount(blogSlug: string) {
+    try {
+        const count = await prisma.blogsUser.count({
+            where: {
+                blogSlug: blogSlug,
+                isLiked: true
+            }
+        })
+        return count
+    }
+    catch (error) {
+        console.error(error)
+        return 0
+    }
+}
+
+export async function getUserLikeStatus(blogSlug: string, userId: string) {
+    try {
+        const existing = await prisma.blogsUser.findFirst({
+            where: {
+                blogSlug: blogSlug,
+                userId: userId
+            }
+        })
+        return existing?.isLiked ?? false
+    }
+    catch (error) {
+        console.error(error)
+        return false
+    }
+}
