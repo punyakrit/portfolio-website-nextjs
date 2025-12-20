@@ -11,6 +11,7 @@ import RefreshOverlay from "@/components/global/RefreshOverlay";
 import FirstVisitNotification from "@/components/global/FirstVisitNotification";
 import Footer from "@/components/home/Footer";
 import HorizontalLine from "@/components/global/HorizontalLine";
+import FixedBottomCta from "@/components/global/FixedBottomCta";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -212,6 +213,7 @@ export default function RootLayout({
           <RefreshOverlay />
           <FirstVisitNotification />
           <DevMode />
+          <FixedBottomCta />
           <div className="max-w-4xl container mx-auto">
             <div
               className="
