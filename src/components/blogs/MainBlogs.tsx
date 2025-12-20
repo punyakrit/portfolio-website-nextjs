@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { FileText, PenTool, Calendar, Eye, Tag, Image as ImageIcon, ArrowRight } from 'lucide-react'
 import { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 import Link from 'next/link'
+import { getBlogReadCount } from '@/lib/query/query'
 
 const imageCache = new Set<string>()
 
@@ -156,6 +157,31 @@ function getReadCount(blog: PageObjectResponse): number | null {
   return null
 }
 
+function BlogViews({ slug }: { slug: string }) {
+  const [views, setViews] = useState<number | null>(null)
+
+  useEffect(() => {
+    const fetchViews = async () => {
+      try {
+        const count = await getBlogReadCount(slug)
+        setViews(count)
+      } catch (error) {
+        console.error('Error fetching blog views:', error)
+      }
+    }
+    fetchViews()
+  }, [slug])
+
+  if (views === null) return null
+
+  return (
+    <div className='flex items-center gap-1.5'>
+      <Eye className='h-4 w-4' />
+      <span className='text-xs'>{views} {views === 1 ? 'view' : 'views'}</span>
+    </div>
+  )
+}
+
 function MainBlogs({ blogs, isHome }: { blogs: PageObjectResponse[]; isHome: boolean }) {
   if (!blogs || !Array.isArray(blogs) || blogs.length === 0) {
     return (
@@ -226,6 +252,7 @@ function MainBlogs({ blogs, isHome }: { blogs: PageObjectResponse[]; isHome: boo
                         <span className='text-xs'>{readCount} views</span>
                       </div>
                     )}
+                    <BlogViews slug={slug} />
                   </div>
                 </CardHeader>
                 {tags.length > 0 && (
