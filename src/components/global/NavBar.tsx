@@ -3,7 +3,6 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { ModeToggle } from "./ModeToggle";
-import Music from "./Music";
 import Link from "next/link";
 import { env } from "@/lib/env";
 import { getUniqueUserCount } from "@/lib/query/query";
@@ -61,7 +60,7 @@ function NavBar() {
         </div>
         <div className="flex gap-2 sm:gap-3 md:gap-4 items-center">
           <div className="hidden sm:block">
-            <Music />
+            {/* <Music /> */}
           </div>
           <div>
             <ModeToggle />
@@ -126,7 +125,7 @@ function NavBar() {
                   {uniqueVisitors.toLocaleString()}
                 </span>
               </div>
-              <Music />
+              {/* <Music /> */}
             </div>
           </div>
         </div>

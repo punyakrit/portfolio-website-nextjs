@@ -1,62 +1,71 @@
-import React from 'react'
-import type { Metadata } from 'next'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { Home } from 'lucide-react'
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Home, ArrowLeft, Briefcase, FileText } from "lucide-react";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "404 - Page Not Found | Punyakrit Singh Makhni",
+  title: "Page Not Found | Punyakrit Singh Makhni",
   description:
-    "The page you're looking for doesn't exist or has been moved. Return to the homepage or explore my projects and work experience.",
+    "The page you're looking for doesn't exist. Return to Punyakrit Singh Makhni's portfolio to explore web development projects and services.",
   robots: {
     index: false,
     follow: true,
   },
-}
+};
 
 export default function NotFound() {
   return (
-    <div className='px-4 sm:px-6 md:px-8 py-8 sm:py-12'>
-      <div className='flex flex-col items-center justify-center min-h-[70vh] text-center space-y-8 max-w-2xl mx-auto'>
-        <div className='space-y-4'>
-          <h1 className='text-7xl sm:text-8xl md:text-9xl font-bold'>404</h1>
-          <h2 className='text-2xl sm:text-3xl md:text-4xl font-semibold'>Page Not Found</h2>
-          <p className='text-base sm:text-lg text-muted-foreground max-w-md mx-auto'>
-            The page you&apos;re looking for doesn&apos;t exist or has been moved.
-          </p>
-        </div>
-        <div className='flex flex-col sm:flex-row gap-4 items-center justify-center'>
-          <Button
-            variant='default'
-            size='lg'
-            asChild
-          >
-            <Link href='/'>
-              <Home className='w-4 h-4 mr-2' />
-              Go Home
+    <div className="min-h-[60vh] flex flex-col items-center justify-center px-4 text-center">
+      <div className="space-y-6 max-w-md">
+        <h1 className="text-6xl sm:text-8xl font-bold text-muted-foreground/30">
+          404
+        </h1>
+        <h2 className="text-2xl sm:text-3xl font-semibold">Page Not Found</h2>
+        <p className="text-muted-foreground">
+          The page you&apos;re looking for doesn&apos;t exist or has been moved.
+          Let&apos;s get you back on track.
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-3 justify-center pt-4">
+          <Button asChild>
+            <Link href="/">
+              <Home className="w-4 h-4 mr-2" />
+              Back to Home
             </Link>
           </Button>
-          <Button
-            variant='outline'
-            size='lg'
-            asChild
-          >
-            <Link href='/pow'>
+          <Button variant="outline" asChild>
+            <Link href="/pow">
+              <Briefcase className="w-4 h-4 mr-2" />
               View Projects
             </Link>
           </Button>
-          <Button
-            variant='outline'
-            size='lg'
-            asChild
-          >
-            <Link href='/work'>
-              View Work
-            </Link>
-          </Button>
+        </div>
+
+        <div className="pt-8 border-t border-border mt-8">
+          <p className="text-sm text-muted-foreground mb-4">
+            Looking to hire a freelance developer?
+          </p>
+          <div className="flex flex-wrap gap-3 justify-center">
+            <Button variant="ghost" size="sm" asChild>
+              <Link href="/work">
+                <FileText className="w-4 h-4 mr-2" />
+                My Experience
+              </Link>
+            </Button>
+            <Button variant="ghost" size="sm" asChild>
+              <Link href="/blogs">
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Read Blog
+              </Link>
+            </Button>
+            <Button size="sm" asChild>
+              <Link href="https://cal.com/punyakrit" target="_blank">
+                Book a Call
+              </Link>
+            </Button>
+          </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
-

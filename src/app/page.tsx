@@ -9,48 +9,115 @@ import Github from "@/components/home/Github";
 import Stack from "@/components/home/Stack";
 import BlogsSection from "@/components/blogs/BlogsSection";
 import Cta from "@/components/home/Cta";
-import Footer from "@/components/home/Footer";
+import { BreadcrumbJsonLd, FAQJsonLd } from "@/lib/seo-jsonld";
+import { SITE_URL, SEO_CONFIG } from "@/lib/seo";
+
 export const metadata: Metadata = {
-  title: "Punyakrit Singh Makhni | Full-Stack Developer Portfolio",
+  title:
+    "Punyakrit Singh Makhni | Best Freelance Full-Stack Developer India - Hire Me",
   description:
-    "Welcome to my portfolio. I'm Punyakrit Singh Makhni, a full-stack developer specializing in React, Next.js, TypeScript, and modern web technologies. Explore my projects, experience, and skills.",
+    "Looking to hire a top freelance web developer? I'm Punyakrit Singh Makhni, a full-stack developer from India specializing in Next.js, React, TypeScript & Node.js. I build production-grade web applications for startups and businesses globally. Book a free call today.",
   keywords: [
+    "Best Web Developer",
+    "Best Full-Stack Developer",
+    "Best Frontend Developer",
+    "Freelance Web Developer India",
+    "Hire Full-Stack Developer",
+    "Hire Web Developer",
+    "Remote Web Developer",
+    "Next.js Developer India",
+    "React Developer for Hire",
+    "TypeScript Developer",
+    "Freelance Full-Stack Developer",
+    "Top Web Developer India",
+    "Production-grade Web Apps",
+    "Startup Developer",
     "Punyakrit Singh Makhni",
-    "full-stack developer",
-    "web developer portfolio",
-    "React developer",
-    "Next.js developer",
-    "TypeScript developer",
-    "software engineer",
-    "portfolio website",
   ],
   alternates: {
     canonical: "/",
   },
-
+  openGraph: {
+    title: "Punyakrit Singh Makhni | Hire the Best Freelance Full-Stack Developer",
+    description:
+      "I'm a freelance full-stack developer from India building production-grade web applications. Specializing in Next.js, React, TypeScript. Available for remote projects globally.",
+    url: SITE_URL,
+    type: "profile",
+  },
 };
 
-function page() {
+const homepageFAQs = [
+  {
+    question: "What services does Punyakrit offer as a freelance developer?",
+    answer:
+      "I offer full-stack web development services including custom web applications, SaaS products, frontend development with React/Next.js, backend development with Node.js/FastAPI, database design, API development, and deployment on cloud platforms like AWS and Vercel.",
+  },
+  {
+    question: "How can I hire Punyakrit for my project?",
+    answer:
+      "You can book a free consultation call through my calendar at cal.com/punyakrit. We'll discuss your project requirements, timeline, and budget. I work with startups, businesses, and individuals on both short-term and long-term projects.",
+  },
+  {
+    question: "What tech stack does Punyakrit specialize in?",
+    answer:
+      "I specialize in modern web technologies including Next.js, React, TypeScript, Node.js, FastAPI, PostgreSQL, Redis, Tailwind CSS, and cloud services like AWS, Vercel, and Supabase. I focus on building scalable, production-ready applications.",
+  },
+  {
+    question: "Does Punyakrit work with international clients?",
+    answer:
+      "Yes, I work with clients globally. I'm based in India and available for remote work across all time zones. I've worked with startups and companies in the US, Europe, and Asia.",
+  },
+];
+
+function HomePage() {
   return (
     <div>
+      <BreadcrumbJsonLd
+        items={[{ name: "Home", url: SITE_URL }]}
+      />
+      <FAQJsonLd faqs={homepageFAQs} />
+
       <Hero />
       <About />
       <HorizontalLine />
-      <Experience completeView={false} />
-      <HorizontalLine />  
-      <Projects showAll={false} />
+
+      <section aria-labelledby="experience-heading">
+        <Experience completeView={false} />
+      </section>
+
       <HorizontalLine />
-      <Github />
+
+      <section aria-labelledby="projects-heading">
+        <Projects showAll={false} />
+      </section>
+
+      <HorizontalLine />
+
+      <section aria-labelledby="github-heading">
+        <Github />
+      </section>
+
       <div className="hidden md:block">
         <HorizontalLine />
       </div>
-      <Stack/>
+
+      <section aria-labelledby="stack-heading">
+        <Stack />
+      </section>
+
       <HorizontalLine />
-      <BlogsSection isHome={true} />
+
+      <section aria-labelledby="blogs-heading">
+        <BlogsSection isHome={true} />
+      </section>
+
       <HorizontalLine />
-      <Cta />
+
+      <section aria-labelledby="contact-heading">
+        <Cta />
+      </section>
     </div>
   );
 }
 
-export default page;
+export default HomePage;

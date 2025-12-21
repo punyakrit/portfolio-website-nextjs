@@ -82,8 +82,8 @@ export const projects: Project[] = [{
   problem:
     "Most small teams and indie developers rely on expensive, noisy, or slow monitoring tools. Many send false alerts or miss downtime because checks only run from one region.",
   solution:
-    "Designed a distributed monitoring system that runs checks globally, logs real metrics, filters false positives, and sends instant alerts through email/SMS/webhooks — all in a clean dashboard.",
+    "Designed a distributed monitoring system that runs checks globally, logs real metrics, filters false positives, and sends instant alerts through email/SMS/webhooks - all in a clean dashboard.",
   whyThis:
-    "I built Pulse because uptime issues are painful — especially when you hear about them from a user instead of your own system. Pulse gives affordable, accurate monitoring that doesn’t spam developers with useless alerts."
+    "I built Pulse because uptime issues are painful - especially when you hear about them from a user instead of your own system. Pulse gives affordable, accurate monitoring that doesn’t spam developers with useless alerts."
 }
 ];

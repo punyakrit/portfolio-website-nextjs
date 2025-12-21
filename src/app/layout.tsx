@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
-import { Fondamento, Geist, Geist_Mono, Inter, Poppins,  } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Geist, Geist_Mono, Inter, Poppins, Fondamento } from "next/font/google";
 import "./globals.css";
 
 import Script from "next/script";
@@ -12,6 +12,8 @@ import FirstVisitNotification from "@/components/global/FirstVisitNotification";
 import Footer from "@/components/home/Footer";
 import HorizontalLine from "@/components/global/HorizontalLine";
 import FixedBottomCta from "@/components/global/FixedBottomCta";
+import { RootJsonLd } from "@/lib/seo-jsonld";
+import { SEO_CONFIG, PRIMARY_KEYWORDS, SITE_URL } from "@/lib/seo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,101 +43,49 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#121212" },
+  ],
+};
+
 export const metadata: Metadata = {
   title: {
-    default: "Punyakrit Singh Makhni | Portfolio",
-    template: "%s | Punyakrit Singh Makhni",
+    default: `${SEO_CONFIG.name} | Freelance Full-Stack Developer India - Hire for Web Projects`,
+    template: `%s | ${SEO_CONFIG.name}`,
   },
   description:
-    "Personal portfolio of Punyakrit Singh Makhni showcasing web development projects, skills, and experience. Full-stack developer specializing in modern web technologies.",
-  applicationName: "Punyakrit Singh Makhni Portfolio",
-  category: "Portfolio",
-  viewport: "width=device-width, initial-scale=1",
-  keywords: [
-    "Punyakrit Singh Makhni",
-    "portfolio",
-    "web developer",
-    "full-stack developer",
-    "React developer",
-    "Next.js developer",
-    "TypeScript developer",
-    "JavaScript developer",
-    "frontend developer",
-    "backend developer",
-    "UI/UX designer",
-    "software engineer",
-    "web application developer",
-    "mobile app developer",
-    "responsive web design",
-    "modern web development",
-    "React.js",
-    "Node.js",
-    "MongoDB",
-    "PostgreSQL",
-    "GraphQL",
-    "REST API",
-    "Git",
-    "GitHub",
-    "AWS",
-    "Vercel",
-    "Netlify",
-    "CSS3",
-    "HTML5",
-    "Tailwind CSS",
-    "Bootstrap",
-    "Redux",
-    "Zustand",
-    "Prisma",
-    "Docker",
-    "Kubernetes",
-    "CI/CD",
-    "agile development",
-    "scrum",
-    "test-driven development",
-    "unit testing",
-    "integration testing",
-    "performance optimization",
-    "SEO optimization",
-    "accessibility",
-    "responsive design",
-    "progressive web app",
-    "PWA",
-    "microservices",
-    "serverless",
-    "cloud computing",
-    "database design",
-    "API development",
-    "web security",
-    "authentication",
-    "authorization",
-    "JWT",
-    "OAuth",
-    "OpenID Connect",
-  ],
-  authors: [{ name: "Punyakrit Singh Makhni" }],
-  creator: "Punyakrit Singh Makhni",
-  publisher: "Punyakrit Singh Makhni",
+    "Punyakrit Singh Makhni is a freelance full-stack developer from India. I build production-grade web apps with Next.js, React, TypeScript & Node.js. Hire me for your next project - remote-friendly, globally available.",
+  applicationName: `${SEO_CONFIG.name} Portfolio`,
+  category: "Technology",
+  keywords: [...PRIMARY_KEYWORDS],
+  authors: [{ name: SEO_CONFIG.name, url: SITE_URL }],
+  creator: SEO_CONFIG.name,
+  publisher: SEO_CONFIG.name,
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://punyakrit.dev"),
+  metadataBase: new URL(SITE_URL),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Punyakrit Singh Makhni | Portfolio",
+    title: `${SEO_CONFIG.name} | Freelance Full-Stack Developer India`,
     description:
-      "Personal portfolio of Punyakrit Singh Makhni showcasing web development projects, skills, and experience.",
-    url: "https://punyakrit.dev",
-    siteName: "Punyakrit Singh Makhni Portfolio",
+      "Freelance full-stack developer from India building production-grade web applications. Hire me for Next.js, React, TypeScript, and Node.js projects.",
+    url: SITE_URL,
+    siteName: `${SEO_CONFIG.name} Portfolio`,
     images: [
       {
-        url: "https://punyakrit.dev/main.png",
+        url: `${SITE_URL}/main.png`,
         width: 1200,
         height: 630,
-        alt: "Punyakrit Singh Makhni Portfolio Preview",
+        alt: `${SEO_CONFIG.name} - Freelance Full-Stack Developer`,
       },
     ],
     locale: "en_US",
@@ -143,10 +93,12 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Punyakrit Singh Makhni | Portfolio",
+    title: `${SEO_CONFIG.name} | Freelance Full-Stack Developer`,
     description:
-      "Personal portfolio of Punyakrit Singh Makhni showcasing web development projects, skills, and experience.",
-    images: ["https://punyakrit.dev/main.png"],
+      "Freelance full-stack developer from India. I build production-grade web apps with Next.js, React & TypeScript. Available for remote projects globally.",
+    images: [`${SITE_URL}/main.png`],
+    site: SEO_CONFIG.twitterHandle,
+    creator: SEO_CONFIG.twitterHandle,
   },
   robots: {
     index: true,
@@ -164,9 +116,8 @@ export const metadata: Metadata = {
     icon: "/profile.jpeg",
     apple: "/profile.jpeg",
   },
-  other: {
-    "google-site-verification": "your-google-verification-code",
-    "msvalidate.01": "your-bing-verification-code",
+  verification: {
+    google: env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
   },
 };
 
@@ -177,6 +128,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <RootJsonLd />
+      </head>
       <Script
         async
         src={`https://www.googletagmanager.com/gtag/js?id=${

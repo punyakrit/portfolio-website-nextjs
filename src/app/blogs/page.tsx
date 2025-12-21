@@ -1,29 +1,66 @@
-import React from 'react'
-import type { Metadata } from 'next'
-import BlogsSection from '@/components/blogs/BlogsSection'
+import React from "react";
+import type { Metadata } from "next";
+import BlogsSection from "@/components/blogs/BlogsSection";
+import { BreadcrumbJsonLd } from "@/lib/seo-jsonld";
+import { SITE_URL, SEO_CONFIG } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Blogs | Punyakrit Singh Makhni",
+  title: "Developer Blog | Web Development, React, Next.js & Full-Stack Insights",
   description:
-    "Read articles and blog posts by Punyakrit Singh Makhni about web development, programming, technology, and software engineering insights.",
+    "Technical articles and insights from Punyakrit Singh Makhni - a freelance full-stack developer. Read about Next.js, React, TypeScript, system design, and real-world web development lessons from building production apps.",
   keywords: [
-    "web development blog",
-    "programming articles",
-    "tech blog",
-    "software engineering",
-    "React tutorials",
-    "Next.js guides",
-    "TypeScript articles",
-    "developer blog",
+    "Web Development Blog",
+    "React Tutorials",
+    "Next.js Articles",
+    "TypeScript Guide",
+    "Full-Stack Development",
+    "Developer Blog India",
+    "Programming Tutorials",
+    "System Design",
+    "Tech Blog",
+    "Software Engineering Articles",
+    "Frontend Development",
+    "Backend Development",
   ],
   alternates: {
     canonical: "/blogs",
   },
-  
+  openGraph: {
+    title: "Developer Blog | Punyakrit Singh Makhni",
+    description:
+      "Technical articles on web development, React, Next.js, TypeScript, and lessons from building production applications.",
+    url: `${SITE_URL}/blogs`,
+    type: "website",
+  },
+};
+
+async function BlogsPage() {
+  return (
+    <div className="md:my-32 my-24 md:px-8 px-2">
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: SITE_URL },
+          { name: "Blog", url: `${SITE_URL}/blogs` },
+        ]}
+      />
+
+      <header className="px-4 sm:px-6 md:px-0 mb-8">
+        <h1 className="text-3xl sm:text-4xl font-bold mb-3">Developer Blog</h1>
+        <p className="text-muted-foreground text-base sm:text-lg max-w-2xl">
+          Technical articles, tutorials, and insights from building production
+          web applications. I write about Next.js, React, TypeScript, system
+          design, and lessons learned from real projects.
+        </p>
+        <p className="text-sm text-muted-foreground mt-2">
+          Written by{" "}
+          <span className="font-medium text-foreground">{SEO_CONFIG.name}</span>{" "}
+          - Freelance Full-Stack Developer
+        </p>
+      </header>
+
+      <BlogsSection isHome={false} />
+    </div>
+  );
 }
 
-async function page() {
-  return <BlogsSection isHome={false} />
-}
-
-export default page;  
+export default BlogsPage;

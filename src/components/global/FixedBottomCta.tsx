@@ -66,20 +66,17 @@ function FixedBottomCta() {
             >
               <div className="relative">
                 <motion.div 
-                  className="absolute -inset-[1px] rounded-2xl"
-                  style={{
-                    background: 'linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.15) 100%)',
-                  }}
+                  className="absolute -inset-[1px] rounded-2xl bg-gradient-to-br from-black/10 via-black/5 to-black/10 dark:from-white/15 dark:via-white/5 dark:to-white/15"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: isHovered ? 1 : 0.4 }}
                   transition={{ duration: 0.3 }}
                 />
                 
-                <div className="relative overflow-hidden rounded-2xl bg-[#0a0a0a] backdrop-blur-xl">
+                <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-[#0a0a0a] shadow-lg dark:shadow-none backdrop-blur-xl border border-gray-200 dark:border-transparent">
                   <motion.div 
                     className="absolute inset-0"
                     style={{
-                      backgroundImage: 'linear-gradient(110deg, transparent 20%, rgba(255,255,255,0.04) 50%, transparent 80%)',
+                      backgroundImage: 'linear-gradient(110deg, transparent 20%, rgba(0,0,0,0.02) 50%, transparent 80%)',
                       backgroundSize: '200% 100%',
                     }}
                     animate={{
@@ -101,8 +98,8 @@ function FixedBottomCta() {
                         transition={{ delay: 0.3, duration: 0.4 }}
                       >
                         <motion.div 
-                          className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/10"
-                          whileHover={{ scale: 1.1, borderColor: 'rgba(255,255,255,0.3)' }}
+                          className="w-12 h-12 rounded-full overflow-hidden border-2 border-gray-200 dark:border-white/10"
+                          whileHover={{ scale: 1.1 }}
                           transition={{ type: "spring", stiffness: 300 }}
                         >
                           <img 
@@ -119,7 +116,7 @@ function FixedBottomCta() {
                         >
                           <span className="relative flex h-3.5 w-3.5">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                            <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500 border-2 border-[#0a0a0a]" />
+                            <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500 border-2 border-white dark:border-[#0a0a0a]" />
                           </span>
                         </motion.div>
                       </motion.div>
@@ -130,21 +127,20 @@ function FixedBottomCta() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.35, duration: 0.4 }}
                       >
-                        <p className="text-white/90 font-medium text-[15px] leading-tight">
+                        <p className="text-gray-900 dark:text-white/90 font-medium text-[15px] leading-tight">
                           Let&apos;s build together
                         </p>
-                        <p className="text-white/40 text-xs mt-0.5">
+                        <p className="text-gray-500 dark:text-white/40 text-xs mt-0.5">
                           Open for new projects
                         </p>
                       </motion.div>
                       
                       <motion.div 
-                        className="flex-shrink-0 flex items-center gap-2 px-4 py-2 rounded-full bg-white text-black text-sm font-medium overflow-hidden"
+                        className="flex-shrink-0 flex items-center gap-2 px-4 py-2 rounded-full bg-gray-900 dark:bg-white text-white dark:text-black text-sm font-medium overflow-hidden"
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.4, duration: 0.4 }}
                         whileHover={{ 
-                          backgroundColor: 'rgba(255,255,255,0.95)',
                           gap: '12px',
                         }}
                       >
@@ -179,4 +175,3 @@ function FixedBottomCta() {
 }
 
 export default FixedBottomCta
-

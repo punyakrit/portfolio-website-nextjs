@@ -36,7 +36,7 @@ export const experience: Readonly<Experience[]> = [
         company: "AgentProd",
         position: "Full Stack Engineer",
         location: "Remote (United States)",
-        // AgentProd — >2 years experience per your profile; using an ongoing/present end date
+        // AgentProd - >2 years experience per your profile; using an ongoing/present end date
         startDate: "2024-06-01",
         endDate: "2025-10-01",
         tech: [
@@ -56,7 +56,7 @@ export const experience: Readonly<Experience[]> = [
             getSkillByName("Vercel")
         ].filter((skill): skill is Skill => skill !== undefined),
         bullets: [
-            "Owned and shipped the frontend and full-stack infrastructure for fast-moving product work — component system, routing, builds, and performance optimizations across multiple product areas.",
+            "Owned and shipped the frontend and full-stack infrastructure for fast-moving product work - component system, routing, builds, and performance optimizations across multiple product areas.",
             "Led a multi-phase refactor toward component-driven architecture and stricter typing, which improved developer velocity and reduced regressions in production.",
             "Built resilient API integrations and performant data-fetching patterns (incremental static rendering / SWR-like caching) to reduce UI load times and error surface.",
             "Implemented CI/CD and Docker-based pipelines for repeatable deployments; collaborated on infra improvements (EC2, CloudFront, S3) to improve reliability at scale.",
@@ -81,9 +81,9 @@ export const experience: Readonly<Experience[]> = [
 
     {
         company: "Independent / Freelance",
-        position: "Full Stack Engineer — Founder / Contractor",
+        position: "Full Stack Engineer - Founder / Contractor",
         location: "Remote",
-        // Freelance work that overlaps with employment — kept as ongoing
+        // Freelance work that overlaps with employment - kept as ongoing
         startDate: "2023-02-01",
         endDate: "Present",
         tech: [
@@ -101,7 +101,7 @@ export const experience: Readonly<Experience[]> = [
             getSkillByName("GitHub")
         ].filter((skill): skill is Skill => skill !== undefined),
         bullets: [
-            "Built and shipped multiple independent products and MVPs (Pulse, Codelens, SchemaPilot) from 0→1 — product design, frontend, API, and deployments.",
+            "Built and shipped multiple independent products and MVPs (Pulse, Codelens, SchemaPilot) from 0→1 - product design, frontend, API, and deployments.",
             "Designed and implemented user-facing dashboards, auth flows, billing integrations, and data models using Next.js + Supabase / FastAPI + Postgres.",
             "Handled end-to-end deployment and infra: containerized services with Docker, CI/CD deployments to Vercel/EC2, CloudFront for static assets, and basic observability.",
             "Worked directly with early users to iterate on product-market fit, instrumented analytics for usage-driven prioritization, and shipped frequent small releases to validate ideas."

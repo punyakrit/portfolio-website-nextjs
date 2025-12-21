@@ -27,7 +27,7 @@ async function Footer() {
   ]
 
   return (
-    <footer className='px-4 sm:px-6 md:px-8 pb-8 sm:pb-12 '>
+    <footer className='px-4 sm:px-6 md:px-8  pb-32 '>
       <div className='max-w-4xl mx-auto'>
         <div className='flex flex-col items-center space-y-6'>
           <div className='flex flex-wrap items-center justify-center gap-4 sm:gap-6'>

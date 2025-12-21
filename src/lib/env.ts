@@ -4,6 +4,7 @@ interface Env {
   NEXT_PUBLIC_CLOUDFRONT_URL: string;
   NEXT_PUBLIC_INVISIBLE_MODE: string;
   NEXT_PUBLIC_DEV_MODE: string;
+  NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION: string;
   NOTION_API_KEY: string;
   NOTION_DATABASE_ID: string;
 }
@@ -13,7 +14,8 @@ export const env: Readonly<Env> = {
   NEXT_PUBLIC_CLARITY_ID: process.env.NEXT_PUBLIC_CLARITY_ID as string,
   NEXT_PUBLIC_CLOUDFRONT_URL: process.env.NEXT_PUBLIC_CLOUDFRONT_URL as string,
   NEXT_PUBLIC_INVISIBLE_MODE: process.env.NEXT_PUBLIC_INVISIBLE_MODE as string || "true",
-  NEXT_PUBLIC_DEV_MODE: process.env.NEXT_PUBLIC_DEV_MODE as string ,
+  NEXT_PUBLIC_DEV_MODE: process.env.NEXT_PUBLIC_DEV_MODE as string,
+  NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION as string || "",
   NOTION_API_KEY: process.env.NOTION_API_KEY as string,
   NOTION_DATABASE_ID: process.env.NOTION_DATABASE_ID as string,
 };
