@@ -14,6 +14,7 @@ import HorizontalLine from "@/components/global/HorizontalLine";
 import FixedBottomCta from "@/components/global/FixedBottomCta";
 import { RootJsonLd } from "@/lib/seo-jsonld";
 import { SEO_CONFIG, PRIMARY_KEYWORDS, SITE_URL } from "@/lib/seo";
+import Provider from "@/providers/Provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -158,6 +159,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} ${fondamento.variable} ${inter.variable} antialiased dark:bg-[#121212] `}
       >
+        <Provider>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -190,6 +192,7 @@ export default function RootLayout({
             </div>
           </div>
         </ThemeProvider>
+        </Provider>
       </body>
     </html>
   );
