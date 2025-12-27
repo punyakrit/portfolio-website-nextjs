@@ -12,7 +12,7 @@ export const SEO_CONFIG = {
     "Freelance Full-Stack Developer from India building production-grade web applications. Hire me for Next.js, React, TypeScript, and Node.js projects. Available for remote work globally.",
   url: SITE_URL,
   email: "punyakritsinghmakhni@gmail.com",
-  image: `${SITE_URL}/main.png`,
+  image: `${SITE_URL}/card.png`,
   profileImage: `${SITE_URL}/profile.jpeg`,
   socials: {
     twitter: "https://x.com/punyakrit_22",

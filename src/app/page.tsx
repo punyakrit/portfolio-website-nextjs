@@ -43,6 +43,23 @@ export const metadata: Metadata = {
       "I'm a freelance full-stack developer from India building production-grade web applications. Specializing in Next.js, React, TypeScript. Available for remote projects globally.",
     url: SITE_URL,
     type: "profile",
+    images: [
+      {
+        url: `${SITE_URL}/card.png`,
+        width: 1200,
+        height: 630,
+        alt: `${SEO_CONFIG.name} - Freelance Full-Stack Developer`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Punyakrit Singh Makhni | Hire the Best Freelance Full-Stack Developer",
+    description:
+      "I'm a freelance full-stack developer from India building production-grade web applications. Specializing in Next.js, React, TypeScript. Available for remote projects globally.",
+    images: [`${SITE_URL}/card.png`],
+    site: SEO_CONFIG.twitterHandle,
+    creator: SEO_CONFIG.twitterHandle,
   },
 };
 

@@ -1,7 +1,7 @@
 import Projects from "@/components/pow/Projects";
 import type { Metadata } from "next";
 import { BreadcrumbJsonLd, PortfolioJsonLd } from "@/lib/seo-jsonld";
-import { SITE_URL } from "@/lib/seo";
+import { SITE_URL, SEO_CONFIG } from "@/lib/seo";
 import { projects } from "@/lib/projectsData";
 
 function getSlug(title: string) {
@@ -39,6 +39,23 @@ export const metadata: Metadata = {
       "Real-world web development projects and case studies. Production-grade applications built with Next.js, React, TypeScript by a top freelance developer.",
     url: `${SITE_URL}/pow`,
     type: "website",
+    images: [
+      {
+        url: `${SITE_URL}/card.png`,
+        width: 1200,
+        height: 630,
+        alt: "Punyakrit Singh Makhni Portfolio Card",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Web Development Projects & Case Studies | Punyakrit Singh Makhni",
+    description:
+      "Real-world web development projects and case studies. Production-grade applications built with Next.js, React, TypeScript by a top freelance developer.",
+    images: [`${SITE_URL}/card.png`],
+    site: SEO_CONFIG.twitterHandle,
+    creator: SEO_CONFIG.twitterHandle,
   },
 };
 

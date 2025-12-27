@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SITE_URL } from "@/lib/seo";
+import { SITE_URL, SEO_CONFIG } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Professional Experience | Full-Stack Developer with Startup & Freelance Background",
@@ -26,6 +26,23 @@ export const metadata: Metadata = {
       "Full-stack developer with 2+ years experience building production systems for startups. Specialized in Next.js, React, TypeScript, and cloud infrastructure.",
     url: `${SITE_URL}/work`,
     type: "profile",
+    images: [
+      {
+        url: `${SITE_URL}/card.png`,
+        width: 1200,
+        height: 630,
+        alt: `${SEO_CONFIG.name} - Freelance Full-Stack Developer`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Professional Experience | Punyakrit Singh Makhni",
+    description:
+      "Full-stack developer with 2+ years experience building production systems for startups. Specialized in Next.js, React, TypeScript, and cloud infrastructure.",
+    images: [`${SITE_URL}/card.png`],
+    site: SEO_CONFIG.twitterHandle,
+    creator: SEO_CONFIG.twitterHandle,
   },
 };
 

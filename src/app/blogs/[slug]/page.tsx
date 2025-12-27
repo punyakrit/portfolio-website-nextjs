@@ -191,7 +191,14 @@ export async function generateMetadata({
               alt: title,
             },
           ]
-        : undefined,
+        : [
+            {
+              url: `${SITE_URL}/card.png`,
+              width: 1200,
+              height: 630,
+              alt: `${SEO_CONFIG.name} - Freelance Full-Stack Developer`,
+            },
+          ],
       authors: [SEO_CONFIG.name],
     },
     twitter: {
@@ -200,7 +207,9 @@ export async function generateMetadata({
       description: `A technical article by ${SEO_CONFIG.name}`,
       images: imageUrl
         ? [imageUrl.startsWith("/") ? `${SITE_URL}${imageUrl}` : imageUrl]
-        : undefined,
+        : [`${SITE_URL}/card.png`],
+      site: SEO_CONFIG.twitterHandle,
+      creator: SEO_CONFIG.twitterHandle,
     },
   };
 }
