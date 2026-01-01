@@ -1,5 +1,6 @@
 "use server"
 import { headers } from "next/headers"
+import { unstable_cache } from "next/cache"
 import { prisma } from "../db/prisma"
 
 export const upsertUser = async (username: string) => {
@@ -83,7 +84,7 @@ export const userLog = async (username: string) => {
 
 
 
-export async function getUniqueUserCount() {
+async function _getUniqueUserCount() {
     try {
         return await prisma.user.count()
     } catch (error) {
@@ -91,6 +92,14 @@ export async function getUniqueUserCount() {
         return 0
     }
 }
+
+export const getUniqueUserCount = unstable_cache(
+    _getUniqueUserCount,
+    ["unique-user-count"],
+    {
+        revalidate: 900
+    }
+)
 
 export async function createUserBlog(blogSlug: string, userId: string) {
     try{
