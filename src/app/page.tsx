@@ -11,7 +11,6 @@ import BlogsSection from "@/components/blogs/BlogsSection";
 import Cta from "@/components/home/Cta";
 import { BreadcrumbJsonLd, FAQJsonLd } from "@/lib/seo-jsonld";
 import { SITE_URL, SEO_CONFIG } from "@/lib/seo";
-import Globe from "@/components/home/Globe";
 
 export const metadata: Metadata = {
   title:
