@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     type: "profile",
     images: [
       {
-        url: `${SITE_URL}/card.png`,
+        url: `${SITE_URL}/card1.png`,
         width: 1200,
         height: 630,
         alt: `${SEO_CONFIG.name} - Freelance Full-Stack Developer`,
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     title: "Professional Experience | Punyakrit Singh Makhni",
     description:
       "Full-stack developer with 2+ years experience building production systems for startups. Specialized in Next.js, React, TypeScript, and cloud infrastructure.",
-    images: [`${SITE_URL}/card.png`],
+    images: [`${SITE_URL}/card1.png`],
     site: SEO_CONFIG.twitterHandle,
     creator: SEO_CONFIG.twitterHandle,
   },

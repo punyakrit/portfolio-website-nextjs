@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: `${SITE_URL}/card.png`,
+        url: `${SITE_URL}/card1.png`,
         width: 1200,
         height: 630,
         alt: "Punyakrit Singh Makhni Portfolio Card",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     title: "Developer Blog | Punyakrit Singh Makhni",
     description:
       "Technical articles on web development, React, Next.js, TypeScript, and lessons from building production applications.",
-    images: [`${SITE_URL}/card.png`],
+    images: [`${SITE_URL}/card1.png`],
     site: SEO_CONFIG.twitterHandle,
     creator: SEO_CONFIG.twitterHandle,
   },

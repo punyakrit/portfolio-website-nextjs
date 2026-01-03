@@ -11,6 +11,7 @@ import BlogsSection from "@/components/blogs/BlogsSection";
 import Cta from "@/components/home/Cta";
 import { BreadcrumbJsonLd, FAQJsonLd } from "@/lib/seo-jsonld";
 import { SITE_URL, SEO_CONFIG } from "@/lib/seo";
+import Globe from "@/components/home/Globe";
 
 export const metadata: Metadata = {
   title:
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
     type: "profile",
     images: [
       {
-        url: `${SITE_URL}/card.png`,
+        url: `${SITE_URL}/card1.png`,
         width: 1200,
         height: 630,
         alt: `${SEO_CONFIG.name} - Freelance Full-Stack Developer`,
@@ -57,7 +58,7 @@ export const metadata: Metadata = {
     title: "Punyakrit Singh Makhni | Hire the Best Freelance Full-Stack Developer",
     description:
       "I'm a freelance full-stack developer from India building production-grade web applications. Specializing in Next.js, React, TypeScript. Available for remote projects globally.",
-    images: [`${SITE_URL}/card.png`],
+    images: [`${SITE_URL}/card1.png`],
     site: SEO_CONFIG.twitterHandle,
     creator: SEO_CONFIG.twitterHandle,
   },
