@@ -12,6 +12,7 @@ import Cta from "@/components/home/Cta";
 import { BreadcrumbJsonLd, FAQJsonLd } from "@/lib/seo-jsonld";
 import { SITE_URL, SEO_CONFIG } from "@/lib/seo";
 
+
 export const metadata: Metadata = {
   title:
     "Punyakrit Singh Makhni | Best Freelance Full-Stack Developer India - Hire Me",
