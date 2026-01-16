@@ -243,3 +243,20 @@ export async function getUserLikeStatus(blogSlug: string, userId: string) {
         return false
     }
 }
+
+
+export async function getAllUserLocations() {
+    try {
+        const users = await prisma.userLog.findMany({
+            select: {
+                ip: true,
+                visitCount: true
+            }
+        })
+        return users
+    }
+    catch (error) {
+        console.error(error)
+        return []
+    }
+}

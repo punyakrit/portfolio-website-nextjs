@@ -21,6 +21,17 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60 * 60 * 24,
   },
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      const originalExternals = config.externals;
+      config.externals = [
+        ...(Array.isArray(originalExternals) ? originalExternals : [originalExternals].filter(Boolean)),
+        "geoip-lite",
+      ];
+    }
+    return config;
+  },
+  turbopack: {},
 };
 
 export default nextConfig;

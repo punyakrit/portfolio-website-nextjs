@@ -11,6 +11,7 @@ import BlogsSection from "@/components/blogs/BlogsSection";
 import Cta from "@/components/home/Cta";
 import { BreadcrumbJsonLd, FAQJsonLd } from "@/lib/seo-jsonld";
 import { SITE_URL, SEO_CONFIG } from "@/lib/seo";
+import World from "@/components/home/World";
 
 
 export const metadata: Metadata = {
@@ -133,6 +134,11 @@ function HomePage() {
 
       <section aria-labelledby="contact-heading">
         <Cta />
+      </section>
+      <HorizontalLine />
+
+      <section aria-labelledby="world-heading">
+        <World />
       </section>
     </div>
   );
