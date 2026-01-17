@@ -73,7 +73,7 @@ export async function GET() {
             }
         })
         await redis.set("user-locations", locationsWithCoords, {
-            ex: 60 * 60 * 2, 
+            ex: 60 * 60 * 24 * 30, 
         });
         return NextResponse.json(locationsWithCoords, {
             status: 200,
