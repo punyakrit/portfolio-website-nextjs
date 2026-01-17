@@ -12,8 +12,11 @@ import {
   TooltipTrigger,
   TooltipProvider,
 } from "@/components/ui/tooltip";
-import { BreadcrumbJsonLd, ProjectJsonLd } from "@/lib/seo-jsonld";
-import { SITE_URL } from "@/lib/seo";
+import { BreadcrumbJsonLd, SoftwareApplicationJsonLd } from "@/components/seo/JsonLd";
+import { SITE_URL, createMetadata } from "@/lib/seo";
+import { generateRelatedPages } from "@/lib/seo/linking";
+import { RelatedPages } from "@/components/seo/RelatedPages";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 
 function getSlug(title: string) {
   return title
@@ -95,12 +98,10 @@ export async function generateMetadata({
     };
   }
 
-  const techKeywords = project.tech.join(", ");
-  const projectUrl = `${SITE_URL}/pow/${getSlug(project.title)}`;
-
-  return {
+  return createMetadata({
     title: `${project.title} - Case Study | Full-Stack Web Development Project`,
-    description: `${project.description} Built with ${techKeywords}. A production-grade project by Punyakrit Singh Makhni showcasing real-world problem solving and modern web development.`,
+    description: `${project.description} Built with ${project.tech.join(", ")}. A production-grade project by Punyakrit Singh Makhni showcasing real-world problem solving and modern web development.`,
+    path: `/pow/${getSlug(project.title)}`,
     keywords: [
       project.title,
       ...project.tech,
@@ -110,30 +111,13 @@ export async function generateMetadata({
       "Developer Portfolio",
       "Open Source Project",
     ],
-    alternates: {
-      canonical: `/pow/${getSlug(project.title)}`,
+    tags: project.tech,
+    image: {
+      url: project.image,
+      alt: `${project.title} - Project Screenshot`,
     },
-    openGraph: {
-      title: `${project.title} - Web Development Case Study`,
-      description: project.description,
-      url: projectUrl,
-      type: "article",
-      images: [
-        {
-          url: project.image,
-          width: 1200,
-          height: 630,
-          alt: `${project.title} - Project Screenshot`,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${project.title} - Web Development Case Study`,
-      description: project.description,
-      images: [project.image],
-    },
-  };
+    type: "article",
+  });
 }
 
 export default async function ProjectPage({
@@ -149,30 +133,44 @@ export default async function ProjectPage({
   }
 
   const projectUrl = `${SITE_URL}/pow/${getSlug(project.title)}`;
+  const projectSlug = getSlug(project.title);
+
+  const breadcrumbs = [
+    { name: "Home", url: SITE_URL },
+    { name: "Projects", url: `${SITE_URL}/pow` },
+    { name: project.title, url: projectUrl },
+  ];
+
+  const relatedPages = generateRelatedPages(
+    projects
+      .filter((p) => getSlug(p.title) !== projectSlug)
+      .map((p) => ({
+        title: p.title,
+        url: `${SITE_URL}/pow/${getSlug(p.title)}`,
+        description: p.description,
+        relevance: p.tech.filter((tech) => project.tech.includes(tech)).length,
+      })),
+    projectUrl,
+    project.tech,
+    6
+  );
 
   return (
     <TooltipProvider>
-      <BreadcrumbJsonLd
-        items={[
-          { name: "Home", url: SITE_URL },
-          { name: "Projects", url: `${SITE_URL}/pow` },
-          { name: project.title, url: projectUrl },
-        ]}
-      />
-      <ProjectJsonLd
+      <BreadcrumbJsonLd items={breadcrumbs} />
+      <SoftwareApplicationJsonLd
         project={{
-          title: project.title,
+          name: project.title,
           description: project.description,
           url: project.link,
-          github: project.github,
           image: project.image,
-          tech: project.tech,
-          problem: project.problem,
-          solution: project.solution,
+          codeRepository: project.github,
+          programmingLanguage: project.tech,
         }}
       />
 
       <article className="px-4 sm:px-6 md:px-8 py-8 sm:py-12 max-w-5xl mx-auto">
+        <Breadcrumbs items={breadcrumbs} />
         <Button variant="ghost" className="mb-6 -ml-2" asChild>
           <Link href="/pow">
             <ArrowLeft className="w-4 h-4 mr-2" />
@@ -305,6 +303,10 @@ export default async function ProjectPage({
               </p>
             </section>
           </div>
+
+          {relatedPages.length > 0 && (
+            <RelatedPages pages={relatedPages} title="Related Projects" />
+          )}
 
           <footer className="pt-8 border-t border-border">
             <div className="flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">

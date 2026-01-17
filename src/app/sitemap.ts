@@ -2,8 +2,11 @@ import { MetadataRoute } from "next";
 import { projects } from "@/lib/projectsData";
 import { fetchPages } from "@/lib/notion";
 import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
-
-const baseUrl = "https://punyakrit.dev";
+import { SITE_URL } from "@/lib/seo";
+import {
+  optimizeSitemapPages,
+  type SitemapPage,
+} from "@/lib/seo/sitemap";
 
 function getProjectSlug(title: string) {
   return title
@@ -26,44 +29,46 @@ function getBlogSlug(blog: PageObjectResponse): string {
   return blog.id;
 }
 
+export const revalidate = 3600;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const currentDate = new Date();
 
-  const staticPages: MetadataRoute.Sitemap = [
+  const staticPages: SitemapPage[] = [
     {
-      url: baseUrl,
+      url: SITE_URL,
       lastModified: currentDate,
       changeFrequency: "weekly",
       priority: 1,
     },
     {
-      url: `${baseUrl}/pow`,
+      url: `${SITE_URL}/pow`,
       lastModified: currentDate,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/work`,
+      url: `${SITE_URL}/work`,
       lastModified: currentDate,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/blogs`,
+      url: `${SITE_URL}/blogs`,
       lastModified: currentDate,
       changeFrequency: "weekly",
       priority: 0.8,
     },
   ];
 
-  const projectPages: MetadataRoute.Sitemap = projects.map((project) => ({
-    url: `${baseUrl}/pow/${getProjectSlug(project.title)}`,
+  const projectPages: SitemapPage[] = projects.map((project) => ({
+    url: `${SITE_URL}/pow/${getProjectSlug(project.title)}`,
     lastModified: currentDate,
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
 
-  let blogPages: MetadataRoute.Sitemap = [];
+  let blogPages: SitemapPage[] = [];
   try {
     const blogs = await fetchPages();
     const pageBlogs = (blogs || []).filter(
@@ -71,7 +76,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     );
 
     blogPages = pageBlogs.map((blog) => ({
-      url: `${baseUrl}/blogs/${getBlogSlug(blog)}`,
+      url: `${SITE_URL}/blogs/${getBlogSlug(blog)}`,
       lastModified: new Date(blog.last_edited_time || blog.created_time),
       changeFrequency: "monthly" as const,
       priority: 0.6,
@@ -80,5 +85,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error("Error fetching blogs for sitemap:", error);
   }
 
-  return [...staticPages, ...projectPages, ...blogPages];
+  const allPages: SitemapPage[] = [
+    ...staticPages,
+    ...projectPages,
+    ...blogPages,
+  ];
+
+  return optimizeSitemapPages(allPages);
 }

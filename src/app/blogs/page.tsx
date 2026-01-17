@@ -1,7 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import BlogsSection from "@/components/blogs/BlogsSection";
-import { BreadcrumbJsonLd } from "@/lib/seo-jsonld";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { SITE_URL, SEO_CONFIG } from "@/lib/seo";
 
 export const metadata: Metadata = {

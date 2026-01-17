@@ -12,8 +12,11 @@ import { Button } from "@/components/ui/button";
 import BlogUserTracker from "./BlogUserTracker";
 import LikeButton from "./LikeButton";
 import { getBlogReadCount } from "@/lib/query/query";
-import { BreadcrumbJsonLd, ArticleJsonLd } from "@/lib/seo-jsonld";
-import { SITE_URL, SEO_CONFIG } from "@/lib/seo";
+import { BreadcrumbJsonLd, ArticleJsonLd } from "@/components/seo/JsonLd";
+import { SITE_URL, SEO_CONFIG, createMetadata } from "@/lib/seo";
+import { generateRelatedPages } from "@/lib/seo/linking";
+import { RelatedPages } from "@/components/seo/RelatedPages";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 
 export const dynamicParams = false;
 export const revalidate = 3600;
@@ -158,12 +161,13 @@ export async function generateMetadata({
 
   const title = getBlogTitle(blog);
   const tags = getBlogTags(blog);
-  const blogUrl = `${SITE_URL}/blogs/${slug}`;
   const imageUrl = getBlogImage(blog);
+  const dateISO = getBlogDateISO(blog);
 
-  return {
+  return createMetadata({
     title: `${title} | Developer Blog`,
     description: `${title} - A technical article by ${SEO_CONFIG.name}, freelance full-stack developer. ${tags.length > 0 ? `Topics: ${tags.join(", ")}` : ""}`,
+    path: `/blogs/${slug}`,
     keywords: [
       title,
       ...tags,
@@ -172,46 +176,18 @@ export async function generateMetadata({
       "Developer Blog",
       SEO_CONFIG.name,
     ],
-    alternates: {
-      canonical: `/blogs/${slug}`,
-    },
-    openGraph: {
-      title: `${title} | ${SEO_CONFIG.name}`,
-      description: `A technical article by ${SEO_CONFIG.name}`,
-      url: blogUrl,
-      type: "article",
-      images: imageUrl
-        ? [
-            {
-              url: imageUrl.startsWith("/")
-                ? `${SITE_URL}${imageUrl}`
-                : imageUrl,
-              width: 1200,
-              height: 630,
-              alt: title,
-            },
-          ]
-        : [
-            {
-              url: `${SITE_URL}/card1.png`,
-              width: 1200,
-              height: 630,
-              alt: `${SEO_CONFIG.name} - Freelance Full-Stack Developer`,
-            },
-          ],
-      authors: [SEO_CONFIG.name],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: title,
-      description: `A technical article by ${SEO_CONFIG.name}`,
-      images: imageUrl
-        ? [imageUrl.startsWith("/") ? `${SITE_URL}${imageUrl}` : imageUrl]
-        : [`${SITE_URL}/card1.png`],
-      site: SEO_CONFIG.twitterHandle,
-      creator: SEO_CONFIG.twitterHandle,
-    },
-  };
+    tags,
+    image: imageUrl
+      ? {
+          url: imageUrl,
+          alt: title,
+        }
+      : undefined,
+    type: "article",
+    publishedTime: dateISO,
+    modifiedTime: blog.last_edited_time || dateISO,
+    authors: [SEO_CONFIG.name],
+  });
 }
 
 async function BlogPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -242,25 +218,42 @@ async function BlogPage({ params }: { params: Promise<{ slug: string }> }) {
   const blogReadCount = await getBlogReadCount(slug);
   const blogUrl = `${SITE_URL}/blogs/${slug}`;
 
+  const breadcrumbs = [
+    { name: "Home", url: SITE_URL },
+    { name: "Blog", url: `${SITE_URL}/blogs` },
+    { name: title, url: blogUrl },
+  ];
+
+  const allBlogs = await fetchPages();
+  const pageBlogs = (allBlogs || []).filter(
+    (b): b is PageObjectResponse => b && b.object === "page"
+  );
+  const relatedPages = generateRelatedPages(
+    pageBlogs
+      .filter((b) => {
+        const blogSlug = getBlogSlug(b);
+        return blogSlug !== slug;
+      })
+      .map((b) => ({
+        title: getBlogTitle(b),
+        url: `${SITE_URL}/blogs/${getBlogSlug(b)}`,
+        description: getBlogTitle(b),
+        relevance: getBlogTags(b).filter((tag) => tags.includes(tag)).length,
+      })),
+    blogUrl,
+    tags,
+    6
+  );
+
   return (
     <article className="px-4 sm:px-6 md:px-8 py-8 sm:py-12 mt-14 max-w-5xl mx-auto">
-      <BreadcrumbJsonLd
-        items={[
-          { name: "Home", url: SITE_URL },
-          { name: "Blog", url: `${SITE_URL}/blogs` },
-          { name: title, url: blogUrl },
-        ]}
-      />
+      <BreadcrumbJsonLd items={breadcrumbs} />
       <ArticleJsonLd
         article={{
           title,
           description: `${title} - A technical article by ${SEO_CONFIG.name}`,
           url: blogUrl,
-          image: imageUrl
-            ? imageUrl.startsWith("/")
-              ? `${SITE_URL}${imageUrl}`
-              : imageUrl
-            : undefined,
+          image: imageUrl || undefined,
           datePublished: dateISO,
           dateModified: blog.last_edited_time || dateISO,
           tags,
@@ -268,6 +261,7 @@ async function BlogPage({ params }: { params: Promise<{ slug: string }> }) {
       />
 
       <BlogUserTracker slug={slug} />
+      <Breadcrumbs items={breadcrumbs} />
       <div className="">
         <Link href="/blogs">
           <Button variant="ghost" className="mb-6 -ml-2" size="sm">
@@ -333,6 +327,10 @@ async function BlogPage({ params }: { params: Promise<{ slug: string }> }) {
         dangerouslySetInnerHTML={{ __html: html }}
         className="prose prose-lg dark:prose-invert max-w-none prose-headings:font-bold prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-pre:bg-muted prose-code:bg-muted prose-code:px-1 prose-code:py-0.5 prose-code:rounded"
       />
+
+      {relatedPages.length > 0 && (
+        <RelatedPages pages={relatedPages} title="Related Articles" />
+      )}
 
       <footer className="mt-12 pt-8 border-t border-border">
         <div className="flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">

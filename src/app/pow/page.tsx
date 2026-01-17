@@ -1,6 +1,6 @@
 import Projects from "@/components/pow/Projects";
 import type { Metadata } from "next";
-import { BreadcrumbJsonLd, PortfolioJsonLd } from "@/lib/seo-jsonld";
+import { BreadcrumbJsonLd, ItemListJsonLd } from "@/components/seo/JsonLd";
 import { SITE_URL, SEO_CONFIG } from "@/lib/seo";
 import { projects } from "@/lib/projectsData";
 
@@ -76,7 +76,14 @@ function ProjectsPage() {
           { name: "Projects", url: `${SITE_URL}/pow` },
         ]}
       />
-      <PortfolioJsonLd projects={portfolioProjects} />
+      <ItemListJsonLd
+        items={portfolioProjects.map((project) => ({
+          name: project.title,
+          description: project.description,
+          url: project.url,
+          image: project.image,
+        }))}
+      />
 
       <header className="px-4 sm:px-6 md:px-0 mb-8">
         <h1 className="text-3xl sm:text-4xl font-bold mb-3">

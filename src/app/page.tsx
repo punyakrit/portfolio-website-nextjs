@@ -9,7 +9,7 @@ import Github from "@/components/home/Github";
 import Stack from "@/components/home/Stack";
 import BlogsSection from "@/components/blogs/BlogsSection";
 import Cta from "@/components/home/Cta";
-import { BreadcrumbJsonLd, FAQJsonLd } from "@/lib/seo-jsonld";
+import { BreadcrumbJsonLd, FAQJsonLd } from "@/components/seo/JsonLd";
 import { SITE_URL, SEO_CONFIG } from "@/lib/seo";
 import World from "@/components/home/World";
 

@@ -1,6 +1,6 @@
 import React from "react";
 import Experience from "@/components/home/Experience";
-import { BreadcrumbJsonLd, JsonLd } from "@/lib/seo-jsonld";
+import { BreadcrumbJsonLd, JsonLd } from "@/components/seo/JsonLd";
 import { SITE_URL, SEO_CONFIG } from "@/lib/seo";
 import { experience } from "@/lib/experience";
 

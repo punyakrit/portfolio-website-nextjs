@@ -283,47 +283,42 @@ export function createMetadata(options: {
   description: string;
   path?: string;
   keywords?: string[];
-  openGraph?: Partial<Metadata["openGraph"]>;
+  tags?: string[];
+  image?: {
+    url: string;
+    width?: number;
+    height?: number;
+    alt?: string;
+  };
+  type?: "website" | "article" | "profile";
   noIndex?: boolean;
+  noFollow?: boolean;
+  publishedTime?: string;
+  modifiedTime?: string;
+  authors?: string[];
+  section?: string;
+  canonical?: string;
+  openGraph?: Partial<Metadata["openGraph"]>;
+  twitter?: Partial<Metadata["twitter"]>;
 }): Metadata {
-  const url = options.path ? `${SITE_URL}${options.path}` : SITE_URL;
-
-  return {
+  const { createMetadata: createMetadataNew } = require("./seo/metadata");
+  return createMetadataNew({
     title: options.title,
     description: options.description,
-    keywords: options.keywords || [...PRIMARY_KEYWORDS],
-    authors: [{ name: SEO_CONFIG.name }],
-    creator: SEO_CONFIG.name,
-    publisher: SEO_CONFIG.name,
-    alternates: {
-      canonical: url,
-    },
-    openGraph: {
-      title: options.title,
-      description: options.description,
-      url,
-      ...defaultOpenGraph,
-      ...options.openGraph,
-    },
-    twitter: {
-      ...defaultTwitter,
-      title: options.title,
-      description: options.description,
-      images: [SEO_CONFIG.image],
-    },
-    robots: options.noIndex
-      ? { index: false, follow: false }
-      : {
-          index: true,
-          follow: true,
-          googleBot: {
-            index: true,
-            follow: true,
-            "max-video-preview": -1,
-            "max-image-preview": "large",
-            "max-snippet": -1,
-          },
-        },
-  };
+    path: options.path || "/",
+    keywords: options.keywords,
+    tags: options.tags,
+    image: options.image,
+    type: options.type,
+    noIndex: options.noIndex,
+    noFollow: options.noFollow,
+    publishedTime: options.publishedTime,
+    modifiedTime: options.modifiedTime,
+    authors: options.authors,
+    section: options.section,
+    canonical: options.canonical,
+    openGraph: options.openGraph,
+    twitter: options.twitter,
+  });
 }
 

@@ -12,7 +12,7 @@ import FirstVisitNotification from "@/components/global/FirstVisitNotification";
 import Footer from "@/components/home/Footer";
 import HorizontalLine from "@/components/global/HorizontalLine";
 import FixedBottomCta from "@/components/global/FixedBottomCta";
-import { RootJsonLd } from "@/lib/seo-jsonld";
+import { RootJsonLd } from "@/components/seo/JsonLd";
 import { SEO_CONFIG, PRIMARY_KEYWORDS, SITE_URL } from "@/lib/seo";
 import Provider from "@/providers/Provider";
 

@@ -2,14 +2,36 @@ import { getAllUserLocations } from "@/lib/query/query";
 import { redis } from "@/lib/redis";
 import { NextResponse } from "next/server";
 
-function getGeoip() {
+let geoipCache: any = null;
+
+async function getGeoip() {
+    if (geoipCache) {
+        return geoipCache;
+    }
+    
     try {
         if (typeof require !== 'undefined') {
-            return require("geoip-lite");
+            const geoip = require("geoip-lite");
+            geoipCache = geoip;
+            
+            try {
+                const testLookup = geoip.lookup("8.8.8.8");
+                if (!testLookup) {
+                    console.warn("geoip-lite loaded but test lookup failed - data files may be missing");
+                }
+            } catch (testError) {
+                console.warn("geoip-lite data files check failed:", testError);
+            }
+            
+            return geoipCache;
         }
         return null;
-    } catch (error) {
-        console.error("Failed to load geoip-lite:", error);
+    } catch (error: any) {
+        if (error.code === 'ENOENT' && error.path?.includes('geoip')) {
+            console.error("geoip-lite data files not found. Ensure geoip-lite is properly installed with data files.");
+        } else {
+            console.error("Failed to load geoip-lite:", error);
+        }
         return null;
     }
 }
@@ -25,28 +47,23 @@ export async function GET() {
                 },
             });
         }
-        const geoip = getGeoip();
-        if (!geoip) {
-            return NextResponse.json(
-                { error: "GeoIP service unavailable" },
-                { status: 503 }
-            );
-        }
-
+        const geoip = await getGeoip();
         const allData = await getAllUserLocations()
         const locationsWithCoords = allData.map((data) => {
             const ip = data.ip
             let latitude = 0;
             let longitude = 0;
             
-            try {
-                const location = geoip.lookup(ip as string);
-                if (location && location.ll) {
-                    latitude = location.ll[0] || 0;
-                    longitude = location.ll[1] || 0;
+            if (geoip) {
+                try {
+                    const location = geoip.lookup(ip as string);
+                    if (location && location.ll) {
+                        latitude = location.ll[0] || 0;
+                        longitude = location.ll[1] || 0;
+                    }
+                } catch (lookupError) {
+                    console.error(`Error looking up IP ${ip}:`, lookupError);
                 }
-            } catch (lookupError) {
-                console.error(`Error looking up IP ${ip}:`, lookupError);
             }
             
             return {
