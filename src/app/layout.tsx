@@ -58,11 +58,11 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: `${SEO_CONFIG.name} | Freelance Full-Stack Developer India - Hire for Web Projects`,
+    default: `${SEO_CONFIG.name} | Best Freelance Developer for Hire - Web & Full-Stack`,
     template: `%s | ${SEO_CONFIG.name}`,
   },
   description:
-    "Punyakrit Singh Makhni is a freelance full-stack developer from India. I build production-grade web apps with Next.js, React, TypeScript & Node.js. Hire me for your next project - remote-friendly, globally available.",
+    "Looking for the best freelance developer? I'm a full-stack developer specializing in React, Next.js, TypeScript & Node.js. Available for remote projects in US, UK, Europe & worldwide. Book a free consultation.",
   applicationName: `${SEO_CONFIG.name} Portfolio`,
   category: "Technology",
   keywords: [...PRIMARY_KEYWORDS],
@@ -79,9 +79,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: `${SEO_CONFIG.name} | Freelance Full-Stack Developer India`,
+    title: `${SEO_CONFIG.name} | Best Freelance Developer for Hire`,
     description:
-      "Freelance full-stack developer from India building production-grade web applications. Hire me for Next.js, React, TypeScript, and Node.js projects.",
+      "Hire the best freelance developer for your web project. Full-stack developer specializing in React, Next.js, TypeScript. Available for remote projects worldwide.",
     url: SITE_URL,
     siteName: `${SEO_CONFIG.name} Portfolio`,
     images: [

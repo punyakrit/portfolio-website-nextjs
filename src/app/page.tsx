@@ -10,39 +10,46 @@ import Stack from "@/components/home/Stack";
 import BlogsSection from "@/components/blogs/BlogsSection";
 import Cta from "@/components/home/Cta";
 import { BreadcrumbJsonLd, FAQJsonLd } from "@/components/seo/JsonLd";
+import SEOLinks from "@/components/seo/SEOLinks";
 import { SITE_URL, SEO_CONFIG } from "@/lib/seo";
 import World from "@/components/home/World";
 
 
 export const metadata: Metadata = {
   title:
-    "Punyakrit Singh Makhni | Best Freelance Full-Stack Developer India - Hire Me",
+    "Punyakrit Singh Makhni | Best Freelance Developer - Hire for Web Projects",
   description:
-    "Looking to hire a top freelance web developer? I'm Punyakrit Singh Makhni, a full-stack developer from India specializing in Next.js, React, TypeScript & Node.js. I build production-grade web applications for startups and businesses globally. Book a free call today.",
+    "Looking to hire the best freelance developer? I'm Punyakrit Singh Makhni, a full-stack developer specializing in Next.js, React, TypeScript & Node.js. Available for remote projects in US, UK, Europe & worldwide. Book a free consultation.",
   keywords: [
-    "Best Web Developer",
-    "Best Full-Stack Developer",
-    "Best Frontend Developer",
-    "Freelance Web Developer India",
-    "Hire Full-Stack Developer",
-    "Hire Web Developer",
-    "Remote Web Developer",
-    "Next.js Developer India",
-    "React Developer for Hire",
-    "TypeScript Developer",
-    "Freelance Full-Stack Developer",
-    "Top Web Developer India",
-    "Production-grade Web Apps",
-    "Startup Developer",
+    "best freelance developer",
+    "best freelancer developer",
+    "hire freelance developer",
+    "freelancer developer",
+    "contract developer",
+    "contractor developer",
+    "remote developer",
+    "freelance web developer",
+    "hire web developer",
+    "best developer for hire",
+    "MVP developer",
+    "startup developer",
+    "developer for startups",
+    "freelance developer USA",
+    "freelance developer UK",
+    "remote developer for hire",
+    "Next.js developer",
+    "React developer",
+    "TypeScript developer",
+    "full-stack developer for hire",
     "Punyakrit Singh Makhni",
   ],
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Punyakrit Singh Makhni | Hire the Best Freelance Full-Stack Developer",
+    title: "Punyakrit Singh Makhni | Best Freelance Developer for Hire",
     description:
-      "I'm a freelance full-stack developer from India building production-grade web applications. Specializing in Next.js, React, TypeScript. Available for remote projects globally.",
+      "Hire the best freelance developer for your web project. I build production-grade applications with Next.js, React & TypeScript. Serving clients in US, UK, Europe & worldwide.",
     url: SITE_URL,
     type: "profile",
     images: [
@@ -134,6 +141,11 @@ function HomePage() {
 
       <section aria-labelledby="contact-heading">
         <Cta />
+      </section>
+      <HorizontalLine />
+
+      <section aria-labelledby="seo-links-heading">
+        <SEOLinks />
       </section>
       <HorizontalLine />
 

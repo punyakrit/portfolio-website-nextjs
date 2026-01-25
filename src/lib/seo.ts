@@ -23,20 +23,36 @@ export const SEO_CONFIG = {
 } as const;
 
 export const PRIMARY_KEYWORDS: string[] = [
-  "Best Web Developer",
-  "Best Frontend Developer",
-  "Best Backend Developer",
-  "Best Full-Stack Developer",
-  "Freelance Web Developer India",
-  "Freelance Full-Stack Developer",
-  "Hire Web Developer",
-  "Hire Frontend Developer",
-  "Hire Backend Developer",
-  "Hire Full-Stack Developer",
-  "Remote Web Developer",
+  // Core target keywords
+  "best freelance developer",
+  "best freelancer developer",
+  "freelancer developer",
+  "hire freelance developer",
+  "freelance developer for hire",
+  "contract developer",
+  "contractor developer",
+  "remote developer",
+
+  // Service variations
+  "hire web developer",
+  "hire full-stack developer",
+  "hire react developer",
+  "hire nextjs developer",
+  "MVP developer",
+  "startup developer",
+
+  // Location-agnostic (global reach)
+  "freelance developer USA",
+  "freelance developer UK",
+  "remote developer for hire",
+  "developer for startups",
+
+  // Technology specific
   "Next.js Developer",
-  "React Developer India",
+  "React Developer",
   "TypeScript Developer",
+  "Node.js Developer",
+  "Full-Stack Developer",
 ];
 
 export function generatePersonSchema() {
