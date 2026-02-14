@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Map, MapMarker, MarkerContent } from "@/components/ui/map";
+import { Map, MapMarker, MarkerContent, MarkerTooltip } from "@/components/ui/map";
 import { Card } from "@/components/ui/card";
 
 interface UserLocation {
@@ -117,6 +117,7 @@ function World() {
   const [userLocations, setUserLocations] = useState<ProcessedLocation[]>([]);
   const [totalVisits, setTotalVisits] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
+  const [hoveredLevel, setHoveredLevel] = useState<"high" | "medium" | "low" | null>(null);
 
   useEffect(() => {
     const fetchUserLocations = async () => {
@@ -176,20 +177,37 @@ function World() {
                       location.level
                     )} ${getMarkerOpacity(
                       location.level
-                    )} rounded-full bg-green-500 shadow-lg shadow-green-500/50 animate-pulse`}
+                    )} rounded-full bg-green-500 shadow-lg shadow-green-500/50 animate-pulse transition-all duration-300 hover:scale-150 ${
+                      hoveredLevel && hoveredLevel !== location.level
+                        ? "opacity-20 scale-75 blur-[1px]"
+                        : hoveredLevel === location.level
+                        ? "scale-150 z-10 ring-2 ring-white/50"
+                        : ""
+                    }`}
                   />
                 </MarkerContent>
+                <MarkerTooltip className="bg-black/80 backdrop-blur-md border border-green-500/20 text-white px-3 py-1.5 rounded-lg shadow-xl">
+                  <div className="flex items-center gap-2 text-xs">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                    </span>
+                    <span className="font-medium">
+                      {location.visitCount} <span className="text-white/60">visits</span>
+                    </span>
+                  </div>
+                </MarkerTooltip>
               </MapMarker>
             ))}
             </Map>
           </div>
 
           <div className="absolute top-4 left-4 z-10">
-            <Card className="bg-black/80 dark:bg-black/90 backdrop-blur-sm border-gray-800 p-3 min-w-[140px]">
-              <h3 className="text-xs font-semibold text-white/80 uppercase tracking-wider ">
+            <Card className="bg-black/80 dark:bg-black/90 backdrop-blur-sm border-gray-800 p-3 min-w-[140px] hover:bg-black/90 transition-colors duration-300 group cursor-default">
+              <h3 className="text-xs font-semibold text-white/80 uppercase tracking-wider group-hover:text-green-400 transition-colors">
                 Total Visits
               </h3>
-              <div className="text-2xl -mt-3 font-bold text-white mb-1">
+              <div className="text-2xl -mt-3 font-bold text-white mb-1 group-hover:scale-105 transition-transform origin-left">
                 {loading ? "..." : totalVisits.toLocaleString()}
               </div>
               
@@ -199,17 +217,29 @@ function World() {
           <div className="absolute bottom-3 left-3 z-10">
             <Card className="bg-black/80 dark:bg-black/90 backdrop-blur-sm border-gray-800 p-2">
               <div className="flex  gap-2">
-                <div className="flex items-center gap-2">
+                <div 
+                  className="flex items-center gap-2 cursor-pointer hover:bg-white/10 p-1 rounded transition-colors"
+                  onMouseEnter={() => setHoveredLevel("high")}
+                  onMouseLeave={() => setHoveredLevel(null)}
+                >
                   <div className="h-3 w-3 rounded-full bg-green-500 opacity-100" />
-                  <span className="text-xs text-white/70">High</span>
+                  <span className={`text-xs transition-colors ${hoveredLevel === "high" ? "text-white font-bold" : "text-white/70"}`}>High</span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div 
+                  className="flex items-center gap-2 cursor-pointer hover:bg-white/10 p-1 rounded transition-colors"
+                  onMouseEnter={() => setHoveredLevel("medium")}
+                  onMouseLeave={() => setHoveredLevel(null)}
+                >
                   <div className="h-2.5 w-2.5 rounded-full bg-green-500 opacity-75" />
-                  <span className="text-[10px] text-white/70">Medium</span>
+                  <span className={`text-[10px] transition-colors ${hoveredLevel === "medium" ? "text-white font-bold" : "text-white/70"}`}>Medium</span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div 
+                  className="flex items-center gap-2 cursor-pointer hover:bg-white/10 p-1 rounded transition-colors"
+                  onMouseEnter={() => setHoveredLevel("low")}
+                  onMouseLeave={() => setHoveredLevel(null)}
+                >
                   <div className="h-2 w-2 rounded-full bg-green-500 opacity-50" />
-                  <span className="text-[8px] text-white/70">Low</span>
+                  <span className={`text-[8px] transition-colors ${hoveredLevel === "low" ? "text-white font-bold" : "text-white/70"}`}>Low</span>
                 </div>
               </div>
             </Card>
