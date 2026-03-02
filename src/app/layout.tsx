@@ -5,13 +5,10 @@ import "./globals.css";
 import Script from "next/script";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { env } from "@/lib/env";
-import NavBar from "@/components/global/NavBar";
 import DevMode from "@/lib/DevMode";
 import RefreshOverlay from "@/components/global/RefreshOverlay";
 import FirstVisitNotification from "@/components/global/FirstVisitNotification";
-import Footer from "@/components/home/Footer";
-import HorizontalLine from "@/components/global/HorizontalLine";
-import FixedBottomCta from "@/components/global/FixedBottomCta";
+import { SupportPageLayout } from "@/components/global/SupportPageLayout";
 import { RootJsonLd } from "@/components/seo/JsonLd";
 import { SEO_CONFIG, PRIMARY_KEYWORDS, SITE_URL } from "@/lib/seo";
 import Provider from "@/providers/Provider";
@@ -172,28 +169,7 @@ export default function RootLayout({
           <RefreshOverlay />
           <FirstVisitNotification />
           <DevMode />
-          <FixedBottomCta />
-          <div className="max-w-4xl container mx-auto">
-            <div
-              className="
-      h-full w-full
-      md:bg-[repeating-linear-gradient(135deg,rgba(0,0,0,0.06)_0_1px,transparent_1px_6px)] md:dark:bg-[repeating-linear-gradient(135deg,rgba(255,255,255,0.06)_0_1px,transparent_1px_6px)]
-      md:border-x md:dark:border-[#1b1b1b]
-      flex overflow-auto
-    "
-            >
-              <div className="flex-1 md:mx-14 h-full dark:bg-[#121212] bg-white border-x dark:border-[#1b1b1b] z-10">
-                <NavBar />
-                <div className="mt-12">
-
-                {children}
-                <HorizontalLine />
-                <Footer />
-          
-                </div>
-              </div>
-            </div>
-          </div>
+          <SupportPageLayout>{children}</SupportPageLayout>
         </ThemeProvider>
         </Provider>
       </body>
