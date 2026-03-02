@@ -6,7 +6,7 @@ import Footer from "@/components/home/Footer";
 import HorizontalLine from "@/components/global/HorizontalLine";
 import FixedBottomCta from "@/components/global/FixedBottomCta";
 
-const SUPPORT_PAGE_PATH = "/craft-trading-support";
+const CLEAN_PAGE_PATHS = ["/craft-trading-support", "/craft-trading-privacy"];
 
 export function SupportPageLayout({
   children,
@@ -14,9 +14,9 @@ export function SupportPageLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const isSupportPage = pathname === SUPPORT_PAGE_PATH;
+  const isCleanPage = CLEAN_PAGE_PATHS.includes(pathname ?? "");
 
-  if (isSupportPage) {
+  if (isCleanPage) {
     return <>{children}</>;
   }
 
