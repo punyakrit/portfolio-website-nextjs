@@ -76,6 +76,8 @@ export function generatePersonSchema() {
       "Web Development",
       "Full-Stack Development",
       "React",
+      "React Native",
+      "Expo",
       "Next.js",
       "TypeScript",
       "Node.js",

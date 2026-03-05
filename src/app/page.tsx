@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   title:
     "Punyakrit Singh Makhni | Best Freelance Developer - Hire for Web Projects",
   description:
-    "Looking to hire the best freelance developer? I'm Punyakrit Singh Makhni, a full-stack developer specializing in Next.js, React, TypeScript & Node.js. Available for remote projects in US, UK, Europe & worldwide. Book a free consultation.",
+    "Looking to hire the best freelance developer? I'm Punyakrit Singh Makhni, a full-stack developer specializing in Next.js, React, React Native (Expo), TypeScript & Node.js. Available for remote projects in US, UK, Europe & worldwide. Book a free consultation.",
   keywords: [
     "best freelance developer",
     "best freelancer developer",
@@ -39,6 +39,7 @@ export const metadata: Metadata = {
     "remote developer for hire",
     "Next.js developer",
     "React developer",
+    "React Native Expo developer",
     "TypeScript developer",
     "full-stack developer for hire",
     "Punyakrit Singh Makhni",
@@ -49,7 +50,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Punyakrit Singh Makhni | Best Freelance Developer for Hire",
     description:
-      "Hire the best freelance developer for your web project. I build production-grade applications with Next.js, React & TypeScript. Serving clients in US, UK, Europe & worldwide.",
+      "Hire the best freelance developer for your web project. I build production-grade web and mobile applications with Next.js, React, React Native (Expo) & TypeScript. Serving clients in US, UK, Europe & worldwide.",
     url: SITE_URL,
     type: "profile",
     images: [
@@ -65,7 +66,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Punyakrit Singh Makhni | Hire the Best Freelance Full-Stack Developer",
     description:
-      "I'm a freelance full-stack developer from India building production-grade web applications. Specializing in Next.js, React, TypeScript. Available for remote projects globally.",
+      "I'm a freelance full-stack developer from India building production-grade web and mobile apps. Specializing in Next.js, React, React Native (Expo), TypeScript. Available for remote projects globally.",
     images: [`${SITE_URL}/card1.png`],
     site: SEO_CONFIG.twitterHandle,
     creator: SEO_CONFIG.twitterHandle,
@@ -76,7 +77,7 @@ const homepageFAQs = [
   {
     question: "What services does Punyakrit offer as a freelance developer?",
     answer:
-      "I offer full-stack web development services including custom web applications, SaaS products, frontend development with React/Next.js, backend development with Node.js/FastAPI, database design, API development, and deployment on cloud platforms like AWS and Vercel.",
+      "I offer full-stack web and mobile development including custom web applications, React Native (Expo) mobile apps, SaaS products, frontend development with React/Next.js, backend development with Node.js/FastAPI, database design, API development, and deployment on cloud platforms like AWS and Vercel.",
   },
   {
     question: "How can I hire Punyakrit for my project?",
@@ -86,7 +87,7 @@ const homepageFAQs = [
   {
     question: "What tech stack does Punyakrit specialize in?",
     answer:
-      "I specialize in modern web technologies including Next.js, React, TypeScript, Node.js, FastAPI, PostgreSQL, Redis, Tailwind CSS, and cloud services like AWS, Vercel, and Supabase. I focus on building scalable, production-ready applications.",
+      "I specialize in modern web and mobile technologies including Next.js, React, React Native (Expo), TypeScript, Node.js, FastAPI, PostgreSQL, Redis, Tailwind CSS, and cloud services like AWS, Vercel, and Supabase. I focus on building scalable, production-ready web and mobile applications.",
   },
   {
     question: "Does Punyakrit work with international clients?",
@@ -144,10 +145,10 @@ function HomePage() {
       </section>
       <HorizontalLine />
 
-      <section aria-labelledby="seo-links-heading">
+      {/* <section aria-labelledby="seo-links-heading">
         <SEOLinks />
       </section>
-      <HorizontalLine />
+      <HorizontalLine /> */}
 
       <section aria-labelledby="world-heading">
         <World />

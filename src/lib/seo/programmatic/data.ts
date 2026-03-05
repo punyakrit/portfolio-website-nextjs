@@ -172,6 +172,16 @@ export const SKILLS: SkillData[] = [
     description: "Full-stack React framework for production-grade applications with SSR, SSG, and API routes"
   },
   {
+    slug: "react-native-expo",
+    name: "React Native (Expo)",
+    category: "frontend",
+    experience: "2+ years",
+    proficiency: "advanced",
+    relatedSkills: ["React", "TypeScript", "Expo", "Mobile Development"],
+    useCases: ["Cross-Platform Mobile Apps", "iOS & Android Apps", "MVP Mobile Applications", "React Native Development"],
+    description: "Building cross-platform mobile applications with React Native and Expo for iOS and Android"
+  },
+  {
     slug: "typescript",
     name: "TypeScript",
     category: "fullstack",

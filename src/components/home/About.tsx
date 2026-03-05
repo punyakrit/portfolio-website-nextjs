@@ -48,7 +48,7 @@ function About() {
       <div className="relative inline-block">
         <img 
           src={image} 
-          alt="Punyakrit Singh Makhni - Freelance Full-Stack Developer India" 
+          alt="Punyakrit Singh Makhni - Freelance Full-Stack & React Native Expo Developer India" 
           className='h-24 w-24 sm:h-32 sm:w-32 md:h-36 md:w-36 rounded-full object-cover border shadow-lg border-white/20 dark:shadow-white/20'
         />
       </div>
@@ -63,25 +63,25 @@ function About() {
           whileHover={{ scale: 1.05 }}
           transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
         >
-          Full-Stack Developer
+          Full-Stack & React Native Developer
         </motion.span>
       </motion.h1>
       
       <motion.p
         variants={itemVariants}
-        className='text-base sm:text-lg md:text-xl leading-relaxed dark:text-white/80 text-black/80 max-w-3xl mt-4 sm:mt-6'
+        className='text-base sm:text-lg md:text-xl leading-snug dark:text-white/80 text-black/80 max-w-3xl mt-4 sm:mt-6'
       >
         I build{' '}
         <motion.strong
-          className="inline-block"
+          className="inline"
           whileHover={{ scale: 1.05 }}
           transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
         >
-          production-grade web applications
+          production-grade web and mobile applications
         </motion.strong>
         {' '}for startups and businesses globally. My expertise spans{' '}
         <motion.span
-          className='font-semibold dark:text-white text-black dark:bg-white/10 bg-black/5 px-2 py-0.5 rounded inline-block cursor-default'
+          className='font-semibold dark:text-white text-black dark:bg-white/10 bg-black/5 px-2 py-0.5 rounded inline cursor-default align-baseline'
           whileHover={{
             scale: 1.05,
             backgroundColor: "hsl(var(--primary) / 0.1)",
@@ -93,7 +93,7 @@ function About() {
             damping: 17,
           }}
         >
-          Next.js, React, TypeScript, FastAPI & PostgreSQL
+          Next.js, React, React Native (Expo), TypeScript, Node.js & PostgreSQL
         </motion.span>
         . From MVPs to full-scale products, I deliver clean code, clear UX, and fast shipping.{' '}
         <motion.span

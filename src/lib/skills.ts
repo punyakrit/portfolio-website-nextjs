@@ -1,5 +1,6 @@
 import { 
   SiReact, 
+  SiExpo,
   SiNextdotjs, 
   SiTypescript, 
   SiJavascript, 
@@ -42,6 +43,16 @@ export const skills: Readonly<Skill[]> = [
   {
     name: 'React',
     icon: SiReact,
+    category: 'frontend'
+  },
+  {
+    name: 'React Native',
+    icon: SiReact,
+    category: 'frontend'
+  },
+  {
+    name: 'Expo',
+    icon: SiExpo,
     category: 'frontend'
   },
   {

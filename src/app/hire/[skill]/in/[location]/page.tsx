@@ -33,6 +33,7 @@ interface PageProps {
 // Top skills and locations for generating static pages
 const TOP_SKILLS = [
   "react",
+  "react-native-expo",
   "nextjs",
   "typescript",
   "nodejs",
