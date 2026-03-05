@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import type { Metadata } from "next";
 import Hero from "@/components/home/Hero";
 import About from "@/components/home/About";
@@ -115,7 +115,21 @@ function HomePage() {
       <HorizontalLine />
 
       <section aria-labelledby="projects-heading">
-        <Projects showAll={false} />
+        <Suspense
+          fallback={
+            <div className="px-4 sm:px-6 md:px-8">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">
+                Featured Projects
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                <div className="rounded-2xl border-2 border-dashed border-muted h-48 animate-pulse" />
+                <div className="rounded-2xl border-2 border-dashed border-muted h-48 animate-pulse" />
+              </div>
+            </div>
+          }
+        >
+          <Projects showAll={false} />
+        </Suspense>
       </section>
 
       <HorizontalLine />
