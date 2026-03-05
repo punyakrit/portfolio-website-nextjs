@@ -5,7 +5,7 @@ import CraftTradingPrivacy from "@/components/CraftTradingPrivacy";
 export const metadata: Metadata = createMetadata({
   title: "Craft Trading Privacy Policy",
   description:
-    "Privacy Policy for Craft Trading — paper trading simulator for educational use. Information we collect, how we use it, data sharing, and contact.",
+    "Privacy Policy for Craft Trading - paper trading simulator for educational use. Information we collect, how we use it, data sharing, and contact.",
   path: "/craft-trading-privacy",
   keywords: [
     "Craft Trading privacy",

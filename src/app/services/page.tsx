@@ -123,7 +123,7 @@ export default function ServicesPage() {
           </h1>
           <p className="text-lg text-muted-foreground mb-6 max-w-2xl">
             Whether you're a startup building an MVP, an e-commerce business
-            scaling your platform, or a SaaS company adding features—I can help.
+            scaling your platform, or a SaaS company adding features-I can help.
             Production-grade development for businesses worldwide.
           </p>
           <div className="flex flex-wrap gap-3 mb-8">
@@ -175,7 +175,7 @@ export default function ServicesPage() {
           <h2 className="text-2xl font-bold mb-4">Industries I Serve</h2>
           <p className="text-muted-foreground mb-6">
             I've worked with companies across various industries. Each sector
-            has unique challenges—I adapt my approach accordingly.
+            has unique challenges-I adapt my approach accordingly.
           </p>
           <div className="grid md:grid-cols-3 gap-4">
             {INDUSTRIES.map((industry) => (
@@ -210,7 +210,7 @@ export default function ServicesPage() {
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4">What I Build</h2>
           <p className="text-muted-foreground mb-6">
-            From MVPs to enterprise applications—I specialize in building these
+            From MVPs to enterprise applications-I specialize in building these
             types of projects:
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -287,7 +287,7 @@ export default function ServicesPage() {
             <div>
               <h3 className="font-semibold mb-2">Not an Agency</h3>
               <p className="text-sm text-muted-foreground">
-                You work directly with me—no account managers, no junior devs.
+                You work directly with me-no account managers, no junior devs.
                 Clear communication and accountability.
               </p>
             </div>
@@ -301,7 +301,7 @@ export default function ServicesPage() {
             <div>
               <h3 className="font-semibold mb-2">Full-Stack Capability</h3>
               <p className="text-sm text-muted-foreground">
-                From database design to UI polish—I handle the complete stack.
+                From database design to UI polish-I handle the complete stack.
                 No coordination overhead.
               </p>
             </div>

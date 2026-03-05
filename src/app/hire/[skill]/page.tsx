@@ -194,7 +194,7 @@ export default async function SkillPage({ params }: PageProps) {
               <h3 className="font-semibold mb-2">Production Experience</h3>
               <p className="text-sm text-muted-foreground">
                 I've built real applications that handle real users and real
-                traffic. Not just tutorials—production-grade code.
+                traffic. Not just tutorials-production-grade code.
               </p>
             </div>
             <div>

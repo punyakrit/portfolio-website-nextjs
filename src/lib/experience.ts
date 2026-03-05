@@ -6,14 +6,21 @@ export const getSkillByName = (name: string) => {
     return skills.find(skill => skill.name.toLowerCase() === name.toLowerCase());
 };
 
+export type BulletSegment =
+    | { type: "text"; value: string }
+    | { type: "highlight"; value: string };
+
+export type Bullet = string | BulletSegment[];
+
 interface Experience {
     company: string;
     position: string;
     location: string;
     startDate: string;
     endDate: string;
+    blurred?: boolean;
     tech: Skill[];
-    bullets: string[];
+    bullets: Bullet[];
     links: {
         image: string;
         companyUrl: {
@@ -32,6 +39,80 @@ interface Experience {
 }
 
 export const experience: Readonly<Experience[]> = [
+    {
+        company: "It's a secret",
+        position: "Full Stack Engineer",
+        location: "United States (Remote)",
+        startDate: "2026-01-01",
+        endDate: "Present",
+        blurred: true,
+        tech: [
+            getSkillByName("Next.js"),
+            getSkillByName("React"),
+            getSkillByName("TypeScript"),
+            getSkillByName("Node.js"),
+            getSkillByName("Python"),
+            getSkillByName("Express"),
+            getSkillByName("FastAPI"),
+            getSkillByName("GraphQL"),
+            getSkillByName("PostgreSQL"),
+            getSkillByName("Redis"),
+            getSkillByName("Prisma"),
+            getSkillByName("Docker"),
+            getSkillByName("AWS"),
+            getSkillByName("Kubernetes"),
+            getSkillByName("Tailwind CSS"),
+            getSkillByName("Vercel"),
+            getSkillByName("Git"),
+            getSkillByName("GitHub"),
+        ].filter((skill): skill is Skill => skill !== undefined),
+        bullets: [
+            [
+                { type: "text", value: "Own end-to-end " },
+                { type: "highlight", value: "full-stack" },
+                { type: "text", value: " delivery: " },
+                { type: "highlight", value: "Next.js" },
+                { type: "text", value: ", " },
+                { type: "highlight", value: "Node.js" },
+                { type: "text", value: ", APIs, and " },
+                { type: "highlight", value: "AI integration" },
+                { type: "text", value: " - from design to production, shipping at scale." }
+            ],
+            [
+                { type: "text", value: "Drive " },
+                { type: "highlight", value: "devops" },
+                { type: "text", value: " and infra: CI/CD, " },
+                { type: "highlight", value: "Docker" },
+                { type: "text", value: ", " },
+                { type: "highlight", value: "Kubernetes" },
+                { type: "text", value: ", " },
+                { type: "highlight", value: "AWS" },
+                { type: "text", value: ", and observability so systems stay reliable and fast." }
+            ],
+            [
+                { type: "text", value: "Ship features using " },
+                { type: "highlight", value: "multiple AI models" },
+                { type: "text", value: " and " },
+                { type: "highlight", value: "vector embeddings" },
+                { type: "text", value: " for search, recommendations, and intelligent workflows." }
+            ]
+        ],
+        links: {
+            image: "https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png",
+            companyUrl: {
+                url: "https://www.punyakrit.dev/",
+                icon: getLinkIconByType("companyUrl")?.icon
+            },
+            githubUrl: {
+                url: "https://github.com/punyakrit",
+                icon: getLinkIconByType("githubUrl")?.icon
+            },
+            linkedinUrl: {
+                url: "https://www.linkedin.com/in/punyakrit-singh-makhni/",
+                icon: getLinkIconByType("linkedinUrl")?.icon
+            }
+        }
+    },
     {
         company: "AgentProd",
         position: "Full Stack Engineer",
@@ -56,11 +137,30 @@ export const experience: Readonly<Experience[]> = [
             getSkillByName("Vercel")
         ].filter((skill): skill is Skill => skill !== undefined),
         bullets: [
-            "Owned and shipped the frontend and full-stack infrastructure for fast-moving product work - component system, routing, builds, and performance optimizations across multiple product areas.",
-            "Led a multi-phase refactor toward component-driven architecture and stricter typing, which improved developer velocity and reduced regressions in production.",
-            "Built resilient API integrations and performant data-fetching patterns (incremental static rendering / SWR-like caching) to reduce UI load times and error surface.",
-            "Implemented CI/CD and Docker-based pipelines for repeatable deployments; collaborated on infra improvements (EC2, CloudFront, S3) to improve reliability at scale.",
-            "Established a lightweight design system, accessibility baseline, and QA checklist that improved UX consistency across product flows."
+            [
+                { type: "text", value: "Full-stack development for an " },
+                { type: "highlight", value: "AI ads platform (Muze)" },
+                { type: "text", value: ": built product UI, " },
+                { type: "highlight", value: "APIs" },
+                { type: "text", value: ", and integrations that power " },
+                { type: "highlight", value: "AI-driven campaign creation" },
+                { type: "text", value: ", creative generation, and auto-optimization for " },
+                { type: "highlight", value: "Meta & Google Ads" },
+                { type: "text", value: "." }
+            ],
+            [
+                { type: "text", value: "Owned " },
+                { type: "highlight", value: "devops and infra" },
+                { type: "text", value: ": " },
+                { type: "highlight", value: "CI/CD" },
+                { type: "text", value: ", " },
+                { type: "highlight", value: "Docker" },
+                { type: "text", value: "-based deployments, and cloud (" },
+                { type: "highlight", value: "EC2, CloudFront, S3" },
+                { type: "text", value: ") to keep the platform reliable and scalable for " },
+                { type: "highlight", value: "24/7 ad optimization" },
+                { type: "text", value: "." }
+            ]
         ],
         links: {
             image: `${env.NEXT_PUBLIC_CLOUDFRONT_URL}/agentprod_logo.jpeg`,
@@ -101,10 +201,35 @@ export const experience: Readonly<Experience[]> = [
             getSkillByName("GitHub")
         ].filter((skill): skill is Skill => skill !== undefined),
         bullets: [
-            "Built and shipped multiple independent products and MVPs (Pulse, Codelens, SchemaPilot) from 0→1 - product design, frontend, API, and deployments.",
-            "Designed and implemented user-facing dashboards, auth flows, billing integrations, and data models using Next.js + Supabase / FastAPI + Postgres.",
-            "Handled end-to-end deployment and infra: containerized services with Docker, CI/CD deployments to Vercel/EC2, CloudFront for static assets, and basic observability.",
-            "Worked directly with early users to iterate on product-market fit, instrumented analytics for usage-driven prioritization, and shipped frequent small releases to validate ideas."
+            [
+                { type: "text", value: "Built " },
+                { type: "highlight", value: "React Native (Expo)" },
+                { type: "text", value: " apps with real-time features using " },
+                { type: "highlight", value: "Redis pub/sub" },
+                { type: "text", value: " and " },
+                { type: "highlight", value: "WebSockets" },
+                { type: "text", value: " for live updates and sync." }
+            ],
+            [
+                { type: "text", value: "Web applications with " },
+                { type: "highlight", value: "AI integration" },
+                { type: "text", value: ", " },
+                { type: "highlight", value: "backend" },
+                { type: "text", value: " APIs, " },
+                { type: "highlight", value: "hosting" },
+                { type: "text", value: ", and " },
+                { type: "highlight", value: "devops" },
+                { type: "text", value: " - " },
+                { type: "highlight", value: "Docker" },
+                { type: "text", value: ", CI/CD, Vercel, and cloud (EC2, CloudFront) for deployment and observability." }
+            ],
+            [
+                { type: "text", value: "Partnered with " },
+                { type: "highlight", value: "startup founders" },
+                { type: "text", value: " across varied products, shipping solutions that " },
+                { type: "highlight", value: "reach scale" },
+                { type: "text", value: "." }
+            ]
         ],
         links: {
             image: `${env.NEXT_PUBLIC_CLOUDFRONT_URL}/freelance.png`,

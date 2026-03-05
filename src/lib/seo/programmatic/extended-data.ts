@@ -279,7 +279,7 @@ export const USE_CASES: UseCaseData[] = [
     slug: "ai-integration",
     name: "AI & LLM Integration",
     searchTerms: ["ai developer", "llm integration", "chatgpt integration", "ai integration developer", "openai developer"],
-    description: "Integrate AI capabilities into your applications—chatbots, content generation, semantic search, and more.",
+    description: "Integrate AI capabilities into your applications-chatbots, content generation, semantic search, and more.",
     deliverables: ["LLM integration", "Prompt engineering", "Vector embeddings", "RAG systems", "AI-powered features", "Usage tracking"],
     technologies: ["OpenAI", "Anthropic", "pgvector", "Pinecone", "LangChain", "TypeScript"],
     timeline: "3-6 weeks",

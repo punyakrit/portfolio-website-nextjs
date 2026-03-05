@@ -45,7 +45,7 @@ const BASE_VARIATIONS: ContentVariations = {
     "I work with clients globally, offering flexible hours that align with your schedule.",
     "With experience serving US, UK, and European clients, I understand Western business culture and communication expectations.",
     "Clear English communication, predictable timelines, and production-ready code.",
-    "Direct collaboration—no agencies, no middlemen, just focused development work.",
+    "Direct collaboration-no agencies, no middlemen, just focused development work.",
     "Timezone flexibility means we can have real-time calls and quick iterations.",
   ],
   processSteps: [
@@ -235,7 +235,7 @@ export function generateSkillFAQs(skill: SkillData): FAQItem[] {
     },
     {
       question: `How do you stay current with ${skill.name} best practices?`,
-      answer: `I actively follow the ${skill.name} ecosystem—reading documentation updates, following core contributors, and building projects with new features. I ensure my ${skill.name} code follows current best practices.`,
+      answer: `I actively follow the ${skill.name} ecosystem-reading documentation updates, following core contributors, and building projects with new features. I ensure my ${skill.name} code follows current best practices.`,
     },
     {
       question: `Can you migrate an existing project to ${skill.name}?`,
@@ -316,14 +316,14 @@ export function generateHeroContent(
     const loc = data as LocationData;
     const isInternational = loc.countryCode !== "IN";
     specificContent = isInternational
-      ? `I work with ${loc.city} businesses, offering timezone-aligned availability and clear communication. No language barriers, no cultural mismatches—just quality development work.`
+      ? `I work with ${loc.city} businesses, offering timezone-aligned availability and clear communication. No language barriers, no cultural mismatches-just quality development work.`
       : `I serve clients in ${loc.city} and globally, bringing production-grade development expertise to your projects.`;
   } else if (type === "skill") {
     const skill = data as SkillData;
     specificContent = `With ${skill.experience} of ${skill.name} experience, I build ${skill.useCases[0].toLowerCase()} that scale. ${skill.description}`;
   } else if (type === "industry") {
     const ind = data as IndustryData;
-    specificContent = `I understand the ${ind.name.toLowerCase()} space—from ${ind.challenges[0].toLowerCase()} to ${ind.challenges[1]?.toLowerCase() || "technical requirements"}. Let's build something that works for your specific needs.`;
+    specificContent = `I understand the ${ind.name.toLowerCase()} space-from ${ind.challenges[0].toLowerCase()} to ${ind.challenges[1]?.toLowerCase() || "technical requirements"}. Let's build something that works for your specific needs.`;
   } else if (type === "role") {
     const role = data as RoleData;
     specificContent = `${role.description} ${role.idealFor[0]} is what I do best.`;
@@ -517,7 +517,7 @@ export function generateIndustryPage(industry: IndustryData): PageGenerationResu
   const description = generateIndustryDescription(industry);
   const h1 = `Web Developer for ${industry.name}`;
 
-  const intro = `${industry.description} I've worked with ${industry.verticals.slice(0, 2).join(" and ")} companies on ${industry.commonProjects.slice(0, 2).join(" and ").toLowerCase()}. I understand the challenges specific to ${industry.name.toLowerCase()}—from ${industry.challenges.slice(0, 2).join(" to ")}—and build solutions that address them.`;
+  const intro = `${industry.description} I've worked with ${industry.verticals.slice(0, 2).join(" and ")} companies on ${industry.commonProjects.slice(0, 2).join(" and ").toLowerCase()}. I understand the challenges specific to ${industry.name.toLowerCase()}-from ${industry.challenges.slice(0, 2).join(" to ")}-and build solutions that address them.`;
 
   const breadcrumbs: BreadcrumbItem[] = [
     { name: "Home", url: "/" },

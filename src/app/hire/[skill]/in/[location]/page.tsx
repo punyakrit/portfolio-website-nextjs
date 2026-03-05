@@ -302,7 +302,7 @@ export default async function SkillLocationPage({ params }: PageProps) {
             <div>
               <h3 className="font-semibold mb-2">Direct Communication</h3>
               <p className="text-sm text-muted-foreground">
-                You work directly with me—no account managers or junior
+                You work directly with me-no account managers or junior
                 developers. Clear, responsive communication throughout.
               </p>
             </div>

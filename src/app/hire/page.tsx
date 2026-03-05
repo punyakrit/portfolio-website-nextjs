@@ -351,7 +351,7 @@ export default function HirePage() {
           <h2 className="text-2xl font-bold mb-3">Ready to Get Started?</h2>
           <p className="text-muted-foreground mb-6 max-w-lg mx-auto">
             Let's discuss your project. Schedule a free 30-minute consultation
-            call—no commitment required.
+            call-no commitment required.
           </p>
           <Link
             href="https://cal.com/punyakrit"
