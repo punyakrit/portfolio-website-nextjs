@@ -185,38 +185,42 @@ export default async function ProjectPage({
                 {project.title}
               </h1>
               <div className="flex items-center gap-3 flex-shrink-0">
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Link
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:opacity-70 transition-opacity"
-                      aria-label={`Visit ${project.title} live site`}
-                    >
-                      <Globe className="w-5 h-5 sm:w-6 sm:h-6" />
-                    </Link>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Visit website</p>
-                  </TooltipContent>
-                </Tooltip>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Link
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:opacity-70 transition-opacity"
-                      aria-label={`View ${project.title} source code on GitHub`}
-                    >
-                      <Github className="w-5 h-5 sm:w-6 sm:h-6" />
-                    </Link>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>View GitHub</p>
-                  </TooltipContent>
-                </Tooltip>
+                {project.link && (
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Link
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:opacity-70 transition-opacity"
+                        aria-label={`Visit ${project.title} live site`}
+                      >
+                        <Globe className="w-5 h-5 sm:w-6 sm:h-6" />
+                      </Link>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Visit website</p>
+                    </TooltipContent>
+                  </Tooltip>
+                )}
+                {project.github && (
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Link
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:opacity-70 transition-opacity"
+                        aria-label={`View ${project.title} source code on GitHub`}
+                      >
+                        <Github className="w-5 h-5 sm:w-6 sm:h-6" />
+                      </Link>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>View GitHub</p>
+                    </TooltipContent>
+                  </Tooltip>
+                )}
               </div>
             </div>
             <p className="text-lg sm:text-xl text-muted-foreground">
@@ -224,17 +228,34 @@ export default async function ProjectPage({
             </p>
           </header>
 
-          <div className="relative w-full rounded-lg overflow-hidden bg-muted border border-border">
-            <video
-              src={project.video}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-auto"
-              aria-label={`${project.title} demo video`}
-            />
-          </div>
+          {project.video ? (
+            <div className="relative w-full rounded-lg overflow-hidden bg-muted border border-border">
+              <video
+                src={project.video}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-auto"
+                aria-label={`${project.title} demo video`}
+              />
+            </div>
+          ) : project.images && project.images.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              {project.images.map((src, i) => (
+                <div
+                  key={i}
+                  className="relative w-full rounded-xl overflow-hidden bg-muted/80 border border-border flex items-center justify-center min-h-[320px]"
+                >
+                  <img
+                    src={src}
+                    alt={`${project.title} screenshot ${i + 1}`}
+                    className="w-full h-auto max-h-[70vh] object-contain"
+                  />
+                </div>
+              ))}
+            </div>
+          ) : null}
 
           <div className="space-y-6">
             <section>

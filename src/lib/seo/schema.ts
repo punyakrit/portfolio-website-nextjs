@@ -276,8 +276,8 @@ export function generateProductSchema(product: ProductData) {
 export function generateSoftwareApplicationSchema(project: {
   name: string;
   description: string;
-  url: string;
-  image: string;
+  url?: string;
+  image?: string;
   applicationCategory?: string;
   operatingSystem?: string;
   codeRepository?: string;
@@ -287,13 +287,19 @@ export function generateSoftwareApplicationSchema(project: {
     name?: string;
   };
 }) {
-  const projectUrl = project.url.startsWith("http")
-    ? project.url
-    : `${SITE_URL}${project.url.startsWith("/") ? project.url : `/${project.url}`}`;
+  const rawUrl = project.url ?? "";
+  const projectUrl = !rawUrl
+    ? SITE_URL
+    : rawUrl.startsWith("http")
+      ? rawUrl
+      : `${SITE_URL}${rawUrl.startsWith("/") ? rawUrl : `/${rawUrl}`}`;
 
-  const projectImage = project.image.startsWith("http")
-    ? project.image
-    : `${SITE_URL}${project.image.startsWith("/") ? project.image : `/${project.image}`}`;
+  const rawImage = project.image ?? "";
+  const projectImage = !rawImage
+    ? ""
+    : rawImage.startsWith("http")
+      ? rawImage
+      : `${SITE_URL}${rawImage.startsWith("/") ? rawImage : `/${rawImage}`}`;
 
   return {
     "@context": "https://schema.org",
@@ -301,7 +307,7 @@ export function generateSoftwareApplicationSchema(project: {
     name: project.name,
     description: project.description,
     url: projectUrl,
-    image: projectImage,
+    ...(projectImage && { image: projectImage }),
     applicationCategory: project.applicationCategory || "WebApplication",
     operatingSystem: project.operatingSystem || "Web Browser",
     author: project.author || {

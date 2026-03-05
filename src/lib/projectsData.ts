@@ -4,16 +4,19 @@ interface Project {
   title: string;
   description: string;
   image: string;
-  link: string;
-  github: string;
+  link?: string;
+  github?: string;
   video: string;
+  images?: string[];
   summary: string;
   tech: string[];
   problem: string;
   solution: string;
   whyThis: string;
+  category: "web" | "mobile";
 }
 export const projects: Project[] = [{
+  category: "web",
   title: "Kill Switch",
   description: "A self-destruct private chat application built with Next.js and WebSockets. Messages automatically delete after a fixed time, ensuring privacy and ephemerality.",
   github: "https://github.com/punyakrit/kill-switch",
@@ -34,6 +37,7 @@ export const projects: Project[] = [{
 }
   ,
 {
+  category: "web",
   title: "CodeLens",
   description:
     "AI-powered GitHub code exploration tool with semantic search, automated documentation, and natural language codebase querying.",
@@ -62,6 +66,7 @@ export const projects: Project[] = [{
 },
 
 {
+  category: "web",
   title: "Pulse",
   description:
     "Real-time uptime and performance monitoring platform with distributed regional checks and automated alerting.",
@@ -85,5 +90,26 @@ export const projects: Project[] = [{
     "Designed a distributed monitoring system that runs checks globally, logs real metrics, filters false positives, and sends instant alerts through email/SMS/webhooks - all in a clean dashboard.",
   whyThis:
     "I built Pulse because uptime issues are painful - especially when you hear about them from a user instead of your own system. Pulse gives affordable, accurate monitoring that doesn’t spam developers with useless alerts."
+},
+{
+  category: "mobile",
+  title: "Craft Trading",
+  description: "A cross-platform mobile paper trading simulator application built with React Native and Expo. Features real-time trading, portfolio management, and social sharing.",
+  image: `${env.NEXT_PUBLIC_CLOUDFRONT_URL}/ct1.png`,
+  // link: "https://expo.dev/@punyakrit/fittrack",
+  // github: "https://github.com/punyakrit/fittrack",
+  video: "",
+  images: [
+    `${env.NEXT_PUBLIC_CLOUDFRONT_URL}/ct1.png`,
+    `${env.NEXT_PUBLIC_CLOUDFRONT_URL}/ct2.png`,
+    `${env.NEXT_PUBLIC_CLOUDFRONT_URL}/ct3.png`,
+    `${env.NEXT_PUBLIC_CLOUDFRONT_URL}/ct4.png`,
+    
+  ],
+  summary: "Comprehensive paper trading simulator mobile app with social features and real-time metrics.",
+  tech: ["React Native", "Expo", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS", "Redis", "AWS"],
+  problem: "Existing paper trading apps are either too complex or lack social motivation features. Users struggle to practice trading effectively without a real-time trading simulator.",
+  solution: "Built a mobile-first experience that combines intuitive trading with social accountability. Users can share trades, analyze their performance, and visualize progress effortlessly.",
+  whyThis: "I wanted to build a mobile-first experience that combines intuitive trading with social accountability. Users can practice trading, and visualize progress effortlessly."
 }
 ];

@@ -1,5 +1,6 @@
 import Projects from "@/components/pow/Projects";
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { BreadcrumbJsonLd, ItemListJsonLd } from "@/components/seo/JsonLd";
 import { SITE_URL, SEO_CONFIG } from "@/lib/seo";
 import { projects } from "@/lib/projectsData";
@@ -95,7 +96,9 @@ function ProjectsPage() {
         </p>
       </header>
 
-      <Projects showAll={true} />
+      <Suspense fallback={<div className="animate-pulse h-64 bg-muted/30 rounded-2xl" />}>
+        <Projects showAll={true} />
+      </Suspense>
     </div>
   );
 }

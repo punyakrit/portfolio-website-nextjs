@@ -72,8 +72,8 @@ export function SoftwareApplicationJsonLd({
   project: {
     name: string;
     description: string;
-    url: string;
-    image: string;
+    url?: string;
+    image?: string;
     applicationCategory?: string;
     operatingSystem?: string;
     codeRepository?: string;
