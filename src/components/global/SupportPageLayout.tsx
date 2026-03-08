@@ -6,7 +6,7 @@ import Footer from "@/components/home/Footer";
 import HorizontalLine from "@/components/global/HorizontalLine";
 import FixedBottomCta from "@/components/global/FixedBottomCta";
 
-const CLEAN_PAGE_PATHS = ["/craft-trading-support", "/craft-trading-privacy", "/delete-account"];
+const CLEAN_PAGE_PATHS = ["/craft-trading-support", "/craft-trading-privacy", "/delete-account", "/tap-master", "/tap-master/privacy", "/privacy"];
 
 export function SupportPageLayout({
   children,
