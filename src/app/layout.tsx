@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/providers/theme-provider";
 import { env } from "@/lib/env";
 import DevMode from "@/lib/DevMode";
 import RefreshOverlay from "@/components/global/RefreshOverlay";
+import IdleSurpriseOverlay from "@/components/global/IdleSurpriseOverlay";
 import FirstVisitNotification from "@/components/global/FirstVisitNotification";
 import { SupportPageLayout } from "@/components/global/SupportPageLayout";
 import { RootJsonLd } from "@/components/seo/JsonLd";
@@ -167,6 +168,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <RefreshOverlay />
+          <IdleSurpriseOverlay />
           <FirstVisitNotification />
           <DevMode />
           <SupportPageLayout>{children}</SupportPageLayout>
