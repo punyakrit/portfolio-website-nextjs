@@ -6,6 +6,7 @@ interface Project {
   image: string;
   link?: string;
   github?: string;
+  appStoreLink?: string;
   video: string;
   images?: string[];
   summary: string;
@@ -96,8 +97,7 @@ export const projects: Project[] = [{
   title: "Craft Trading",
   description: "A cross-platform mobile paper trading simulator application built with React Native and Expo. Features real-time trading, portfolio management, and social sharing.",
   image: `${env.NEXT_PUBLIC_CLOUDFRONT_URL}/ct1.png`,
-  // link: "https://expo.dev/@punyakrit/fittrack",
-  // github: "https://github.com/punyakrit/fittrack",
+  appStoreLink: "https://apps.apple.com/us/app/craft-trading/id6759801377",
   video: "",
   images: [
     `${env.NEXT_PUBLIC_CLOUDFRONT_URL}/ct1.png`,

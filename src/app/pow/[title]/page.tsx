@@ -5,6 +5,7 @@ import { skills } from "@/lib/skills";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Globe, Github, ArrowLeft } from "lucide-react";
+import { SiApple } from "react-icons/si";
 import { Button } from "@/components/ui/button";
 import {
   Tooltip,
@@ -218,6 +219,24 @@ export default async function ProjectPage({
                     </TooltipTrigger>
                     <TooltipContent>
                       <p>View GitHub</p>
+                    </TooltipContent>
+                  </Tooltip>
+                )}
+                {project.appStoreLink && (
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Link
+                        href={project.appStoreLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:opacity-70 transition-opacity"
+                        aria-label={`Download ${project.title} on the App Store`}
+                      >
+                        <SiApple className="w-5 h-5 sm:w-6 sm:h-6" aria-hidden />
+                      </Link>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Download on App Store</p>
                     </TooltipContent>
                   </Tooltip>
                 )}

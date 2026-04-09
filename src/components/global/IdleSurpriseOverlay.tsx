@@ -40,9 +40,14 @@ export default function IdleSurpriseOverlay() {
     }
   }, []);
 
+  const hasShownBefore = useCallback(
+    () => typeof window !== "undefined" && !!localStorage.getItem("idle_overlay_shown"),
+    []
+  );
+
   const scheduleIdle = useCallback(() => {
     clearIdle();
-    if (overlayOpenRef.current) return;
+    if (overlayOpenRef.current || hasShownBefore()) return;
     idleTimerRef.current = setTimeout(() => {
       titleBeforeRef.current = document.title;
       document.title = "Surprise for you";
@@ -54,7 +59,7 @@ export default function IdleSurpriseOverlay() {
       setOpen(true);
       scrollAccum.current = 0;
     }, IDLE_MS);
-  }, [clearIdle, clearHoldTimer]);
+  }, [clearIdle, clearHoldTimer, hasShownBefore]);
 
   const dismiss = useCallback(() => {
     const prev = titleBeforeRef.current;
@@ -64,8 +69,9 @@ export default function IdleSurpriseOverlay() {
     if (prev) document.title = prev;
     scrollAccum.current = 0;
     clearIdle();
-    scheduleIdle();
-  }, [clearHoldTimer, clearIdle, scheduleIdle]);
+    localStorage.setItem("idle_overlay_shown", "1");
+    // Don't reschedule — shown once, never again
+  }, [clearHoldTimer, clearIdle]);
 
   const onStrokeComplete = useCallback(() => {
     clearHoldTimer();
