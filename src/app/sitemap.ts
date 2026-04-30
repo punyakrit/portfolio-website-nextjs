@@ -121,37 +121,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // Programmatic SEO pages - Skill + Location combination pages
+  // Reduced from 200 to 24 to fix mass non-indexing. Only high-intent combos
+  // are submitted. Other combos still resolve at their URL but are noindexed.
   const TOP_SKILLS_FOR_COMBOS = [
     "react",
     "nextjs",
-    "typescript",
-    "nodejs",
-    "python",
     "fullstack-development",
-    "frontend-development",
-    "backend-development",
-    "postgresql",
-    "api-development",
+    "react-native-expo",
   ];
 
   const TOP_LOCATIONS_FOR_COMBOS = [
-    "usa",
-    "new-york",
     "san-francisco",
-    "los-angeles",
-    "seattle",
-    "austin",
-    "boston",
-    "uk",
+    "new-york",
     "london",
-    "manchester",
-    "canada",
-    "toronto",
-    "vancouver",
-    "australia",
-    "sydney",
-    "melbourne",
-    "germany",
     "berlin",
     "remote",
     "worldwide",

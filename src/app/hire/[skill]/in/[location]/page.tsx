@@ -30,43 +30,30 @@ interface PageProps {
   params: Promise<{ skill: string; location: string }>;
 }
 
-// Top skills and locations for generating static pages
+// Curated high-intent combinations only.
+// Reduced from 220 to 24 to fix mass non-indexing in GSC ("Discovered - currently not indexed").
+// Long-tail combos still resolve at the URL but are noindexed (see generateMetadata).
 const TOP_SKILLS = [
   "react",
-  "react-native-expo",
   "nextjs",
-  "typescript",
-  "nodejs",
-  "python",
   "fullstack-development",
-  "frontend-development",
-  "backend-development",
-  "postgresql",
-  "api-development",
+  "react-native-expo",
 ];
 
 const TOP_LOCATIONS = [
-  "usa",
-  "new-york",
   "san-francisco",
-  "los-angeles",
-  "seattle",
-  "austin",
-  "boston",
-  "uk",
+  "new-york",
   "london",
-  "manchester",
-  "canada",
-  "toronto",
-  "vancouver",
-  "australia",
-  "sydney",
-  "melbourne",
-  "germany",
   "berlin",
   "remote",
   "worldwide",
 ];
+
+export const INDEXABLE_COMBINATIONS = new Set(
+  TOP_SKILLS.flatMap((skill) =>
+    TOP_LOCATIONS.map((location) => `${skill}/in/${location}`)
+  )
+);
 
 // Generate static params for combination pages
 export async function generateStaticParams() {
@@ -105,9 +92,10 @@ export async function generateMetadata({
   const { data: skillData, type, name: skillName } = skillOrRole;
   const locationName = location.city;
   const isCountry = location.city === location.country;
+  const isIndexable = INDEXABLE_COMBINATIONS.has(`${skillSlug}/in/${locationSlug}`);
 
-  const title = `Hire ${skillName} Developer in ${locationName} | Freelance Expert`;
-  const description = `Looking for a ${skillName} developer in ${locationName}? I'm a freelance full-stack developer specializing in ${skillName} development. Remote-friendly, timezone-flexible, delivering production-grade applications for clients ${isCountry ? `across ${locationName}` : `in ${locationName}`}.`;
+  const title = `${skillName} Developer for Hire in ${locationName} — Remote, Available Now`;
+  const description = `Freelance ${skillName} developer available for ${locationName} clients. I ship production-grade ${skillName} apps for startups and businesses${isCountry ? ` across ${locationName}` : ` in ${locationName} and surrounding areas`}. Free 30-min consultation.`;
 
   return {
     title,
@@ -123,6 +111,9 @@ export async function generateMetadata({
     alternates: {
       canonical: `${SITE_URL}/hire/${skillSlug}/in/${locationSlug}`,
     },
+    robots: isIndexable
+      ? undefined
+      : { index: false, follow: true },
     openGraph: {
       title,
       description: description.slice(0, 160),
