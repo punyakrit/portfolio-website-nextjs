@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react'
+import Link from 'next/link'
 import { env } from '@/lib/env'
 import RedirectButtons from './RedirectButtons'
 import MultiSocials from './MultiSocials'
@@ -77,9 +78,18 @@ function About() {
           whileHover={{ scale: 1.05 }}
           transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
         >
-          production-grade web and mobile applications
+          production-grade web & mobile apps
         </motion.strong>
-        {' '}for startups and businesses globally. My expertise spans{' '}
+        {' '}for startups worldwide — through my studio,{' '}
+        <Link
+          href='https://launchcraft.studio'
+          target='_blank'
+          rel='noopener'
+          className='font-semibold underline decoration-primary/50 hover:decoration-primary underline-offset-4 transition-colors duration-200'
+        >
+          LaunchCraft Studio
+        </Link>
+        . Stack:{' '}
         <motion.span
           className='font-semibold dark:text-white text-black dark:bg-white/10 bg-black/5 px-2 py-0.5 rounded inline cursor-default align-baseline'
           whileHover={{
@@ -93,9 +103,9 @@ function About() {
             damping: 17,
           }}
         >
-          Next.js, React, React Native (Expo), TypeScript, Node.js & PostgreSQL
+          Next.js, React, React Native, TypeScript, Node.js
         </motion.span>
-        . From MVPs to full-scale products, I deliver clean code, clear UX, and fast shipping.{' '}
+        .
         <motion.span
           className='block mt-2 text-sm sm:text-base opacity-80'
           variants={itemVariants}

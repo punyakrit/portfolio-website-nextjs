@@ -66,6 +66,7 @@ export function generatePersonSchema() {
       SEO_CONFIG.socials.twitter,
       SEO_CONFIG.socials.github,
       SEO_CONFIG.socials.linkedin,
+      "https://launchcraft.studio",
     ],
     address: {
       "@type": "PostalAddress",
@@ -89,7 +90,8 @@ export function generatePersonSchema() {
     ],
     worksFor: {
       "@type": "Organization",
-      name: "Independent / Freelance",
+      name: "LaunchCraft Studio",
+      url: "https://launchcraft.studio",
     },
   };
 }

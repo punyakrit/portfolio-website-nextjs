@@ -111,6 +111,42 @@ function Footer() {
               </Link>
             </motion.div>
           </motion.div>
+
+          <motion.div
+            variants={itemVariants}
+            className='flex items-center space-x-2 text-sm text-gray-500'
+          >
+            <span>Founder of</span>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{
+                type: "spring" as const,
+                stiffness: 400,
+                damping: 17,
+              }}
+            >
+              <Link
+                href='https://launchcraft.studio'
+                target='_blank'
+                rel='noopener'
+                className='font-medium dark:text-white text-black hover:text-gray-300 transition-colors duration-200 relative inline-block'
+              >
+                <motion.span
+                  className="absolute bottom-0 left-0 h-0.5 bg-primary origin-left"
+                  initial={{ scaleX: 0 }}
+                  whileHover={{ scaleX: 1 }}
+                  transition={{
+                    type: "spring" as const,
+                    stiffness: 300,
+                    damping: 25,
+                  }}
+                  style={{ transformOrigin: "left" }}
+                />
+                <span className="relative z-10">LaunchCraft Studio</span>
+              </Link>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </motion.footer>
