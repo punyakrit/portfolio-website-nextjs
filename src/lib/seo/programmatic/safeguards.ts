@@ -222,12 +222,11 @@ export function detectKeywordCannibalization(
 function getSeverity(keyword: string, pageCount: number): "high" | "medium" | "low" {
   // High-value keywords with many competing pages are high severity
   const highValueKeywords = [
-    "freelance developer",
+    "full-stack developer",
     "hire developer",
     "web developer",
     "react developer",
     "next.js developer",
-    "full-stack developer",
   ];
 
   const isHighValue = highValueKeywords.some(k => keyword.includes(k));

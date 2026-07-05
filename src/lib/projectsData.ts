@@ -9,6 +9,7 @@ interface Project {
   appStoreLink?: string;
   video: string;
   images?: string[];
+  stats?: string[];
   summary: string;
   tech: string[];
   problem: string;
@@ -16,27 +17,32 @@ interface Project {
   whyThis: string;
   category: "web" | "mobile";
 }
-export const projects: Project[] = [{
+export const projects: Project[] = [
+{
   category: "web",
-  title: "Kill Switch",
-  description: "A self-destruct private chat application built with Next.js and WebSockets. Messages automatically delete after a fixed time, ensuring privacy and ephemerality.",
-  github: "https://github.com/punyakrit/kill-switch",
-  image: `${env.NEXT_PUBLIC_CLOUDFRONT_URL}/kill.png`,
-  link: "https://kill-switch.punyakrit.dev/",
-  video: `${env.NEXT_PUBLIC_CLOUDFRONT_URL}/kill-switch.mov`,
-  summary: "A self-destruct private chat application built with Next.js and WebSockets. Messages automatically delete after a fixed time, ensuring privacy and ephemerality.",
+  title: "InfiniteUGC",
+  description:
+    "AI UGC platform that turns a script into realistic, TikTok-native video ads - handling prompting, AI creators, captions, and editing end to end, with no video-length cap. Built for e-commerce ads and organic content.",
+  image: "/infiniteugc.jpg",
+  link: "https://www.infiniteugc.com/",
+  video: "",
+  stats: ["50+ brands served", "32+ languages"],
+  summary:
+    "A client project: an AI UGC generator that converts a plain script into ready-to-post TikTok ads, automating the whole creator-to-edit pipeline.",
   tech: [
     "Next.js",
     "TypeScript",
-    "Redis",
-    "Tailwind CSS",
-    "Supabase"
+    "Node.js",
+    "PostgreSQL",
+    "AI"
   ],
-  problem: "Most people use chat applications that are not private and not ephemeral. This means that messages are not deleted after a certain time and are not private.",
-  solution: "I built a self-destruct private chat application that deletes messages after a fixed time, ensuring privacy and ephemerality.",
-  whyThis: "I built Kill Switch because I wanted to create a private and ephemeral chat application that is not available to anyone else.",
-}
-  ,
+  problem:
+    "E-commerce brands need a steady stream of authentic UGC-style video ads, but filming with real creators is slow, expensive, and hard to scale.",
+  solution:
+    "Built an AI pipeline that takes a script and a chosen UGC style and generates a realistic TikTok-native ad end to end - prompting, AI creator, captions, and editing - with no length cap.",
+  whyThis:
+    "A client project where I built the product experience for turning scripts into scroll-stopping AI UGC ads at scale.",
+},
 {
   category: "web",
   title: "CodeLens",

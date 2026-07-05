@@ -4,7 +4,7 @@
  * Generates unique, intent-matched content for each programmatic page.
  * Designed to avoid thin content and duplication while scaling to 100k+ pages.
  *
- * KEY POSITIONING: Developer based in India, serving clients WORLDWIDE,
+ * KEY POSITIONING: Full-Stack Engineer serving clients WORLDWIDE,
  * with special focus on US, UK, Europe, and other global markets.
  */
 
@@ -92,9 +92,9 @@ function getVariation(slug: string, variations: string[]): string {
 
 export function generateLocationTitle(location: LocationData): string {
   const templates = [
-    `Hire a Freelance Developer for ${location.city} Projects | ${SEO_CONFIG.name}`,
+    `Hire a Full-Stack Developer for ${location.city} Projects | ${SEO_CONFIG.name}`,
     `${location.city} Remote Developer | Full-Stack Web Development`,
-    `Freelance Web Developer for ${location.city} Businesses | Hire Now`,
+    `Full-Stack Web Developer for ${location.city} Businesses | Hire Now`,
     `Expert Developer Available for ${location.city} Companies`,
     `${location.city} Web Development Services | Remote Full-Stack Developer`,
   ];
@@ -108,28 +108,28 @@ export function generateLocationDescription(location: LocationData): string {
     : `Available for remote projects with clear communication and timely delivery.`;
 
   const templates = [
-    `Looking for a freelance developer for your ${location.city} project? I'm a full-stack developer with ${SKILLS_EXPERIENCE} experience, specializing in React, Next.js, and Node.js. ${timezoneNote} Let's build something great together.`,
-    `Hire an experienced freelance web developer for ${location.city} businesses. I build production-grade applications using modern technologies. ${timezoneNote} Get a free consultation today.`,
-    `Professional freelance developer available for ${location.city} companies. Expert in React, TypeScript, and full-stack development. ${timezoneNote} Direct communication, quality code, on-time delivery.`,
+    `Looking for a full-stack developer for your ${location.city} project? I'm a full-stack developer with ${SKILLS_EXPERIENCE} experience, specializing in React, Next.js, and Node.js. ${timezoneNote} Let's build something great together.`,
+    `Hire an experienced full-stack web developer for ${location.city} businesses. I build production-grade applications using modern technologies. ${timezoneNote} Get a free consultation today.`,
+    `Professional full-stack developer available for ${location.city} companies. Expert in React, TypeScript, and full-stack development. ${timezoneNote} Direct communication, quality code, on-time delivery.`,
   ];
   return templates[getVariationIndex(location.slug, templates)].slice(0, 160);
 }
 
 export function generateSkillTitle(skill: SkillData): string {
   const templates = [
-    `Hire a ${skill.name} Developer | Freelance ${skill.name} Expert`,
+    `Hire a ${skill.name} Developer | Expert ${skill.name} Developer`,
     `${skill.name} Developer for Hire | ${skill.experience} Experience`,
-    `Freelance ${skill.name} Developer | Build Your Project with ${skill.name}`,
+    `${skill.name} Developer | Build Your Project with ${skill.name}`,
     `Expert ${skill.name} Developer | Remote & Available Now`,
-    `${skill.name} Development Services | Hire Freelance Developer`,
+    `${skill.name} Development Services | Hire Full-Stack Developer`,
   ];
   return templates[getVariationIndex(skill.slug, templates)];
 }
 
 export function generateSkillDescription(skill: SkillData): string {
   const templates = [
-    `Hire a freelance ${skill.name} developer with ${skill.experience} experience. I build ${skill.useCases.slice(0, 2).join(", ")} using ${skill.name}. Available for remote projects worldwide.`,
-    `Looking for a ${skill.name} expert? I'm a freelance developer specializing in ${skill.name} with ${skill.experience} of hands-on experience. ${skill.description}`,
+    `Hire a ${skill.name} developer with ${skill.experience} experience. I build ${skill.useCases.slice(0, 2).join(", ")} using ${skill.name}. Available for remote projects worldwide.`,
+    `Looking for a ${skill.name} expert? I'm a full-stack developer specializing in ${skill.name} with ${skill.experience} of hands-on experience. ${skill.description}`,
     `Professional ${skill.name} developer for hire. ${skill.experience} building ${skill.useCases[0].toLowerCase()}. Let's discuss your ${skill.name} project today.`,
   ];
   return templates[getVariationIndex(skill.slug, templates)].slice(0, 160);
@@ -138,9 +138,9 @@ export function generateSkillDescription(skill: SkillData): string {
 export function generateIndustryTitle(industry: IndustryData): string {
   const templates = [
     `${industry.name} Web Developer | Build Your ${industry.name} Project`,
-    `Freelance Developer for ${industry.name} | Specialized Experience`,
+    `Full-Stack Developer for ${industry.name} | Specialized Experience`,
     `Hire ${industry.name} Tech Expert | Full-Stack Development`,
-    `${industry.name} Development Services | Experienced Freelance Developer`,
+    `${industry.name} Development Services | Experienced Full-Stack Developer`,
     `Web Developer for ${industry.name} Companies | Available Now`,
   ];
   return templates[getVariationIndex(industry.slug, templates)];
@@ -148,7 +148,7 @@ export function generateIndustryTitle(industry: IndustryData): string {
 
 export function generateIndustryDescription(industry: IndustryData): string {
   const templates = [
-    `Experienced freelance developer for ${industry.name.toLowerCase()} projects. I understand ${industry.challenges.slice(0, 2).join(" and ")}. Building ${industry.commonProjects.slice(0, 2).join(", ").toLowerCase()} with ${industry.technologies.slice(0, 3).join(", ")}.`,
+    `Experienced full-stack developer for ${industry.name.toLowerCase()} projects. I understand ${industry.challenges.slice(0, 2).join(" and ")}. Building ${industry.commonProjects.slice(0, 2).join(", ").toLowerCase()} with ${industry.technologies.slice(0, 3).join(", ")}.`,
     `Looking for a developer who understands ${industry.name.toLowerCase()}? I build ${industry.commonProjects[0].toLowerCase()} and ${industry.commonProjects[1].toLowerCase()} for ${industry.verticals.slice(0, 2).join(" and ")}.`,
     `${industry.description} Specializing in ${industry.technologies.slice(0, 3).join(", ")} for ${industry.name.toLowerCase()} projects.`,
   ];
@@ -373,7 +373,7 @@ export function generateCTAContent(slug: string): ContentBlock {
 export function generateLocationPage(location: LocationData): PageGenerationResult {
   const title = generateLocationTitle(location);
   const description = generateLocationDescription(location);
-  const h1 = `Hire a Freelance Developer for ${location.city}`;
+  const h1 = `Hire a Full-Stack Developer for ${location.city}`;
 
   const isInternational = location.countryCode !== "IN";
   const intro = isInternational
@@ -387,11 +387,11 @@ export function generateLocationPage(location: LocationData): PageGenerationResu
   ];
 
   const keywords = [
-    `freelance developer ${location.city}`,
+    `full-stack developer ${location.city}`,
     `hire developer ${location.city}`,
     `web developer ${location.city}`,
     `remote developer ${location.city}`,
-    `${location.city} freelancer`,
+    `${location.city} developer`,
     location.state ? `developer ${location.state}` : null,
     `${location.country} developer`,
     "React developer",
@@ -444,7 +444,7 @@ export function generateLocationPage(location: LocationData): PageGenerationResu
 export function generateSkillPage(skill: SkillData): PageGenerationResult {
   const title = generateSkillTitle(skill);
   const description = generateSkillDescription(skill);
-  const h1 = `Hire a Freelance ${skill.name} Developer`;
+  const h1 = `Hire a ${skill.name} Developer`;
 
   const intro = `${skill.description} With ${skill.experience} of professional experience, I build ${skill.useCases.slice(0, 3).join(", ").toLowerCase()} for clients worldwide. Whether you need a complete application or help with a specific ${skill.name} challenge, I can help.`;
 
@@ -457,9 +457,9 @@ export function generateSkillPage(skill: SkillData): PageGenerationResult {
   const keywords = [
     `${skill.name} developer`,
     `hire ${skill.name} developer`,
-    `freelance ${skill.name} developer`,
+    `${skill.name} developer for hire`,
     `${skill.name} expert`,
-    `${skill.name} freelancer`,
+    `full-stack ${skill.name} developer`,
     ...skill.relatedSkills.map(s => `${s} developer`),
     ...skill.useCases.map(u => u.toLowerCase()),
   ];
@@ -599,7 +599,7 @@ export function generateRolePage(role: RoleData): PageGenerationResult {
     ...role.alternativeTitles.map(t => `hire ${t.toLowerCase()}`),
     ...role.idealFor.map(i => i.toLowerCase()),
     "remote developer",
-    "freelance developer",
+    "full-stack developer",
   ];
 
   return {
@@ -663,8 +663,8 @@ function generateServiceSchema(location: LocationData) {
   return {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    name: `${SEO_CONFIG.name} - Freelance Developer for ${location.city}`,
-    description: `Professional freelance web development services for ${location.city} businesses`,
+    name: `${SEO_CONFIG.name} - Full-Stack Developer for ${location.city}`,
+    description: `Professional full-stack web development services for ${location.city} businesses`,
     url: `${SITE_URL}/hire/location/${location.slug}`,
     provider: {
       "@id": `${SITE_URL}/#person`,
@@ -775,7 +775,7 @@ function generateRelatedLocations(location: LocationData): Array<{ title: string
     .map(l => ({
       title: `Developer for ${l.city}`,
       url: `/hire/location/${l.slug}`,
-      description: `Freelance development services for ${l.city} businesses`,
+      description: `Full-stack development services for ${l.city} businesses`,
     }));
 
   return related;

@@ -16,62 +16,10 @@ import {
 } from "./extended-data";
 
 // ============================================================================
-// LOCATIONS - Cities, States, Countries for "Freelancer in [Location]" pages
+// LOCATIONS - Cities, States, Countries for "Full-Stack Developer in [Location]" pages
 // ============================================================================
 
-export const INDIA_CITIES: LocationData[] = [
-  // Metro Cities (Tier 1)
-  { slug: "mumbai", city: "Mumbai", state: "Maharashtra", country: "India", countryCode: "IN", region: "South Asia", population: "metro", isTechHub: true },
-  { slug: "delhi", city: "Delhi", state: "Delhi NCR", country: "India", countryCode: "IN", region: "South Asia", population: "metro", isCapital: true, isTechHub: true },
-  { slug: "bangalore", city: "Bangalore", state: "Karnataka", country: "India", countryCode: "IN", region: "South Asia", population: "metro", isTechHub: true },
-  { slug: "bengaluru", city: "Bengaluru", state: "Karnataka", country: "India", countryCode: "IN", region: "South Asia", population: "metro", isTechHub: true },
-  { slug: "hyderabad", city: "Hyderabad", state: "Telangana", country: "India", countryCode: "IN", region: "South Asia", population: "metro", isTechHub: true },
-  { slug: "chennai", city: "Chennai", state: "Tamil Nadu", country: "India", countryCode: "IN", region: "South Asia", population: "metro", isTechHub: true },
-  { slug: "kolkata", city: "Kolkata", state: "West Bengal", country: "India", countryCode: "IN", region: "South Asia", population: "metro", isTechHub: true },
-  { slug: "pune", city: "Pune", state: "Maharashtra", country: "India", countryCode: "IN", region: "South Asia", population: "metro", isTechHub: true },
 
-  // Tier 2 Cities
-  { slug: "ahmedabad", city: "Ahmedabad", state: "Gujarat", country: "India", countryCode: "IN", region: "South Asia", population: "large", isTechHub: true },
-  { slug: "jaipur", city: "Jaipur", state: "Rajasthan", country: "India", countryCode: "IN", region: "South Asia", population: "large" },
-  { slug: "lucknow", city: "Lucknow", state: "Uttar Pradesh", country: "India", countryCode: "IN", region: "South Asia", population: "large" },
-  { slug: "chandigarh", city: "Chandigarh", state: "Punjab", country: "India", countryCode: "IN", region: "South Asia", population: "medium", isTechHub: true },
-  { slug: "noida", city: "Noida", state: "Uttar Pradesh", country: "India", countryCode: "IN", region: "South Asia", population: "large", isTechHub: true },
-  { slug: "gurgaon", city: "Gurgaon", state: "Haryana", country: "India", countryCode: "IN", region: "South Asia", population: "large", isTechHub: true },
-  { slug: "gurugram", city: "Gurugram", state: "Haryana", country: "India", countryCode: "IN", region: "South Asia", population: "large", isTechHub: true },
-  { slug: "kochi", city: "Kochi", state: "Kerala", country: "India", countryCode: "IN", region: "South Asia", population: "medium", isTechHub: true },
-  { slug: "thiruvananthapuram", city: "Thiruvananthapuram", state: "Kerala", country: "India", countryCode: "IN", region: "South Asia", population: "medium", isTechHub: true },
-  { slug: "indore", city: "Indore", state: "Madhya Pradesh", country: "India", countryCode: "IN", region: "South Asia", population: "large" },
-  { slug: "bhopal", city: "Bhopal", state: "Madhya Pradesh", country: "India", countryCode: "IN", region: "South Asia", population: "large" },
-  { slug: "nagpur", city: "Nagpur", state: "Maharashtra", country: "India", countryCode: "IN", region: "South Asia", population: "large" },
-  { slug: "coimbatore", city: "Coimbatore", state: "Tamil Nadu", country: "India", countryCode: "IN", region: "South Asia", population: "medium", isTechHub: true },
-  { slug: "visakhapatnam", city: "Visakhapatnam", state: "Andhra Pradesh", country: "India", countryCode: "IN", region: "South Asia", population: "medium" },
-  { slug: "surat", city: "Surat", state: "Gujarat", country: "India", countryCode: "IN", region: "South Asia", population: "large" },
-  { slug: "vadodara", city: "Vadodara", state: "Gujarat", country: "India", countryCode: "IN", region: "South Asia", population: "medium" },
-  { slug: "patna", city: "Patna", state: "Bihar", country: "India", countryCode: "IN", region: "South Asia", population: "large" },
-  { slug: "kanpur", city: "Kanpur", state: "Uttar Pradesh", country: "India", countryCode: "IN", region: "South Asia", population: "large" },
-  { slug: "mysore", city: "Mysore", state: "Karnataka", country: "India", countryCode: "IN", region: "South Asia", population: "medium" },
-  { slug: "mangalore", city: "Mangalore", state: "Karnataka", country: "India", countryCode: "IN", region: "South Asia", population: "medium" },
-  { slug: "trichy", city: "Tiruchirappalli", state: "Tamil Nadu", country: "India", countryCode: "IN", region: "South Asia", population: "medium" },
-  { slug: "madurai", city: "Madurai", state: "Tamil Nadu", country: "India", countryCode: "IN", region: "South Asia", population: "medium" },
-];
-
-export const INDIA_STATES: LocationData[] = [
-  { slug: "maharashtra", city: "Maharashtra", country: "India", countryCode: "IN", region: "South Asia", population: "metro" },
-  { slug: "karnataka", city: "Karnataka", country: "India", countryCode: "IN", region: "South Asia", population: "metro" },
-  { slug: "tamil-nadu", city: "Tamil Nadu", country: "India", countryCode: "IN", region: "South Asia", population: "metro" },
-  { slug: "telangana", city: "Telangana", country: "India", countryCode: "IN", region: "South Asia", population: "large" },
-  { slug: "kerala", city: "Kerala", country: "India", countryCode: "IN", region: "South Asia", population: "large" },
-  { slug: "gujarat", city: "Gujarat", country: "India", countryCode: "IN", region: "South Asia", population: "large" },
-  { slug: "rajasthan", city: "Rajasthan", country: "India", countryCode: "IN", region: "South Asia", population: "large" },
-  { slug: "west-bengal", city: "West Bengal", country: "India", countryCode: "IN", region: "South Asia", population: "large" },
-  { slug: "uttar-pradesh", city: "Uttar Pradesh", country: "India", countryCode: "IN", region: "South Asia", population: "metro" },
-  { slug: "madhya-pradesh", city: "Madhya Pradesh", country: "India", countryCode: "IN", region: "South Asia", population: "large" },
-  { slug: "punjab", city: "Punjab", country: "India", countryCode: "IN", region: "South Asia", population: "medium" },
-  { slug: "haryana", city: "Haryana", country: "India", countryCode: "IN", region: "South Asia", population: "medium" },
-  { slug: "andhra-pradesh", city: "Andhra Pradesh", country: "India", countryCode: "IN", region: "South Asia", population: "large" },
-  { slug: "odisha", city: "Odisha", country: "India", countryCode: "IN", region: "South Asia", population: "medium" },
-  { slug: "bihar", city: "Bihar", country: "India", countryCode: "IN", region: "South Asia", population: "large" },
-];
 
 export const INTERNATIONAL_LOCATIONS: LocationData[] = [
   // United States
@@ -124,12 +72,8 @@ export const INTERNATIONAL_LOCATIONS: LocationData[] = [
 ];
 
 export const ALL_LOCATIONS: LocationData[] = [
-  ...INDIA_CITIES,
-  ...INDIA_STATES,
   ...INTERNATIONAL_LOCATIONS,
   ...ALL_EXTENDED_LOCATIONS,
-  // Generic India
-  { slug: "india", city: "India", country: "India", countryCode: "IN", region: "South Asia", population: "metro" },
   // Remote/Global
   { slug: "remote", city: "Remote", country: "Worldwide", countryCode: "WW", region: "Global", population: "metro" },
   { slug: "worldwide", city: "Worldwide", country: "Worldwide", countryCode: "WW", region: "Global", population: "metro" },
@@ -556,22 +500,6 @@ export const INDUSTRIES: IndustryData[] = [
 
 export const ROLES: RoleData[] = [
   {
-    slug: "freelance-developer",
-    title: "Freelance Developer",
-    alternativeTitles: ["Freelancer", "Independent Developer", "Self-Employed Developer"],
-    description: "Independent software developer available for project-based work",
-    responsibilities: ["Full project ownership", "Direct communication", "Flexible engagement", "End-to-end delivery"],
-    idealFor: ["Short-term projects", "Specific expertise needs", "Cost-effective solutions", "Flexible timelines"]
-  },
-  {
-    slug: "contract-developer",
-    title: "Contract Developer",
-    alternativeTitles: ["Contractor", "Contract Engineer", "Contract Programmer"],
-    description: "Professional developer for fixed-term contract engagements",
-    responsibilities: ["Defined scope delivery", "Timeline commitment", "Technical expertise", "Documentation"],
-    idealFor: ["Defined projects", "Team augmentation", "Specific deliverables", "Budget clarity"]
-  },
-  {
     slug: "remote-developer",
     title: "Remote Developer",
     alternativeTitles: ["Remote Engineer", "Work From Home Developer", "Distributed Developer"],
@@ -715,7 +643,7 @@ export function generateCombinationPages(): CombinationPage[] {
 
   // Top skill + Top location combinations (e.g., "React Developer in Bangalore")
   const topSkills = SKILLS.filter(s => s.proficiency === "expert").slice(0, 10);
-  const topLocations = [...INDIA_CITIES.filter(l => l.isTechHub), ...INTERNATIONAL_LOCATIONS.filter(l => l.isTechHub)].slice(0, 20);
+  const topLocations = [...INTERNATIONAL_LOCATIONS.filter(l => l.isTechHub)].slice(0, 20);
 
   for (const skill of topSkills) {
     for (const location of topLocations) {
@@ -728,7 +656,7 @@ export function generateCombinationPages(): CombinationPage[] {
     }
   }
 
-  // Role + Location combinations (e.g., "Freelance Developer in Mumbai")
+  // Role + Location combinations (e.g., "Full-Stack Developer in Mumbai")
   const topRoles = ROLES.slice(0, 5);
   for (const role of topRoles) {
     for (const location of topLocations.slice(0, 10)) {

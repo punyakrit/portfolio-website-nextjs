@@ -49,7 +49,8 @@ const TOP_LOCATIONS = [
   "worldwide",
 ];
 
-export const INDEXABLE_COMBINATIONS = new Set(
+// Local only - a Next.js route file may not export non-route symbols.
+const INDEXABLE_COMBINATIONS = new Set(
   TOP_SKILLS.flatMap((skill) =>
     TOP_LOCATIONS.map((location) => `${skill}/in/${location}`)
   )
@@ -94,8 +95,8 @@ export async function generateMetadata({
   const isCountry = location.city === location.country;
   const isIndexable = INDEXABLE_COMBINATIONS.has(`${skillSlug}/in/${locationSlug}`);
 
-  const title = `${skillName} Developer for Hire in ${locationName} — Remote, Available Now`;
-  const description = `Freelance ${skillName} developer available for ${locationName} clients. I ship production-grade ${skillName} apps for startups and businesses${isCountry ? ` across ${locationName}` : ` in ${locationName} and surrounding areas`}. Free 30-min consultation.`;
+  const title = `${skillName} Developer for Hire in ${locationName} - Remote, Available Now`;
+  const description = `${skillName} developer available for ${locationName} clients. I ship production-grade ${skillName} apps for startups and businesses${isCountry ? ` across ${locationName}` : ` in ${locationName} and surrounding areas`}. Free 30-min consultation.`;
 
   return {
     title,
@@ -103,9 +104,9 @@ export async function generateMetadata({
     keywords: [
       `${skillName} developer ${locationName}`,
       `hire ${skillName} developer ${locationName}`,
-      `${skillName} freelancer ${locationName}`,
+      `${skillName} engineer ${locationName}`,
       `${skillName} consultant ${locationName}`,
-      `freelance ${skillName} developer`,
+      `${skillName} developer for hire`,
       `remote ${skillName} developer`,
     ],
     alternates: {
@@ -154,7 +155,7 @@ export default async function SkillLocationPage({ params }: PageProps) {
   const faqs = [
     {
       question: `How do I hire a ${skillName} developer in ${locationName}?`,
-      answer: `I'm a freelance ${skillName} developer available for projects in ${locationName}. I work remotely and am flexible with timezones. Schedule a free consultation call to discuss your project requirements and get a detailed proposal.`,
+      answer: `I'm a ${skillName} developer available for projects in ${locationName}. I work remotely and am flexible with timezones. Schedule a free consultation call to discuss your project requirements and get a detailed proposal.`,
     },
     {
       question: `What is the typical rate for a ${skillName} developer?`,
@@ -201,7 +202,7 @@ export default async function SkillLocationPage({ params }: PageProps) {
             "@context": "https://schema.org",
             "@type": "ProfessionalService",
             name: `${skillName} Developer in ${locationName}`,
-            description: `Freelance ${skillName} developer serving clients in ${locationName}. Expert in ${type === "skill" ? (skillData as import("@/lib/seo/programmatic").SkillData).relatedSkills?.join(", ") || skillName : skillName}.`,
+            description: `${skillName} developer serving clients in ${locationName}. Expert in ${type === "skill" ? (skillData as import("@/lib/seo/programmatic").SkillData).relatedSkills?.join(", ") || skillName : skillName}.`,
             url: `${SITE_URL}/hire/${skillSlug}/in/${locationSlug}`,
             provider: {
               "@id": `${SITE_URL}/#person`,
@@ -230,8 +231,8 @@ export default async function SkillLocationPage({ params }: PageProps) {
           </h1>
           <p className="text-lg text-muted-foreground mb-6 max-w-2xl">
             Looking for a {skillName.toLowerCase()} developer{" "}
-            {isCountry ? "across" : "in"} {locationName}? I'm a freelance
-            full-stack developer with deep expertise in {skillName}. I deliver
+            {isCountry ? "across" : "in"} {locationName}? I'm a full-stack
+            developer with deep expertise in {skillName}. I deliver
             production-grade applications for startups, agencies, and
             enterprises.
           </p>

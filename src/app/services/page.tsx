@@ -30,7 +30,7 @@ export const metadata: Metadata = createMetadata({
     "developer for startups",
     "developer for e-commerce",
     "developer for SaaS",
-    "freelance development services",
+    "full-stack development services",
   ],
 });
 

@@ -7,7 +7,6 @@ import Experience from "@/components/home/Experience";
 import Projects from "@/components/pow/Projects";
 import Github from "@/components/home/Github";
 import Stack from "@/components/home/Stack";
-import BlogsSection from "@/components/blogs/BlogsSection";
 import Cta from "@/components/home/Cta";
 import { BreadcrumbJsonLd, FAQJsonLd } from "@/components/seo/JsonLd";
 import SEOLinks from "@/components/seo/SEOLinks";
@@ -17,25 +16,25 @@ import World from "@/components/home/World";
 
 export const metadata: Metadata = {
   title:
-    "Punyakrit Singh Makhni | Best Freelance Developer - Hire for Web Projects",
+    "Punyakrit Singh Makhni | Full-Stack Engineer for Hire - Web & Mobile",
   description:
-    "Looking to hire the best freelance developer? I'm Punyakrit Singh Makhni, a full-stack developer specializing in Next.js, React, React Native (Expo), TypeScript & Node.js. Available for remote projects in US, UK, Europe & worldwide. Book a free consultation.",
+    "Looking to hire a top full-stack engineer? I'm Punyakrit Singh Makhni, a full-stack developer specializing in Next.js, React, React Native (Expo), TypeScript & Node.js. Available for remote projects in US, UK, Europe & worldwide. Book a free consultation.",
   keywords: [
-    "best freelance developer",
-    "best freelancer developer",
-    "hire freelance developer",
-    "freelancer developer",
-    "contract developer",
-    "contractor developer",
+    "best full-stack developer",
+    "senior full-stack developer",
+    "hire full-stack developer",
+    "full-stack developer",
+    "senior software engineer",
+    "software engineer for hire",
     "remote developer",
-    "freelance web developer",
+    "full-stack web developer",
     "hire web developer",
     "best developer for hire",
     "MVP developer",
     "startup developer",
     "developer for startups",
-    "freelance developer USA",
-    "freelance developer UK",
+    "full-stack developer USA",
+    "full-stack developer UK",
     "remote developer for hire",
     "Next.js developer",
     "React developer",
@@ -48,9 +47,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Punyakrit Singh Makhni | Best Freelance Developer for Hire",
+    title: "Punyakrit Singh Makhni | Full-Stack Engineer for Hire",
     description:
-      "Hire the best freelance developer for your web project. I build production-grade web and mobile applications with Next.js, React, React Native (Expo) & TypeScript. Serving clients in US, UK, Europe & worldwide.",
+      "Hire a top full-stack engineer for your project. I build production-grade web and mobile applications with Next.js, React, React Native (Expo) & TypeScript. Serving clients in US, UK, Europe & worldwide.",
     url: SITE_URL,
     type: "profile",
     images: [
@@ -58,15 +57,15 @@ export const metadata: Metadata = {
         url: `${SITE_URL}/card1.png`,
         width: 1200,
         height: 630,
-        alt: `${SEO_CONFIG.name} - Freelance Full-Stack Developer`,
+        alt: `${SEO_CONFIG.name} - Full-Stack Engineer`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Punyakrit Singh Makhni | Hire the Best Freelance Full-Stack Developer",
+    title: "Punyakrit Singh Makhni | Hire a Top Full-Stack Engineer",
     description:
-      "I'm a freelance full-stack developer from India building production-grade web and mobile apps. Specializing in Next.js, React, React Native (Expo), TypeScript. Available for remote projects globally.",
+      "I'm a full-stack engineer building production-grade web and mobile apps. Specializing in Next.js, React, React Native (Expo), TypeScript. Available for remote projects globally.",
     images: [`${SITE_URL}/card1.png`],
     site: SEO_CONFIG.twitterHandle,
     creator: SEO_CONFIG.twitterHandle,
@@ -75,7 +74,7 @@ export const metadata: Metadata = {
 
 const homepageFAQs = [
   {
-    question: "What services does Punyakrit offer as a freelance developer?",
+    question: "What services does Punyakrit offer as a full-stack engineer?",
     answer:
       "I offer full-stack web and mobile development including custom web applications, React Native (Expo) mobile apps, SaaS products, frontend development with React/Next.js, backend development with Node.js/FastAPI, database design, API development, and deployment on cloud platforms like AWS and Vercel.",
   },
@@ -92,7 +91,7 @@ const homepageFAQs = [
   {
     question: "Does Punyakrit work with international clients?",
     answer:
-      "Yes, I work with clients globally. I'm based in India and available for remote work across all time zones. I've worked with startups and companies in the US, Europe, and Asia.",
+      "Yes, I work with clients globally. I work remotely across all time zones and have collaborated with startups and companies in the US, Europe, and Asia.",
   },
 ];
 
@@ -144,12 +143,6 @@ function HomePage() {
 
       <section aria-labelledby="stack-heading">
         <Stack />
-      </section>
-
-      <HorizontalLine />
-
-      <section aria-labelledby="blogs-heading">
-        <BlogsSection isHome={true} />
       </section>
 
       <HorizontalLine />

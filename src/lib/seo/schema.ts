@@ -68,11 +68,6 @@ export function generatePersonSchema() {
       SEO_CONFIG.socials.linkedin,
       "https://launchcraft.studio",
     ],
-    address: {
-      "@type": "PostalAddress",
-      addressCountry: "IN",
-      addressLocality: "India",
-    },
     knowsAbout: [
       "Web Development",
       "Full-Stack Development",
@@ -101,21 +96,13 @@ export function generateWebSiteSchema() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
-    name: `${SEO_CONFIG.name} | Freelance Full-Stack Developer`,
+    name: `${SEO_CONFIG.name} | Full-Stack Engineer`,
     url: SITE_URL,
     description: SEO_CONFIG.description,
     publisher: {
       "@id": `${SITE_URL}/#person`,
     },
     inLanguage: "en-US",
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: `${SITE_URL}/blogs?q={search_term_string}`,
-      },
-      "query-input": "required name=search_term_string",
-    },
   };
 }
 
@@ -124,18 +111,14 @@ export function generateProfessionalServiceSchema() {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "@id": `${SITE_URL}/#service`,
-    name: `${SEO_CONFIG.name} - Freelance Web Development`,
+    name: `${SEO_CONFIG.name} - Full-Stack Web Development`,
     description:
-      "Professional freelance web development services. I build production-grade web applications using Next.js, React, TypeScript, and Node.js. Available for remote projects globally.",
+      "Professional full-stack web development services. I build production-grade web applications using Next.js, React, TypeScript, and Node.js. Available for remote projects globally.",
     url: SITE_URL,
     provider: {
       "@id": `${SITE_URL}/#person`,
     },
     areaServed: [
-      {
-        "@type": "Country",
-        name: "India",
-      },
       {
         "@type": "Place",
         name: "Worldwide",

@@ -4,15 +4,17 @@ import { projects } from "@/lib/projectsData";
 import { skills } from "@/lib/skills";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Globe, Github, ArrowLeft } from "lucide-react";
+import {
+  Globe,
+  Github,
+  ArrowLeft,
+  ArrowUpRight,
+  Lightbulb,
+  TriangleAlert,
+  Sparkles,
+} from "lucide-react";
 import { SiApple } from "react-icons/si";
 import { Button } from "@/components/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-  TooltipProvider,
-} from "@/components/ui/tooltip";
 import { BreadcrumbJsonLd, SoftwareApplicationJsonLd } from "@/components/seo/JsonLd";
 import { SITE_URL, createMetadata } from "@/lib/seo";
 import { generateRelatedPages } from "@/lib/seo/linking";
@@ -121,6 +123,29 @@ export async function generateMetadata({
   });
 }
 
+const mono = "font-[family-name:var(--font-geist-mono)]";
+
+function SectionHeading({
+  eyebrow,
+  title,
+}: {
+  eyebrow: string;
+  title: string;
+}) {
+  return (
+    <div className="mb-5">
+      <span
+        className={`${mono} block text-[11px] lowercase tracking-[0.2em] text-indigo-500 dark:text-indigo-400`}
+      >
+        {eyebrow}
+      </span>
+      <h2 className="mt-1.5 text-2xl sm:text-3xl font-bold tracking-tight">
+        {title}
+      </h2>
+    </div>
+  );
+}
+
 export default async function ProjectPage({
   params,
 }: {
@@ -157,7 +182,7 @@ export default async function ProjectPage({
   );
 
   return (
-    <TooltipProvider>
+    <>
       <BreadcrumbJsonLd items={breadcrumbs} />
       <SoftwareApplicationJsonLd
         project={{
@@ -172,196 +197,241 @@ export default async function ProjectPage({
 
       <article className="px-4 sm:px-6 md:px-8 py-8 sm:py-12 max-w-5xl mx-auto">
         <Breadcrumbs items={breadcrumbs} />
-        <Button variant="ghost" className="mb-6 -ml-2" asChild>
-          <Link href="/pow">
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Projects
-          </Link>
-        </Button>
+        <Link
+          href="/pow"
+          className="group mb-8 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
+          Back to Projects
+        </Link>
 
-        <div className="space-y-8">
-          <header className="space-y-4">
-            <div className="flex items-start justify-between gap-4">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
-                {project.title}
-              </h1>
-              <div className="flex items-center gap-3 flex-shrink-0">
-                {project.link && (
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Link
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:opacity-70 transition-opacity"
-                        aria-label={`Visit ${project.title} live site`}
-                      >
-                        <Globe className="w-5 h-5 sm:w-6 sm:h-6" />
-                      </Link>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Visit website</p>
-                    </TooltipContent>
-                  </Tooltip>
-                )}
-                {project.github && (
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Link
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:opacity-70 transition-opacity"
-                        aria-label={`View ${project.title} source code on GitHub`}
-                      >
-                        <Github className="w-5 h-5 sm:w-6 sm:h-6" />
-                      </Link>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>View GitHub</p>
-                    </TooltipContent>
-                  </Tooltip>
-                )}
-                {project.appStoreLink && (
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Link
-                        href={project.appStoreLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:opacity-70 transition-opacity"
-                        aria-label={`Download ${project.title} on the App Store`}
-                      >
-                        <SiApple className="w-5 h-5 sm:w-6 sm:h-6" aria-hidden />
-                      </Link>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Download on App Store</p>
-                    </TooltipContent>
-                  </Tooltip>
-                )}
-              </div>
-            </div>
-            <p className="text-lg sm:text-xl text-muted-foreground">
-              {project.description}
-            </p>
-          </header>
+        {/* ── Hero ─────────────────────────────────────────────── */}
+        <header className="mb-12 sm:mb-16">
+          <p
+            className={`${mono} mb-4 text-xs lowercase tracking-[0.2em] text-indigo-500 dark:text-indigo-400`}
+          >
+            {project.category === "mobile" ? "mobile app" : "web application"}
+            <span className="mx-2.5 text-border">/</span>
+            <span className="text-muted-foreground/70">case study</span>
+          </p>
 
-          {project.video ? (
-            <div className="relative w-full rounded-lg overflow-hidden bg-muted border border-border">
-              <video
-                src={project.video}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-auto"
-                aria-label={`${project.title} demo video`}
-              />
-            </div>
-          ) : project.images && project.images.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-              {project.images.map((src, i) => (
-                <div
-                  key={i}
-                  className="relative w-full rounded-xl overflow-hidden bg-muted/80 border border-border flex items-center justify-center min-h-[320px]"
-                >
-                  <img
-                    src={src}
-                    alt={`${project.title} screenshot ${i + 1}`}
-                    className="w-full h-auto max-h-[70vh] object-contain"
-                  />
-                </div>
-              ))}
-            </div>
-          ) : null}
+          <h1 className="text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
+            {project.title}
+          </h1>
 
-          <div className="space-y-6">
-            <section>
-              <h2 className="text-xl sm:text-2xl font-semibold mb-4">
-                Project Overview
-              </h2>
-              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-                {project.summary}
-              </p>
-            </section>
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
+            {project.description}
+          </p>
 
-            <section>
-              <h2 className="text-xl sm:text-2xl font-semibold mb-4">
-                Tech Stack
-              </h2>
-              <div className="flex flex-wrap items-center gap-3">
-                {project.tech.map((tech, index) => {
-                  const TechIcon = getTechIcon(tech);
-                  return (
-                    <Tooltip key={index}>
-                      <TooltipTrigger asChild>
-                        <div className="flex items-center gap-2 px-3 py-2 bg-muted rounded-md text-sm cursor-default hover:bg-muted/80 transition-colors">
-                          {TechIcon ? (
-                            <TechIcon className="w-4 h-4 flex-shrink-0" />
-                          ) : (
-                            <span className="w-4 h-4 flex items-center justify-center text-[10px] font-semibold bg-foreground/10 rounded">
-                              {tech.charAt(0).toUpperCase()}
-                            </span>
-                          )}
-                          <span>{tech}</span>
-                        </div>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>{tech}</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  );
-                })}
-              </div>
-            </section>
-
-            <section>
-              <h2 className="text-xl sm:text-2xl font-semibold mb-4">
-                The Problem
-              </h2>
-              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-                {project.problem}
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-xl sm:text-2xl font-semibold mb-4">
-                The Solution
-              </h2>
-              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-                {project.solution}
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-xl sm:text-2xl font-semibold mb-4">
-                Why I Built This
-              </h2>
-              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-                {project.whyThis}
-              </p>
-            </section>
+          {/* Actions */}
+          <div className="mt-7 flex flex-wrap items-center gap-2.5">
+            {project.link && (
+              <Link
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-transform hover:scale-[1.02]"
+                aria-label={`Visit ${project.title} live site`}
+              >
+                <Globe className="h-4 w-4" />
+                Visit live site
+                <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+            )}
+            {project.github && (
+              <Link
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/40 px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-border hover:bg-card/70"
+                aria-label={`View ${project.title} source code on GitHub`}
+              >
+                <Github className="h-4 w-4" />
+                Source
+              </Link>
+            )}
+            {project.appStoreLink && (
+              <Link
+                href={project.appStoreLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/40 px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-border hover:bg-card/70"
+                aria-label={`Download ${project.title} on the App Store`}
+              >
+                <SiApple className="h-4 w-4" aria-hidden />
+                App Store
+              </Link>
+            )}
           </div>
 
-          {relatedPages.length > 0 && (
-            <RelatedPages pages={relatedPages} title="Related Projects" />
+          {/* Stats */}
+          {project.stats && project.stats.length > 0 && (
+            <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-4 border-t border-border/40 pt-7">
+              {project.stats.map((stat) => {
+                const [value, ...rest] = stat.split(" ");
+                const label = rest.join(" ");
+                return (
+                  <div key={stat}>
+                    <dt className="text-2xl font-bold tracking-tight sm:text-3xl">
+                      {value}
+                    </dt>
+                    <dd
+                      className={`${mono} mt-0.5 text-[11px] lowercase tracking-wide text-muted-foreground`}
+                    >
+                      {label || " "}
+                    </dd>
+                  </div>
+                );
+              })}
+            </dl>
           )}
+        </header>
 
-          <footer className="pt-8 border-t border-border">
-            <div className="flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
-              <p className="text-sm text-muted-foreground">
-                Interested in working together? Let&apos;s build something great.
-              </p>
-              <Button asChild>
-                <Link href="https://cal.com/punyakrit" target="_blank">
-                  Book a Free Call
-                </Link>
-              </Button>
+        {/* ── Media ────────────────────────────────────────────── */}
+        {project.video ? (
+          <div className="mb-14 overflow-hidden rounded-2xl border border-border/50 bg-muted/30 shadow-2xl shadow-black/20 ring-1 ring-inset ring-white/5">
+            <video
+              src={project.video}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="h-auto w-full"
+              aria-label={`${project.title} demo video`}
+            />
+          </div>
+        ) : project.images && project.images.length > 0 ? (
+          <div className="mb-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 sm:gap-6">
+            {project.images.map((src, i) => (
+              <div
+                key={i}
+                className="relative flex min-h-[320px] w-full items-center justify-center overflow-hidden rounded-2xl border border-border/50 bg-muted/40 ring-1 ring-inset ring-white/5"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={src}
+                  alt={`${project.title} screenshot ${i + 1}`}
+                  className="h-auto max-h-[70vh] w-full object-contain"
+                />
+              </div>
+            ))}
+          </div>
+        ) : null}
+
+        {/* ── Overview + tech stack ────────────────────────────── */}
+        <div className="mb-14 grid gap-x-14 gap-y-10 lg:grid-cols-[minmax(0,1fr)_16rem]">
+          <section>
+            <SectionHeading eyebrow="overview" title="Project Overview" />
+            <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
+              {project.summary}
+            </p>
+          </section>
+
+          <aside>
+            <span
+              className={`${mono} block text-[11px] lowercase tracking-[0.2em] text-indigo-500 dark:text-indigo-400`}
+            >
+              tech stack
+            </span>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {project.tech.map((tech, index) => {
+                const TechIcon = getTechIcon(tech);
+                return (
+                  <span
+                    key={index}
+                    className="inline-flex items-center gap-2 rounded-lg border border-border/50 bg-muted/30 px-2.5 py-1.5 text-[13px] font-medium text-muted-foreground"
+                  >
+                    {TechIcon ? (
+                      <TechIcon className="h-3.5 w-3.5 flex-shrink-0 opacity-70" />
+                    ) : (
+                      <span className="flex h-3.5 w-3.5 items-center justify-center rounded bg-foreground/10 text-[9px] font-semibold">
+                        {tech.charAt(0).toUpperCase()}
+                      </span>
+                    )}
+                    {tech}
+                  </span>
+                );
+              })}
             </div>
-          </footer>
+          </aside>
         </div>
+
+        {/* ── Problem → Solution — the signature contrast ──────── */}
+        <section className="mb-14 grid items-stretch gap-4 md:grid-cols-2">
+          <div className="rounded-2xl border border-border/50 bg-card/20 p-6 sm:p-8">
+            <div className="mb-4 inline-flex items-center gap-2 text-muted-foreground">
+              <TriangleAlert className="h-4 w-4" />
+              <span className={`${mono} text-[11px] lowercase tracking-[0.2em]`}>
+                the problem
+              </span>
+            </div>
+            <p className="text-[15px] leading-relaxed text-muted-foreground sm:text-base">
+              {project.problem}
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-border/50 bg-card/20 p-6 sm:p-8">
+            <div className="mb-4 inline-flex items-center gap-2 text-foreground/70">
+              <Lightbulb className="h-4 w-4" />
+              <span className={`${mono} text-[11px] lowercase tracking-[0.2em]`}>
+                the solution
+              </span>
+            </div>
+            <p className="text-[15px] leading-relaxed text-foreground/80 sm:text-base">
+              {project.solution}
+            </p>
+          </div>
+        </section>
+
+        {/* ── Why I built this — a personal aside ──────────────── */}
+        <section>
+          <div className="rounded-2xl border border-border/50 bg-card/20 p-6 sm:p-8">
+            <div className="grid gap-4 md:grid-cols-[13rem_minmax(0,1fr)] md:gap-10">
+              <div className="flex items-center gap-2.5 md:flex-col md:items-start md:gap-3">
+                <Sparkles className="h-5 w-5 text-indigo-500/70 dark:text-indigo-400/70" />
+                <span
+                  className={`${mono} text-[11px] lowercase tracking-[0.2em] text-muted-foreground/70`}
+                >
+                  why i built this
+                </span>
+              </div>
+              <p className="text-base leading-relaxed text-foreground/90 sm:text-lg">
+                {project.whyThis}
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {relatedPages.length > 0 && (
+          <div className="mt-16">
+            <RelatedPages pages={relatedPages} title="Related Projects" />
+          </div>
+        )}
+
+        {/* ── Footer CTA ───────────────────────────────────────── */}
+        <footer className="mt-16">
+          <div className="relative overflow-hidden rounded-2xl border border-border/50 bg-gradient-to-br from-card/60 to-card/10 px-6 py-8 text-center sm:px-10 sm:py-10">
+            <span
+              className={`${mono} text-[11px] lowercase tracking-[0.2em] text-indigo-500 dark:text-indigo-400`}
+            >
+              let&apos;s build together
+            </span>
+            <h2 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">
+              Have something like this in mind?
+            </h2>
+            <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">
+              I take products from first idea to launch. Book a free call and
+              let&apos;s scope it out.
+            </p>
+            <Button asChild className="mt-6 rounded-full">
+              <Link href="https://cal.com/punyakrit" target="_blank">
+                Book a free call
+                <ArrowUpRight className="ml-1.5 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+        </footer>
       </article>
-    </TooltipProvider>
+    </>
   );
 }

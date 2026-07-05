@@ -15,7 +15,7 @@ function getSlug(title: string) {
 export const metadata: Metadata = {
   title: "Web Development Projects & Case Studies | Production-Grade Apps",
   description:
-    "Explore real-world web development projects built by Punyakrit Singh Makhni. Case studies featuring Next.js, React, TypeScript applications including CodeLens (AI code explorer), Pulse (uptime monitoring), and more. See proof of work from a top freelance developer.",
+    "Explore real-world web development projects built by Punyakrit Singh Makhni. Case studies featuring Next.js, React, TypeScript applications including CodeLens (AI code explorer), Pulse (uptime monitoring), and more. See proof of work from a top full-stack engineer.",
   keywords: [
     "Web Development Projects",
     "Developer Portfolio Projects",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     "Real-World Web Applications",
     "Open Source Projects",
     "SaaS Products",
-    "Freelance Developer Work",
+    "Engineering Work",
     "CodeLens AI",
     "Pulse Monitoring",
     "TypeScript Applications",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Web Development Projects & Case Studies | Punyakrit Singh Makhni",
     description:
-      "Real-world web development projects and case studies. Production-grade applications built with Next.js, React, TypeScript by a top freelance developer.",
+      "Real-world web development projects and case studies. Production-grade applications built with Next.js, React, TypeScript by a top full-stack engineer.",
     url: `${SITE_URL}/pow`,
     type: "website",
     images: [
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Web Development Projects & Case Studies | Punyakrit Singh Makhni",
     description:
-      "Real-world web development projects and case studies. Production-grade applications built with Next.js, React, TypeScript by a top freelance developer.",
+      "Real-world web development projects and case studies. Production-grade applications built with Next.js, React, TypeScript by a top full-stack engineer.",
     images: [`${SITE_URL}/card1.png`],
     site: SEO_CONFIG.twitterHandle,
     creator: SEO_CONFIG.twitterHandle,

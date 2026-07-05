@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     keywords: [
       ...useCase.searchTerms,
       ...useCase.technologies.map(t => `${t} developer`),
-      "freelance developer",
+      "full-stack developer",
       "hire developer",
     ],
     alternates: {

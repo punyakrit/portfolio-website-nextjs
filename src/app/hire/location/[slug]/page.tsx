@@ -2,7 +2,7 @@
  * Dynamic Location Page
  *
  * Programmatic SEO page for location-based searches like:
- * - "Hire freelance developer in San Francisco"
+ * - "Hire full-stack developer in San Francisco"
  * - "Web developer for New York companies"
  * - "Remote developer for UK businesses"
  */

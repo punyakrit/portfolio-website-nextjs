@@ -7,7 +7,6 @@ import { ThemeProvider } from "@/providers/theme-provider";
 import { env } from "@/lib/env";
 import DevMode from "@/lib/DevMode";
 import RefreshOverlay from "@/components/global/RefreshOverlay";
-import IdleSurpriseOverlay from "@/components/global/IdleSurpriseOverlay";
 import FirstVisitNotification from "@/components/global/FirstVisitNotification";
 import { SupportPageLayout } from "@/components/global/SupportPageLayout";
 import { RootJsonLd } from "@/components/seo/JsonLd";
@@ -56,11 +55,11 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: `${SEO_CONFIG.name} | Best Freelance Developer for Hire - Web & Full-Stack`,
+    default: `${SEO_CONFIG.name} | Full-Stack Engineer for Hire - Web & Mobile`,
     template: `%s | ${SEO_CONFIG.name}`,
   },
   description:
-    "Looking for the best freelance developer? I'm a full-stack developer specializing in React, Next.js, TypeScript & Node.js. Available for remote projects in US, UK, Europe & worldwide. Book a free consultation.",
+    "Looking for a top full-stack engineer? I'm a full-stack developer specializing in React, Next.js, TypeScript & Node.js. Available for remote projects in US, UK, Europe & worldwide. Book a free consultation.",
   applicationName: `${SEO_CONFIG.name} Portfolio`,
   category: "Technology",
   keywords: [...PRIMARY_KEYWORDS],
@@ -77,9 +76,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: `${SEO_CONFIG.name} | Best Freelance Developer for Hire`,
+    title: `${SEO_CONFIG.name} | Full-Stack Engineer for Hire`,
     description:
-      "Hire the best freelance developer for your web project. Full-stack developer specializing in React, Next.js, TypeScript. Available for remote projects worldwide.",
+      "Hire a top full-stack engineer for your project. Full-stack developer specializing in React, Next.js, TypeScript. Available for remote projects worldwide.",
     url: SITE_URL,
     siteName: `${SEO_CONFIG.name} Portfolio`,
     images: [
@@ -87,7 +86,7 @@ export const metadata: Metadata = {
         url: `${SITE_URL}/card1.png`,
         width: 1200,
         height: 630,
-        alt: `${SEO_CONFIG.name} - Freelance Full-Stack Developer`,
+        alt: `${SEO_CONFIG.name} - Full-Stack Engineer`,
       },
     ],
     locale: "en_US",
@@ -95,9 +94,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SEO_CONFIG.name} | Freelance Full-Stack Developer`,
+    title: `${SEO_CONFIG.name} | Full-Stack Engineer`,
     description:
-      "Freelance full-stack developer from India. I build production-grade web apps with Next.js, React & TypeScript. Available for remote projects globally.",
+      "Full-stack engineer building production-grade web apps with Next.js, React & TypeScript. Available for remote projects globally.",
     images: [`${SITE_URL}/card1.png`],
     site: SEO_CONFIG.twitterHandle,
     creator: SEO_CONFIG.twitterHandle,
@@ -168,10 +167,13 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <RefreshOverlay />
-          <IdleSurpriseOverlay />
           <FirstVisitNotification />
           <DevMode />
           <SupportPageLayout>{children}</SupportPageLayout>
+          <div
+            aria-hidden="true"
+            className="pointer-events-none fixed inset-x-0 bottom-0 z-30 h-24 sm:h-32 bg-gradient-to-t dark:from-[#121212] from-white to-transparent"
+          />
         </ThemeProvider>
         </Provider>
       </body>

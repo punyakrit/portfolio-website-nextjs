@@ -6,10 +6,10 @@ export const SITE_NAME = "Punyakrit Singh Makhni";
 export const SEO_CONFIG = {
   name: "Punyakrit Singh Makhni",
   title: "Punyakrit Singh Makhni",
-  jobTitle: "Freelance Full-Stack Developer",
-  location: "India",
+  jobTitle: "Full-Stack Engineer",
+  location: "Remote",
   description:
-    "Freelance Full-Stack Developer from India building production-grade web and mobile applications. Hire me for Next.js, React, React Native (Expo), TypeScript, and Node.js projects. Available for remote work globally.",
+    "Full-Stack Engineer building production-grade web and mobile applications. Hire me for Next.js, React, React Native (Expo), TypeScript, and Node.js projects. Available for remote work globally.",
   url: SITE_URL,
   email: "punyakritsinghmakhni@gmail.com",
   image: `${SITE_URL}/card1.png`,
@@ -24,13 +24,13 @@ export const SEO_CONFIG = {
 
 export const PRIMARY_KEYWORDS: string[] = [
   // Core target keywords
-  "best freelance developer",
-  "best freelancer developer",
-  "freelancer developer",
-  "hire freelance developer",
-  "freelance developer for hire",
-  "contract developer",
-  "contractor developer",
+  "best full-stack developer",
+  "best full-stack developer",
+  "full-stack developer",
+  "hire full-stack developer",
+  "full-stack developer for hire",
+  "software engineer for hire",
+  "software engineer for hire",
   "remote developer",
 
   // Service variations
@@ -42,8 +42,8 @@ export const PRIMARY_KEYWORDS: string[] = [
   "startup developer",
 
   // Location-agnostic (global reach)
-  "freelance developer USA",
-  "freelance developer UK",
+  "full-stack developer USA",
+  "full-stack developer UK",
   "remote developer for hire",
   "developer for startups",
 
@@ -71,11 +71,6 @@ export function generatePersonSchema() {
       SEO_CONFIG.socials.github,
       SEO_CONFIG.socials.linkedin,
     ],
-    address: {
-      "@type": "PostalAddress",
-      addressCountry: "IN",
-      addressLocality: "India",
-    },
     knowsAbout: [
       "Web Development",
       "Full-Stack Development",
@@ -91,7 +86,7 @@ export function generatePersonSchema() {
     ],
     worksFor: {
       "@type": "Organization",
-      name: "Independent / Freelance",
+      name: "Independent Projects",
     },
   };
 }
@@ -101,7 +96,7 @@ export function generateWebSiteSchema() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
-    name: `${SEO_CONFIG.name} | Freelance Full-Stack Developer`,
+    name: `${SEO_CONFIG.name} | Full-Stack Engineer`,
     url: SITE_URL,
     description: SEO_CONFIG.description,
     publisher: {
@@ -116,18 +111,14 @@ export function generateProfessionalServiceSchema() {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "@id": `${SITE_URL}/#service`,
-    name: `${SEO_CONFIG.name} - Freelance Web Development`,
+    name: `${SEO_CONFIG.name} - Full-Stack Web Development`,
     description:
-      "Professional freelance web development services. I build production-grade web applications using Next.js, React, TypeScript, and Node.js. Available for remote projects globally.",
+      "Professional full-stack web development services. I build production-grade web applications using Next.js, React, TypeScript, and Node.js. Available for remote projects globally.",
     url: SITE_URL,
     provider: {
       "@id": `${SITE_URL}/#person`,
     },
     areaServed: [
-      {
-        "@type": "Country",
-        name: "India",
-      },
       {
         "@type": "Place",
         name: "Worldwide",
@@ -277,13 +268,13 @@ export function generateFAQSchema(
 export const defaultOpenGraph = {
   type: "website",
   locale: "en_US",
-  siteName: `${SEO_CONFIG.name} | Freelance Full-Stack Developer`,
+  siteName: `${SEO_CONFIG.name} | Full-Stack Engineer`,
   images: [
     {
       url: SEO_CONFIG.image,
       width: 1200,
       height: 630,
-      alt: `${SEO_CONFIG.name} - Freelance Full-Stack Developer`,
+      alt: `${SEO_CONFIG.name} - Full-Stack Engineer`,
     },
   ],
 };

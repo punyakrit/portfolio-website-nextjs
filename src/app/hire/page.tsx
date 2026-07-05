@@ -13,29 +13,28 @@ import {
   ROLES,
   ALL_LOCATIONS,
   INTERNATIONAL_LOCATIONS,
-  INDIA_CITIES,
 } from "@/lib/seo/programmatic";
 import { generateBreadcrumbSchema, generateFAQSchema } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 
 export const metadata: Metadata = createMetadata({
-  title: "Hire a Freelance Developer | Remote Full-Stack Developer for Hire",
+  title: "Hire a Full-Stack Engineer | Remote Full-Stack Developer for Hire",
   description:
-    "Looking to hire a freelance developer? I'm a full-stack developer with 4+ years experience in React, Next.js, TypeScript, and Node.js. Available for remote projects worldwide. Get a free consultation.",
+    "Looking to hire a full-stack developer? I'm a full-stack developer with 4+ years experience in React, Next.js, TypeScript, and Node.js. Available for remote projects worldwide. Get a free consultation.",
   path: "/hire",
   keywords: [
-    "hire freelance developer",
+    "hire full-stack engineer",
     "hire web developer",
     "hire remote developer",
-    "freelance developer for hire",
+    "full-stack developer for hire",
     "hire full-stack developer",
     "hire React developer",
     "hire Next.js developer",
-    "freelance web developer",
-    "contract developer",
+    "full-stack web developer",
+    "software engineer for hire",
     "remote developer for hire",
-    "best freelance developer",
-    "top freelance developer",
+    "best full-stack developer",
+    "top full-stack developer",
     "hire developer for startup",
     "MVP developer",
   ],
@@ -82,8 +81,7 @@ const skillsByCategory = {
 
 // Featured locations (prioritize international)
 const featuredLocations = [
-  ...INTERNATIONAL_LOCATIONS.filter((l) => l.isTechHub).slice(0, 12),
-  ...INDIA_CITIES.filter((l) => l.isTechHub).slice(0, 6),
+  ...INTERNATIONAL_LOCATIONS.filter((l) => l.isTechHub).slice(0, 18),
 ];
 
 export default function HirePage() {
@@ -114,9 +112,9 @@ export default function HirePage() {
             "@context": "https://schema.org",
             "@type": "ProfessionalService",
             "@id": `${SITE_URL}/hire#service`,
-            name: `${SEO_CONFIG.name} - Freelance Developer for Hire`,
+            name: `${SEO_CONFIG.name} - Full-Stack Engineer for Hire`,
             description:
-              "Professional freelance web development services. Full-stack developer available for remote projects worldwide.",
+              "Professional full-stack web development services. Full-stack developer available for remote projects worldwide.",
             url: `${SITE_URL}/hire`,
             provider: {
               "@id": `${SITE_URL}/#person`,
@@ -153,7 +151,7 @@ export default function HirePage() {
         {/* Hero Section */}
         <section className="mb-12">
           <h1 className="text-3xl md:text-4xl font-bold mb-4">
-            Hire a Freelance Developer
+            Hire a Full-Stack Engineer
           </h1>
           <p className="text-lg text-muted-foreground mb-6 max-w-2xl">
             Looking for a skilled developer for your next project? I'm a

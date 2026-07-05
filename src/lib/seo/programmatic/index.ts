@@ -11,8 +11,6 @@ export * from "./types";
 // Data
 export {
   // Location Data
-  INDIA_CITIES,
-  INDIA_STATES,
   INTERNATIONAL_LOCATIONS,
   ALL_LOCATIONS,
 

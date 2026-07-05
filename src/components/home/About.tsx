@@ -1,127 +1,47 @@
-"use client";
-
 import React from 'react'
-import Link from 'next/link'
 import { env } from '@/lib/env'
-import RedirectButtons from './RedirectButtons'
+import EmailCopy from './EmailCopy'
+import { socials } from '@/lib/socials'
 import MultiSocials from './MultiSocials'
-import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
 
 function About() {
   const image = env.NEXT_PUBLIC_CLOUDFRONT_URL + "/img.jpg"
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring" as const,
-        stiffness: 100,
-        damping: 15,
-      },
-    },
-  }
-
 
   return (
-    <motion.div
-      ref={ref}
-      variants={containerVariants}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      className="-mt-20 z-10 relative px-4 sm:px-6 md:px-8"
-    >
-      <div className="relative inline-block">
-        <img 
-          src={image} 
-          alt="Punyakrit Singh Makhni - Freelance Full-Stack & React Native Expo Developer India" 
-          className='h-24 w-24 sm:h-32 sm:w-32 md:h-36 md:w-36 rounded-full object-cover border shadow-lg border-white/20 dark:shadow-white/20'
-        />
+    <div className="-mt-20 z-10 relative px-4 sm:px-6 md:px-8">
+      <img
+        src={image}
+        alt="Punyakrit Singh Makhni - Full-Stack & React Native Engineer"
+        className="h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 rounded-2xl object-cover ring-2 ring-background shadow-xl"
+      />
+
+      <h1 className="mt-5 text-4xl sm:text-5xl md:text-[3.5rem] font-bold tracking-tight leading-[1.03]">
+        Punyakrit Singh Makhni
+      </h1>
+
+      <p className="mt-4 font-[family-name:var(--font-geist-mono)] text-xs sm:text-sm text-muted-foreground">
+        full-stack&nbsp;engineer&nbsp;&nbsp;/&nbsp;&nbsp;remote&nbsp;&nbsp;/&nbsp;&nbsp;
+        <EmailCopy email={socials.email} />
+      </p>
+
+      <p className="mt-6 sm:mt-7 max-w-2xl text-base sm:text-lg leading-relaxed text-muted-foreground">
+        I build production-grade web &amp; mobile apps for startups worldwide -
+        from first idea to launch. Working across Next.js, React, React Native,
+        TypeScript, Node.js, and AI / RAG.
+      </p>
+
+      <div className="mt-6 flex items-center gap-2 font-[family-name:var(--font-geist-mono)] text-xs text-muted-foreground">
+        <span className="relative flex h-2 w-2" aria-hidden="true">
+          <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-500/60 animate-ping" />
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+        </span>
+        available for work
       </div>
 
-      <motion.h1
-        variants={itemVariants}
-        className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold my-4 mt-6 sm:mt-8 font-[family-name:var(--font-inter)] leading-tight'
-      >
-        Hi, I&apos;m Punyakrit -{' '}
-        <motion.span
-          className='font-bold bg-gradient-to-r from-black/80 to-black/50 dark:from-white/80 dark:to-white/50 bg-clip-text text-transparent inline-block'
-          whileHover={{ scale: 1.05 }}
-          transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
-        >
-          Full-Stack & React Native Developer
-        </motion.span>
-      </motion.h1>
-      
-      <motion.p
-        variants={itemVariants}
-        className='text-base sm:text-lg md:text-xl leading-snug dark:text-white/80 text-black/80 max-w-3xl mt-4 sm:mt-6'
-      >
-        I build{' '}
-        <motion.strong
-          className="inline"
-          whileHover={{ scale: 1.05 }}
-          transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
-        >
-          production-grade web & mobile apps
-        </motion.strong>
-        {' '}for startups worldwide — through my studio,{' '}
-        <Link
-          href='https://launchcraft.studio'
-          target='_blank'
-          rel='noopener'
-          className='font-semibold underline decoration-primary/50 hover:decoration-primary underline-offset-4 transition-colors duration-200'
-        >
-          LaunchCraft Studio
-        </Link>
-        . Stack:{' '}
-        <motion.span
-          className='font-semibold dark:text-white text-black dark:bg-white/10 bg-black/5 px-2 py-0.5 rounded inline cursor-default align-baseline'
-          whileHover={{
-            scale: 1.05,
-            backgroundColor: "hsl(var(--primary) / 0.1)",
-            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-          }}
-          transition={{
-            type: "spring" as const,
-            stiffness: 400,
-            damping: 17,
-          }}
-        >
-          Next.js, React, React Native, TypeScript, Node.js
-        </motion.span>
-        .
-        <motion.span
-          className='block mt-2 text-sm sm:text-base opacity-80'
-          variants={itemVariants}
-        >
-          Remote-friendly • Available for hire • Serving clients worldwide
-        </motion.span>
-      </motion.p>
-
-      <motion.div
-        variants={itemVariants}
-        className='flex flex-col sm:flex-row gap-4 sm:gap-4 my-6 justify-between items-start sm:items-center'
-      >
-        <RedirectButtons />
+      <div className="mt-6">
         <MultiSocials showAll={false} />
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   )
 }
 

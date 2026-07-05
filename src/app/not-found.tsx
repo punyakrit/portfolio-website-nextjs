@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Home, ArrowLeft, Briefcase, FileText } from "lucide-react";
+import { Home, Briefcase, FileText } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -43,19 +43,13 @@ export default function NotFound() {
 
         <div className="pt-8 border-t border-border mt-8">
           <p className="text-sm text-muted-foreground mb-4">
-            Looking to hire a freelance developer?
+            Looking to hire a full-stack developer?
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
             <Button variant="ghost" size="sm" asChild>
               <Link href="/work">
                 <FileText className="w-4 h-4 mr-2" />
                 My Experience
-              </Link>
-            </Button>
-            <Button variant="ghost" size="sm" asChild>
-              <Link href="/blogs">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Read Blog
               </Link>
             </Button>
             <Button size="sm" asChild>

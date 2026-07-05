@@ -19,7 +19,7 @@ function Cta() {
                 Ready to build something great?
               </h2>
               <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-                I&apos;m available for freelance projects. Whether you need a
+                I&apos;m available for new projects. Whether you need a
                 full-stack application, a landing page, or help with an existing
                 project - let&apos;s talk.
               </p>

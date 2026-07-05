@@ -31,6 +31,45 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
+  async redirects() {
+    return [
+      {
+        source: "/hire/freelance-developer",
+        destination: "/hire/fullstack-developer",
+        permanent: true,
+      },
+      {
+        source: "/hire/freelance-developer/in/:location",
+        destination: "/hire/fullstack-developer/in/:location",
+        permanent: true,
+      },
+      {
+        source: "/hire/contract-developer",
+        destination: "/hire/fullstack-developer",
+        permanent: true,
+      },
+      {
+        source: "/hire/contract-developer/in/:location",
+        destination: "/hire/fullstack-developer/in/:location",
+        permanent: true,
+      },
+      {
+        source: "/pow/kill-switch",
+        destination: "/pow",
+        permanent: true,
+      },
+      {
+        source: "/blogs",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/blogs/:slug*",
+        destination: "/",
+        permanent: true,
+      },
+    ];
+  },
   compiler: {
     removeConsole: process.env.NODE_ENV === "production" ? {
       exclude: ["error", "warn"],

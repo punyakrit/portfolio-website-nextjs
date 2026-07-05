@@ -3,9 +3,9 @@
  *
  * Programmatic SEO page for technology and role-based searches like:
  * - "Hire React developer"
- * - "Freelance Next.js developer"
+ * - "Next.js developer for hire"
  * - "Remote TypeScript developer"
- * - "Contract developer for hire"
+ * - "Full-stack developer for hire"
  */
 
 import { Metadata } from "next";

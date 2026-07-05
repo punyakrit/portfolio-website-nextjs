@@ -26,7 +26,7 @@ export default function TapMaster() {
           <p className="leading-relaxed text-neutral-700">
             Tap Master is a reaction speed game. Tap the dot as fast as you can
             when it appears, beat your best time, and climb the leaderboard. No
-            account or login required—just tap and play.
+            account or login required-just tap and play.
           </p>
         </section>
 

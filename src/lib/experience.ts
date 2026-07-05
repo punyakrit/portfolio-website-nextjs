@@ -19,6 +19,7 @@ interface Experience {
     startDate: string;
     endDate: string;
     blurred?: boolean;
+    hideWorkingBadge?: boolean;
     tech: Skill[];
     bullets: Bullet[];
     links: {
@@ -40,12 +41,12 @@ interface Experience {
 
 export const experience: Readonly<Experience[]> = [
     {
-        company: "It's a secret",
-        position: "Full Stack Engineer",
+        company: "Gradly.us",
+        position: "Software Engineer",
         location: "United States (Remote)",
-        startDate: "2026-01-01",
-        endDate: "Present",
-        blurred: true,
+        startDate: "2026-03-01",
+        endDate: "2026-07-01",
+        blurred: false,
         tech: [
             getSkillByName("Next.js"),
             getSkillByName("React"),
@@ -98,24 +99,72 @@ export const experience: Readonly<Experience[]> = [
             ]
         ],
         links: {
-            image: "https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png",
+            image: "/gradly-logo.png",
             companyUrl: {
-                url: "https://www.punyakrit.dev/",
+                url: "https://gradly.us",
                 icon: getLinkIconByType("companyUrl")?.icon
             },
             githubUrl: {
-                url: "https://github.com/punyakrit",
+                url: "",
+                icon: undefined
+            },
+            linkedinUrl: {
+                url: "https://www.linkedin.com/company/gradly",
+                icon: getLinkIconByType("linkedinUrl")?.icon
+            }
+        }
+    },
+    {
+        company: "TheFocus.AI",
+        position: "Software Engineer (Contract)",
+        location: "Remote",
+        startDate: "2025-12-01",
+        endDate: "2026-03-01",
+        blurred: false,
+        tech: [
+            getSkillByName("Next.js"),
+            getSkillByName("React"),
+            getSkillByName("TypeScript"),
+            getSkillByName("Node.js"),
+            getSkillByName("Python"),
+            getSkillByName("PostgreSQL"),
+            getSkillByName("Docker"),
+        ].filter((skill): skill is Skill => skill !== undefined),
+        bullets: [
+            [
+                { type: "text", value: "Built " },
+                { type: "highlight", value: "full-stack" },
+                { type: "text", value: " features for TheFocus.AI's " },
+                { type: "highlight", value: "AI products" },
+                { type: "text", value: " - product UI, APIs, and integrations - on a contract engagement." }
+            ],
+            [
+                { type: "text", value: "Implemented " },
+                { type: "highlight", value: "LLM-powered workflows" },
+                { type: "text", value: " and shipped them to " },
+                { type: "highlight", value: "production" },
+                { type: "text", value: " quickly, working closely with the product team." }
+            ]
+        ],
+        links: {
+            image: "/thefocus-logo.png",
+            companyUrl: {
+                url: "https://thefocus.ai",
+                icon: getLinkIconByType("companyUrl")?.icon
+            },
+            githubUrl: {
+                url: "https://github.com/The-Focus-AI",
                 icon: getLinkIconByType("githubUrl")?.icon
             },
             linkedinUrl: {
-                url: "https://www.linkedin.com/in/punyakrit-singh-makhni/",
+                url: "https://www.linkedin.com/company/thefocusai",
                 icon: getLinkIconByType("linkedinUrl")?.icon
             }
         }
     },
     {
         company: "AgentProd",
-        position: "Full Stack Engineer",
+        position: "Software Engineer",
         location: "Remote (United States)",
         // AgentProd - >2 years experience per your profile; using an ongoing/present end date
         startDate: "2024-06-01",
@@ -180,12 +229,13 @@ export const experience: Readonly<Experience[]> = [
     },
 
     {
-        company: "Independent / Freelance",
-        position: "Full Stack Engineer - Founder / Contractor",
+        company: "Independent Projects",
+        position: "Founder & Software Engineer",
         location: "Remote",
-        // Freelance work that overlaps with employment - kept as ongoing
+        // Independent client & product work that overlaps with employment - kept as ongoing
         startDate: "2023-02-01",
         endDate: "Present",
+        hideWorkingBadge: true,
         tech: [
             getSkillByName("Next.js"),
             getSkillByName("React"),
@@ -232,9 +282,9 @@ export const experience: Readonly<Experience[]> = [
             ]
         ],
         links: {
-            image: `${env.NEXT_PUBLIC_CLOUDFRONT_URL}/freelance.png`,
+            image: "/independent-logo.png",
             companyUrl: {
-                // point to your portfolio as the canonical place for freelance work / projects
+                // point to your portfolio as the canonical place for independent work / projects
                 url: "https://www.punyakrit.dev/",
                 icon: getLinkIconByType("companyUrl")?.icon
             },

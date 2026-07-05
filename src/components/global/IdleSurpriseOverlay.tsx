@@ -70,7 +70,7 @@ export default function IdleSurpriseOverlay() {
     scrollAccum.current = 0;
     clearIdle();
     localStorage.setItem("idle_overlay_shown", "1");
-    // Don't reschedule — shown once, never again
+    // Don't reschedule - shown once, never again
   }, [clearHoldTimer, clearIdle]);
 
   const onStrokeComplete = useCallback(() => {

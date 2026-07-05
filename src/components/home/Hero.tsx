@@ -84,7 +84,7 @@ export default function Hero() {
         <Image
           key={currentImage}
           src={currentImage}
-          alt="Punyakrit Singh Makhni - Freelance Full-Stack Developer Portfolio Banner"
+          alt="Punyakrit Singh Makhni - Full-Stack Engineer Portfolio Banner"
           fill
           priority
           sizes="(max-width: 768px) 100vw, 896px"

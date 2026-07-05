@@ -2,19 +2,19 @@ import type { Metadata } from "next";
 import { SITE_URL, SEO_CONFIG } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Professional Experience | Full-Stack Developer with Startup & Freelance Background",
+  title: "Professional Experience | Full-Stack Engineer with Startup Experience",
   description:
-    "View the professional work experience of Punyakrit Singh Makhni. 2+ years as a full-stack developer working with US-based startups, building production systems, and delivering freelance projects. Expertise in Next.js, React, TypeScript, FastAPI, and cloud infrastructure.",
+    "View the professional work experience of Punyakrit Singh Makhni. 2+ years as a full-stack developer working with US-based startups, building production systems, and shipping production systems for clients. Expertise in Next.js, React, TypeScript, FastAPI, and cloud infrastructure.",
   keywords: [
     "Full-Stack Developer Experience",
-    "Freelance Developer Resume",
+    "Full-Stack Engineer Resume",
     "Startup Developer",
     "Remote Developer Experience",
     "Next.js Developer Work History",
     "React Developer Portfolio",
     "Professional Web Developer",
     "Software Engineer Experience",
-    "India-based Developer",
+    "Full-Stack Developer for Hire",
     "Remote Full-Stack Engineer",
   ],
   alternates: {
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
         url: `${SITE_URL}/card1.png`,
         width: 1200,
         height: 630,
-        alt: `${SEO_CONFIG.name} - Freelance Full-Stack Developer`,
+        alt: `${SEO_CONFIG.name} - Full-Stack Engineer`,
       },
     ],
   },
