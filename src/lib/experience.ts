@@ -1,4 +1,3 @@
-import { env } from "./env";
 import { skills, Skill } from "./skills";
 import { getLinkIconByType } from "./linkIcons";
 
@@ -69,33 +68,20 @@ export const experience: Readonly<Experience[]> = [
         ].filter((skill): skill is Skill => skill !== undefined),
         bullets: [
             [
-                { type: "text", value: "Own end-to-end " },
-                { type: "highlight", value: "full-stack" },
-                { type: "text", value: " delivery: " },
+                { type: "text", value: "Built the user " },
+                { type: "highlight", value: "onboarding flows" },
+                { type: "text", value: " and customer " },
+                { type: "highlight", value: "dashboard" },
+                { type: "text", value: " in " },
                 { type: "highlight", value: "Next.js" },
-                { type: "text", value: ", " },
-                { type: "highlight", value: "Node.js" },
-                { type: "text", value: ", APIs, and " },
-                { type: "highlight", value: "AI integration" },
-                { type: "text", value: " - from design to production, shipping at scale." }
+                { type: "text", value: " for Gradly, an insurance & onboarding platform for international students in the US, serving " },
+                { type: "highlight", value: "15,000+ users" },
+                { type: "text", value: "." }
             ],
             [
-                { type: "text", value: "Drive " },
-                { type: "highlight", value: "devops" },
-                { type: "text", value: " and infra: CI/CD, " },
-                { type: "highlight", value: "Docker" },
-                { type: "text", value: ", " },
-                { type: "highlight", value: "Kubernetes" },
-                { type: "text", value: ", " },
-                { type: "highlight", value: "AWS" },
-                { type: "text", value: ", and observability so systems stay reliable and fast." }
-            ],
-            [
-                { type: "text", value: "Ship features using " },
-                { type: "highlight", value: "multiple AI models" },
-                { type: "text", value: " and " },
-                { type: "highlight", value: "vector embeddings" },
-                { type: "text", value: " for search, recommendations, and intelligent workflows." }
+                { type: "text", value: "Shipped " },
+                { type: "highlight", value: "internal tools" },
+                { type: "text", value: " and admin workflows that run the team's day-to-day operations." }
             ]
         ],
         links: {
@@ -132,18 +118,24 @@ export const experience: Readonly<Experience[]> = [
         ].filter((skill): skill is Skill => skill !== undefined),
         bullets: [
             [
-                { type: "text", value: "Built " },
-                { type: "highlight", value: "full-stack" },
-                { type: "text", value: " features for TheFocus.AI's " },
-                { type: "highlight", value: "AI products" },
-                { type: "text", value: " - product UI, APIs, and integrations - on a contract engagement." }
+                { type: "text", value: "Rebuilt an " },
+                { type: "highlight", value: "invite-only professional network" },
+                { type: "text", value: " where members refer peers and showcase their work, with an " },
+                { type: "highlight", value: "admin dashboard" },
+                { type: "text", value: ", " },
+                { type: "highlight", value: "AI features" },
+                { type: "text", value: ", and a " },
+                { type: "highlight", value: "drag-and-drop" },
+                { type: "text", value: " UI." }
             ],
             [
-                { type: "text", value: "Implemented " },
-                { type: "highlight", value: "LLM-powered workflows" },
-                { type: "text", value: " and shipped them to " },
-                { type: "highlight", value: "production" },
-                { type: "text", value: " quickly, working closely with the product team." }
+                { type: "text", value: "Made the app " },
+                { type: "highlight", value: "~80–90% faster" },
+                { type: "text", value: " by overhauling its " },
+                { type: "highlight", value: "infrastructure" },
+                { type: "text", value: ", " },
+                { type: "highlight", value: "authentication" },
+                { type: "text", value: ", and rendering." }
             ]
         ],
         links: {
@@ -163,10 +155,10 @@ export const experience: Readonly<Experience[]> = [
         }
     },
     {
-        company: "AgentProd",
+        company: "Muze",
         position: "Software Engineer",
         location: "Remote (United States)",
-        // AgentProd - >2 years experience per your profile; using an ongoing/present end date
+        // Muze (muzecmo.com) - AI marketing platform; company was formerly shown as AgentProd.
         startDate: "2024-06-01",
         endDate: "2025-10-01",
         tech: [
@@ -187,32 +179,42 @@ export const experience: Readonly<Experience[]> = [
         ].filter((skill): skill is Skill => skill !== undefined),
         bullets: [
             [
-                { type: "text", value: "Full-stack development for an " },
-                { type: "highlight", value: "AI ads platform (Muze)" },
-                { type: "text", value: ": built product UI, " },
-                { type: "highlight", value: "APIs" },
-                { type: "text", value: ", and integrations that power " },
-                { type: "highlight", value: "AI-driven campaign creation" },
-                { type: "text", value: ", creative generation, and auto-optimization for " },
+                { type: "text", value: "Built " },
+                { type: "highlight", value: "Muze" },
+                { type: "text", value: ", an " },
+                { type: "highlight", value: "AI marketing platform" },
+                { type: "text", value: ", " },
+                { type: "highlight", value: "from scratch" },
+                { type: "text", value: ": connect " },
                 { type: "highlight", value: "Meta & Google Ads" },
+                { type: "text", value: ", auto-analyze live campaigns and competitors, then generate and publish " },
+                { type: "highlight", value: "AI image & video ads" },
                 { type: "text", value: "." }
             ],
             [
-                { type: "text", value: "Owned " },
-                { type: "highlight", value: "devops and infra" },
-                { type: "text", value: ": " },
+                { type: "text", value: "Cut " },
+                { type: "highlight", value: "API latency ~40%" },
+                { type: "text", value: ", speeding up campaign analysis and creative generation." }
+            ],
+            [
+                { type: "text", value: "Shipped product UI and AI ad flows that drove a " },
+                { type: "highlight", value: "~25% increase in user engagement" },
+                { type: "text", value: "." }
+            ],
+            [
+                { type: "text", value: "Overhauled " },
                 { type: "highlight", value: "CI/CD" },
-                { type: "text", value: ", " },
+                { type: "text", value: " and " },
                 { type: "highlight", value: "Docker" },
-                { type: "text", value: "-based deployments, and cloud (" },
-                { type: "highlight", value: "EC2, CloudFront, S3" },
-                { type: "text", value: ") to keep the platform reliable and scalable for " },
-                { type: "highlight", value: "24/7 ad optimization" },
+                { type: "text", value: "-based deploys on " },
+                { type: "highlight", value: "AWS (EC2, CloudFront, S3)" },
+                { type: "text", value: ", cutting " },
+                { type: "highlight", value: "deployment time from days to hours" },
                 { type: "text", value: "." }
             ]
         ],
         links: {
-            image: `${env.NEXT_PUBLIC_CLOUDFRONT_URL}/agentprod_logo.jpeg`,
+            image: "/muze-logo.png",
             companyUrl: {
                 url: "https://muzecmo.com/",
                 icon: getLinkIconByType("companyUrl")?.icon
@@ -252,33 +254,35 @@ export const experience: Readonly<Experience[]> = [
         ].filter((skill): skill is Skill => skill !== undefined),
         bullets: [
             [
-                { type: "text", value: "Built " },
+                { type: "text", value: "Shipped client products end-to-end, including " },
+                { type: "highlight", value: "Craft Trading" },
+                { type: "text", value: " - a " },
                 { type: "highlight", value: "React Native (Expo)" },
-                { type: "text", value: " apps with real-time features using " },
-                { type: "highlight", value: "Redis pub/sub" },
-                { type: "text", value: " and " },
-                { type: "highlight", value: "WebSockets" },
-                { type: "text", value: " for live updates and sync." }
-            ],
-            [
-                { type: "text", value: "Web applications with " },
-                { type: "highlight", value: "AI integration" },
-                { type: "text", value: ", " },
-                { type: "highlight", value: "backend" },
-                { type: "text", value: " APIs, " },
-                { type: "highlight", value: "hosting" },
-                { type: "text", value: ", and " },
-                { type: "highlight", value: "devops" },
-                { type: "text", value: " - " },
-                { type: "highlight", value: "Docker" },
-                { type: "text", value: ", CI/CD, Vercel, and cloud (EC2, CloudFront) for deployment and observability." }
-            ],
-            [
-                { type: "text", value: "Partnered with " },
-                { type: "highlight", value: "startup founders" },
-                { type: "text", value: " across varied products, shipping solutions that " },
-                { type: "highlight", value: "reach scale" },
+                { type: "text", value: " paper-trading app for the " },
+                { type: "highlight", value: "Indian stock market" },
+                { type: "text", value: ", live on the " },
+                { type: "highlight", value: "App Store" },
                 { type: "text", value: "." }
+            ],
+            [
+                { type: "text", value: "Built " },
+                { type: "highlight", value: "InfiniteUGC" },
+                { type: "text", value: ", an " },
+                { type: "highlight", value: "AI UGC" },
+                { type: "text", value: " platform that turns scripts into TikTok-native video ads, used by " },
+                { type: "highlight", value: "50+ brands" },
+                { type: "text", value: " across " },
+                { type: "highlight", value: "32+ languages" },
+                { type: "text", value: "." }
+            ],
+            [
+                { type: "text", value: "Owned the full stack on each: " },
+                { type: "highlight", value: "real-time sync" },
+                { type: "text", value: " (Redis pub/sub, WebSockets), " },
+                { type: "highlight", value: "AI integration" },
+                { type: "text", value: ", backend APIs, and " },
+                { type: "highlight", value: "devops" },
+                { type: "text", value: " (Docker, CI/CD, Vercel, EC2/CloudFront)." }
             ]
         ],
         links: {

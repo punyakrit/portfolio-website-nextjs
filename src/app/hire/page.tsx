@@ -33,8 +33,6 @@ export const metadata: Metadata = createMetadata({
     "full-stack web developer",
     "software engineer for hire",
     "remote developer for hire",
-    "best full-stack developer",
-    "top full-stack developer",
     "hire developer for startup",
     "MVP developer",
   ],

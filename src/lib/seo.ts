@@ -22,37 +22,17 @@ export const SEO_CONFIG = {
   twitterHandle: "@punyakrit_22",
 } as const;
 
+// A small, honest set of role/technology terms. The meta keywords tag is
+// ignored by major search engines, so this is kept short and free of
+// superlatives ("best"/"top"/"senior") and location stuffing on purpose.
 export const PRIMARY_KEYWORDS: string[] = [
-  // Core target keywords
-  "best full-stack developer",
-  "best full-stack developer",
-  "full-stack developer",
-  "hire full-stack developer",
-  "full-stack developer for hire",
-  "software engineer for hire",
-  "software engineer for hire",
-  "remote developer",
-
-  // Service variations
-  "hire web developer",
-  "hire full-stack developer",
-  "hire react developer",
-  "hire nextjs developer",
-  "MVP developer",
-  "startup developer",
-
-  // Location-agnostic (global reach)
-  "full-stack developer USA",
-  "full-stack developer UK",
-  "remote developer for hire",
-  "developer for startups",
-
-  // Technology specific
+  "Full-Stack Engineer",
+  "Full-Stack Developer",
   "Next.js Developer",
   "React Developer",
+  "React Native Developer",
   "TypeScript Developer",
   "Node.js Developer",
-  "Full-Stack Developer",
 ];
 
 export function generatePersonSchema() {

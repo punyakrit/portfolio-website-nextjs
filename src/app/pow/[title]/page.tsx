@@ -356,7 +356,7 @@ export default async function ProjectPage({
           </aside>
         </div>
 
-        {/* ── Problem → Solution — the signature contrast ──────── */}
+        {/* ── Problem → Solution - the signature contrast ──────── */}
         <section className="mb-14 grid items-stretch gap-4 md:grid-cols-2">
           <div className="rounded-2xl border border-border/50 bg-card/20 p-6 sm:p-8">
             <div className="mb-4 inline-flex items-center gap-2 text-muted-foreground">
@@ -383,7 +383,7 @@ export default async function ProjectPage({
           </div>
         </section>
 
-        {/* ── Why I built this — a personal aside ──────────────── */}
+        {/* ── Why I built this - a personal aside ──────────────── */}
         <section>
           <div className="rounded-2xl border border-border/50 bg-card/20 p-6 sm:p-8">
             <div className="grid gap-4 md:grid-cols-[13rem_minmax(0,1fr)] md:gap-10">

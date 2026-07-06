@@ -1,10 +1,10 @@
-import React, { Suspense } from "react";
+import React from "react";
 import type { Metadata } from "next";
 import Hero from "@/components/home/Hero";
 import About from "@/components/home/About";
 import HorizontalLine from "@/components/global/HorizontalLine";
 import Experience from "@/components/home/Experience";
-import Projects from "@/components/pow/Projects";
+import FeaturedProjects from "@/components/pow/FeaturedProjects";
 import Github from "@/components/home/Github";
 import Stack from "@/components/home/Stack";
 import Cta from "@/components/home/Cta";
@@ -19,30 +19,6 @@ export const metadata: Metadata = {
     "Punyakrit Singh Makhni | Full-Stack Engineer for Hire - Web & Mobile",
   description:
     "Looking to hire a top full-stack engineer? I'm Punyakrit Singh Makhni, a full-stack developer specializing in Next.js, React, React Native (Expo), TypeScript & Node.js. Available for remote projects in US, UK, Europe & worldwide. Book a free consultation.",
-  keywords: [
-    "best full-stack developer",
-    "senior full-stack developer",
-    "hire full-stack developer",
-    "full-stack developer",
-    "senior software engineer",
-    "software engineer for hire",
-    "remote developer",
-    "full-stack web developer",
-    "hire web developer",
-    "best developer for hire",
-    "MVP developer",
-    "startup developer",
-    "developer for startups",
-    "full-stack developer USA",
-    "full-stack developer UK",
-    "remote developer for hire",
-    "Next.js developer",
-    "React developer",
-    "React Native Expo developer",
-    "TypeScript developer",
-    "full-stack developer for hire",
-    "Punyakrit Singh Makhni",
-  ],
   alternates: {
     canonical: "/",
   },
@@ -114,21 +90,7 @@ function HomePage() {
       <HorizontalLine />
 
       <section aria-labelledby="projects-heading">
-        <Suspense
-          fallback={
-            <div className="px-4 sm:px-6 md:px-8">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">
-                Featured Projects
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                <div className="rounded-2xl border-2 border-dashed border-muted h-48 animate-pulse" />
-                <div className="rounded-2xl border-2 border-dashed border-muted h-48 animate-pulse" />
-              </div>
-            </div>
-          }
-        >
-          <Projects showAll={false} />
-        </Suspense>
+        <FeaturedProjects />
       </section>
 
       <HorizontalLine />

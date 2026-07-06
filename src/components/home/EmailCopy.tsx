@@ -13,7 +13,7 @@ export default function EmailCopy({ email }: { email: string }) {
       setCopied(true);
       setTimeout(() => setCopied(false), 1500);
     } catch {
-      // clipboard unavailable — no-op
+      // clipboard unavailable - no-op
     }
   };
 

@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
 import React from 'react'
-import { GitHubCalendar } from 'react-github-calendar'
+import { ActivityCalendar, type Activity } from 'react-activity-calendar'
 import { useTheme } from 'next-themes'
 import { motion } from 'framer-motion'
 
 interface GithubCalendarWrapperProps {
-  username: string
+  data: Activity[]
 }
 
-// Isolates the third-party contribution calendar so an intermittent render or
-// data error degrades gracefully instead of crashing the whole page.
+// Isolates the third-party contribution calendar so an intermittent render
+// error degrades gracefully instead of crashing the whole page.
 class CalendarErrorBoundary extends React.Component<
   { fallback: React.ReactNode; children: React.ReactNode },
   { hasError: boolean }
@@ -24,38 +24,15 @@ class CalendarErrorBoundary extends React.Component<
   }
 }
 
-const GithubCalendarWrapper = ({ username }: GithubCalendarWrapperProps) => {
+// Client hydration layer only. The contribution data is fetched on the server
+// and passed in as `data`, so the grid is present in the initial HTML; this
+// component just adds theming and the entrance animation on hydration.
+const GithubCalendarWrapper = ({ data }: GithubCalendarWrapperProps) => {
   const { resolvedTheme } = useTheme()
-  const [mounted, setMounted] = React.useState(false)
-
-  React.useEffect(() => {
-    setMounted(true)
-  }, [])
 
   const theme = {
     light: ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"],
     dark: ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"],
-  }
-
-  if (!mounted) {
-    return (
-      <div className="w-full max-w-full overflow-hidden">
-        <div 
-          className="w-full max-w-full overflow-x-auto overflow-y-hidden" 
-          style={{ 
-            WebkitOverflowScrolling: 'touch',
-            scrollbarWidth: 'thin',
-            msOverflowStyle: 'auto'
-          }}
-        >
-          <div className="inline-block min-w-full p-2 sm:p-3 md:p-4">
-            <div className="min-w-max h-[170px] flex items-center justify-center">
-              <p className='text-muted-foreground text-sm sm:text-base'>Loading contributions...</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
   }
 
   return (
@@ -65,9 +42,9 @@ const GithubCalendarWrapper = ({ username }: GithubCalendarWrapperProps) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div 
-        className="w-full max-w-full overflow-x-hidden overflow-y-hidden scrollbar-thin" 
-        style={{ 
+      <div
+        className="w-full max-w-full overflow-x-hidden overflow-y-hidden scrollbar-thin"
+        style={{
           WebkitOverflowScrolling: 'touch',
           scrollbarWidth: 'thin',
           msOverflowStyle: 'auto'
@@ -84,14 +61,18 @@ const GithubCalendarWrapper = ({ username }: GithubCalendarWrapperProps) => {
                 </div>
               }
             >
-              <GitHubCalendar
-                username={username}
+              <ActivityCalendar
+                data={data}
                 colorScheme={resolvedTheme === "light" ? "light" : "dark"}
                 fontSize={12}
                 blockSize={10}
                 blockMargin={2}
+                maxLevel={4}
                 showWeekdayLabels={true}
                 theme={theme}
+                labels={{
+                  totalCount: "{{count}} contributions in the last year",
+                }}
               />
             </CalendarErrorBoundary>
           </div>
@@ -102,5 +83,3 @@ const GithubCalendarWrapper = ({ username }: GithubCalendarWrapperProps) => {
 }
 
 export default GithubCalendarWrapper
-
-
