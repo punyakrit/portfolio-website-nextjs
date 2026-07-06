@@ -83,7 +83,7 @@ export const metadata: Metadata = {
     siteName: `${SEO_CONFIG.name} Portfolio`,
     images: [
       {
-        url: `${SITE_URL}/card1.png`,
+        url: `${SITE_URL}/og.jpg`,
         width: 1200,
         height: 630,
         alt: `${SEO_CONFIG.name} - Full-Stack Engineer`,
@@ -97,7 +97,7 @@ export const metadata: Metadata = {
     title: `${SEO_CONFIG.name} | Full-Stack Engineer`,
     description:
       "Full-stack engineer building production-grade web apps with Next.js, React & TypeScript. Available for remote projects globally.",
-    images: [`${SITE_URL}/card1.png`],
+    images: [`${SITE_URL}/og.jpg`],
     site: SEO_CONFIG.twitterHandle,
     creator: SEO_CONFIG.twitterHandle,
   },
