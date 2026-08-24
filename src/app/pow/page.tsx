@@ -1,8 +1,9 @@
-import ProjectsExplorer from "@/components/pow/ProjectsExplorer";
+import React from "react";
 import type { Metadata } from "next";
+import { projects } from "@/lib/projectsData";
+import ProofOfWork from "@/components/doc/ProofOfWork";
 import { BreadcrumbJsonLd, ItemListJsonLd } from "@/components/seo/JsonLd";
 import { SITE_URL, SEO_CONFIG } from "@/lib/seo";
-import { projects } from "@/lib/projectsData";
 
 function getSlug(title: string) {
   return title
@@ -12,31 +13,14 @@ function getSlug(title: string) {
 }
 
 export const metadata: Metadata = {
-  title: "Web Development Projects & Case Studies | Production-Grade Apps",
+  title: "Projects | AI Agents, LLM Pipelines, RAG",
   description:
-    "Explore real-world web development projects built by Punyakrit Singh Makhni. Case studies featuring Next.js, React, TypeScript applications including CodeLens (AI code explorer), Pulse (uptime monitoring), and more. See proof of work from a top full-stack engineer.",
-  keywords: [
-    "Web Development Projects",
-    "Developer Portfolio Projects",
-    "Production-Grade Web Apps",
-    "Next.js Projects",
-    "React Case Studies",
-    "Full-Stack Developer Portfolio",
-    "Real-World Web Applications",
-    "Open Source Projects",
-    "SaaS Products",
-    "Engineering Work",
-    "CodeLens AI",
-    "Pulse Monitoring",
-    "TypeScript Applications",
-  ],
-  alternates: {
-    canonical: "/pow",
-  },
+    "AI systems built by Punyakrit Singh Makhni, with the architecture decisions behind them. A multi-model video agent, a generative video pipeline, RAG over large codebases, and distributed monitoring.",
+  alternates: { canonical: "/pow" },
   openGraph: {
-    title: "Web Development Projects & Case Studies | Punyakrit Singh Makhni",
+    title: "Projects | Punyakrit Singh Makhni",
     description:
-      "Real-world web development projects and case studies. Production-grade applications built with Next.js, React, TypeScript by a top full-stack engineer.",
+      "AI agent systems and LLM pipelines, with the engineering decisions behind them.",
     url: `${SITE_URL}/pow`,
     type: "website",
     images: [
@@ -44,32 +28,15 @@ export const metadata: Metadata = {
         url: `${SITE_URL}/og.jpg`,
         width: 1200,
         height: 630,
-        alt: "Punyakrit Singh Makhni Portfolio Card",
+        alt: `${SEO_CONFIG.name} - AI Engineer`,
       },
     ],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Web Development Projects & Case Studies | Punyakrit Singh Makhni",
-    description:
-      "Real-world web development projects and case studies. Production-grade applications built with Next.js, React, TypeScript by a top full-stack engineer.",
-    images: [`${SITE_URL}/og.jpg`],
-    site: SEO_CONFIG.twitterHandle,
-    creator: SEO_CONFIG.twitterHandle,
-  },
 };
 
-function ProjectsPage() {
-  const portfolioProjects = projects.map((project) => ({
-    title: project.title,
-    description: project.description,
-    url: `${SITE_URL}/pow/${getSlug(project.title)}`,
-    image: project.image,
-    tech: project.tech,
-  }));
-
+export default function ProjectsPage() {
   return (
-    <div className="px-2 md:px-8 md:my-32 my-24">
+    <>
       <BreadcrumbJsonLd
         items={[
           { name: "Home", url: SITE_URL },
@@ -77,27 +44,16 @@ function ProjectsPage() {
         ]}
       />
       <ItemListJsonLd
-        items={portfolioProjects.map((project) => ({
+        items={projects.map((project) => ({
           name: project.title,
           description: project.description,
-          url: project.url,
+          url: `${SITE_URL}/pow/${getSlug(project.title)}`,
           image: project.image,
         }))}
       />
 
-      <header className="px-4 sm:px-6 md:px-0 mb-8">
-        <h1 className="text-3xl sm:text-4xl font-bold mb-3">
-          Web Development Projects & Case Studies
-        </h1>
-        <p className="text-muted-foreground text-base sm:text-lg max-w-2xl">
-          Real production-grade applications I've built - from AI-powered developer tools to uptime monitoring platforms. 
-          Each project demonstrates end-to-end development: problem definition, architecture, implementation, and deployment.
-        </p>
-      </header>
-
-      <ProjectsExplorer />
-    </div>
+      <h1 className="doc-label">what i&apos;ve built</h1>
+      <ProofOfWork />
+    </>
   );
 }
-
-export default ProjectsPage;

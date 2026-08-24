@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import { Map, MapMarker, MarkerContent, MarkerTooltip } from "@/components/ui/map";
-import { Card } from "@/components/ui/card";
 
 interface UserLocation {
   ip: string;
@@ -162,7 +161,7 @@ function World() {
   return (
     <div className="px-4 sm:px-6 md:px-8" aria-labelledby="world-heading">
       <div className="relative w-full max-w-7xl mx-auto">
-        <Card className="h-[400px]  p-0 overflow-hidden relative">
+        <div className="h-[400px] overflow-hidden relative rounded-lg border border-rule">
           <div className="h-full w-full">
             <Map center={[0, 20]} zoom={1.5} theme="dark">
             {userLocations.map((location, index) => (
@@ -203,19 +202,19 @@ function World() {
           </div>
 
           <div className="absolute top-4 left-4 z-10">
-            <Card className="bg-black/80 dark:bg-black/90 backdrop-blur-sm border-gray-800 p-3 min-w-[140px] hover:bg-black/90 transition-colors duration-300 group cursor-default">
+            <div className="rounded-lg border border-gray-800 bg-black/80 dark:bg-black/90 backdrop-blur-sm p-3 min-w-[140px] hover:bg-black/90 transition-colors duration-300 group cursor-default">
               <h3 className="text-xs font-semibold text-white/80 uppercase tracking-wider group-hover:text-green-400 transition-colors">
                 Total Visits
               </h3>
-              <div className="text-2xl -mt-3 font-bold text-white mb-1 group-hover:scale-105 transition-transform origin-left">
+              <div className="text-2xl font-bold text-white mb-1 group-hover:scale-105 transition-transform origin-left">
                 {loading ? "..." : totalVisits.toLocaleString()}
               </div>
               
-            </Card>
+            </div>
           </div>
 
           <div className="absolute bottom-3 left-3 z-10">
-            <Card className="bg-black/80 dark:bg-black/90 backdrop-blur-sm border-gray-800 p-2">
+            <div className="rounded-lg border border-gray-800 bg-black/80 dark:bg-black/90 backdrop-blur-sm p-2">
               <div className="flex  gap-2">
                 <div 
                   className="flex items-center gap-2 cursor-pointer hover:bg-white/10 p-1 rounded transition-colors"
@@ -242,9 +241,9 @@ function World() {
                   <span className={`text-[8px] transition-colors ${hoveredLevel === "low" ? "text-white font-bold" : "text-white/70"}`}>Low</span>
                 </div>
               </div>
-            </Card>
+            </div>
           </div>
-        </Card>
+        </div>
       </div>
     </div>
   );

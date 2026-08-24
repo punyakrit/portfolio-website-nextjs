@@ -1,31 +1,23 @@
 import React from "react";
 import type { Metadata } from "next";
-import Hero from "@/components/home/Hero";
-import About from "@/components/home/About";
-import HorizontalLine from "@/components/global/HorizontalLine";
-import Experience from "@/components/home/Experience";
-import FeaturedProjects from "@/components/pow/FeaturedProjects";
-import Github from "@/components/home/Github";
-import Stack from "@/components/home/Stack";
-import Cta from "@/components/home/Cta";
+import Masthead from "@/components/doc/Masthead";
+import Section from "@/components/doc/Section";
+import ProofOfWork from "@/components/doc/ProofOfWork";
+import Experience from "@/components/doc/Experience";
+import Stack from "@/components/doc/Stack";
+import CommitsSection from "@/components/doc/CommitsSection";
 import { BreadcrumbJsonLd, FAQJsonLd } from "@/components/seo/JsonLd";
-import SEOLinks from "@/components/seo/SEOLinks";
 import { SITE_URL, SEO_CONFIG } from "@/lib/seo";
-import World from "@/components/home/World";
-
 
 export const metadata: Metadata = {
-  title:
-    "Punyakrit Singh Makhni | Full-Stack Engineer for Hire - Web & Mobile",
+  title: "Punyakrit Singh Makhni | AI Engineer - Agents, LLM Pipelines, RAG",
   description:
-    "Looking to hire a top full-stack engineer? I'm Punyakrit Singh Makhni, a full-stack developer specializing in Next.js, React, React Native (Expo), TypeScript & Node.js. Available for remote projects in US, UK, Europe & worldwide. Book a free consultation.",
-  alternates: {
-    canonical: "/",
-  },
+    "I'm Punyakrit Singh Makhni, an AI engineer who builds multi-model agent systems and LLM pipelines that run in production - agent orchestration, RAG, evals, and the infrastructure underneath. Python, FastAPI, Gemini, OpenAI, pgvector, TypeScript, Next.js.",
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Punyakrit Singh Makhni | Full-Stack Engineer for Hire",
+    title: "Punyakrit Singh Makhni | AI Engineer",
     description:
-      "Hire a top full-stack engineer for your project. I build production-grade web and mobile applications with Next.js, React, React Native (Expo) & TypeScript. Serving clients in US, UK, Europe & worldwide.",
+      "AI engineer building agents and multi-model pipelines that hold up in production. An 8-phase video agent across four models, an ad-evaluation agent, and RAG over large codebases.",
     url: SITE_URL,
     type: "profile",
     images: [
@@ -33,97 +25,72 @@ export const metadata: Metadata = {
         url: `${SITE_URL}/og.jpg`,
         width: 1200,
         height: 630,
-        alt: `${SEO_CONFIG.name} - Full-Stack Engineer`,
+        alt: `${SEO_CONFIG.name} - AI Engineer`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Punyakrit Singh Makhni | Hire a Top Full-Stack Engineer",
+    title: "Punyakrit Singh Makhni | AI Engineer",
     description:
-      "I'm a full-stack engineer building production-grade web and mobile apps. Specializing in Next.js, React, React Native (Expo), TypeScript. Available for remote projects globally.",
+      "I build AI agents and multi-model pipelines that hold up in production - systems where models make the judgment calls and deterministic code does the execution.",
     images: [`${SITE_URL}/og.jpg`],
     site: SEO_CONFIG.twitterHandle,
     creator: SEO_CONFIG.twitterHandle,
   },
 };
 
-const homepageFAQs = [
+const faqs = [
   {
-    question: "What services does Punyakrit offer as a full-stack engineer?",
+    question: "What kind of AI systems has Punyakrit built?",
     answer:
-      "I offer full-stack web and mobile development including custom web applications, React Native (Expo) mobile apps, SaaS products, frontend development with React/Next.js, backend development with Node.js/FastAPI, database design, API development, and deployment on cloud platforms like AWS and Vercel.",
+      "Multi-model agent pipelines and LLM applications in production. An AI Demo Video Builder that orchestrates four models across an eight-phase pipeline to turn screen recordings into narrated demos. Muze CMO, an AI marketing agent that reads live Meta and Google Ads data, predicts whether a creative will perform before spend, and generates new image and video ads. InfiniteUGC, an AI video pipeline used by 50+ brands across 32+ languages. And CodeLens, RAG over large codebases using pgvector.",
   },
   {
-    question: "How can I hire Punyakrit for my project?",
+    question: "How does Punyakrit approach building reliable AI agents?",
     answer:
-      "You can book a free consultation call through my calendar at cal.com/punyakrit. We'll discuss your project requirements, timeline, and budget. I work with startups, businesses, and individuals on both short-term and long-term projects.",
+      "By drawing a hard line between judgment and execution: the model makes editorial decisions, deterministic code carries them out. In the AI Demo Video Builder that means a reconciliation phase with zero model calls, evidence grading that rejects unsupported claims, and a plan that passes 32 validation checks before any rendering starts.",
   },
   {
-    question: "What tech stack does Punyakrit specialize in?",
+    question: "What is Punyakrit looking for?",
     answer:
-      "I specialize in modern web and mobile technologies including Next.js, React, React Native (Expo), TypeScript, Node.js, FastAPI, PostgreSQL, Redis, Tailwind CSS, and cloud services like AWS, Vercel, and Supabase. I focus on building scalable, production-ready web and mobile applications.",
-  },
-  {
-    question: "Does Punyakrit work with international clients?",
-    answer:
-      "Yes, I work with clients globally. I work remotely across all time zones and have collaborated with startups and companies in the US, Europe, and Asia.",
+      "AI engineer roles at startups building agent systems, LLM products, or applied AI infrastructure. Remote, working across US and European time zones.",
   },
 ];
 
-function HomePage() {
+export default function HomePage() {
   return (
-    <div>
-      <BreadcrumbJsonLd
-        items={[{ name: "Home", url: SITE_URL }]}
-      />
-      <FAQJsonLd faqs={homepageFAQs} />
+    <>
+      <BreadcrumbJsonLd items={[{ name: "Home", url: SITE_URL }]} />
+      <FAQJsonLd faqs={faqs} />
 
-      <Hero />
-      <About />
-      <HorizontalLine />
+      <Masthead />
 
-      <section aria-labelledby="experience-heading">
-        <Experience completeView={false} />
-      </section>
+      <Section label="where i've worked" id="experience">
+        <Experience />
+      </Section>
 
-      <HorizontalLine />
+      <Section label="what i've built" id="work">
+        <ProofOfWork />
+      </Section>
 
-      <section aria-labelledby="projects-heading">
-        <FeaturedProjects />
-      </section>
-
-      <HorizontalLine />
-
-      <section aria-labelledby="github-heading">
-        <Github />
-      </section>
-
-      <div className="hidden md:block">
-        <HorizontalLine />
-      </div>
-
-      <section aria-labelledby="stack-heading">
+      <Section label="what i work with" id="stack">
         <Stack />
-      </section>
+      </Section>
 
-      <HorizontalLine />
+      <Section label="commits" id="commits">
+        <CommitsSection />
+      </Section>
 
-      <section aria-labelledby="contact-heading">
-        <Cta />
-      </section>
-      <HorizontalLine />
-
-      {/* <section aria-labelledby="seo-links-heading">
-        <SEOLinks />
-      </section>
-      <HorizontalLine /> */}
-
-      <section aria-labelledby="world-heading">
-        <World />
-      </section>
-    </div>
+      <Section label="get in touch" id="contact">
+        <p className="leading-relaxed">
+          looking for ai engineer roles at startups.{" "}
+          <a href="https://cal.com/punyakrit" target="_blank" rel="noopener noreferrer">
+            book a call
+          </a>{" "}
+          or <a href="mailto:punyakritsinghmakhni@gmail.com">email me</a>.
+        </p>
+      </Section>
+    </>
   );
 }
-
-export default HomePage;

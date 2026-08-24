@@ -1,17 +1,6 @@
 import { MetadataRoute } from "next";
 import { projects } from "@/lib/projectsData";
 import { SITE_URL } from "@/lib/seo";
-import {
-  optimizeSitemapPages,
-  type SitemapPage,
-} from "@/lib/seo/sitemap";
-import {
-  ALL_LOCATIONS,
-  SKILLS,
-  ROLES,
-  INDUSTRIES,
-  USE_CASES,
-} from "@/lib/seo/programmatic";
 
 function getProjectSlug(title: string) {
   return title
@@ -22,10 +11,12 @@ function getProjectSlug(title: string) {
 
 export const revalidate = 3600;
 
+// A portfolio has a handful of real pages. Everything here is a page a human
+// would actually want to land on - no programmatic long tail.
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const currentDate = new Date();
 
-  const staticPages: SitemapPage[] = [
+  return [
     {
       url: SITE_URL,
       lastModified: currentDate,
@@ -33,119 +24,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1,
     },
     {
-      url: `${SITE_URL}/hire`,
-      lastModified: currentDate,
-      changeFrequency: "weekly",
-      priority: 0.95,
-    },
-    {
-      url: `${SITE_URL}/services`,
-      lastModified: currentDate,
-      changeFrequency: "weekly",
-      priority: 0.95,
-    },
-    {
       url: `${SITE_URL}/pow`,
       lastModified: currentDate,
       changeFrequency: "weekly",
       priority: 0.9,
     },
-    {
-      url: `${SITE_URL}/work`,
+    ...projects.map((project) => ({
+      url: `${SITE_URL}/pow/${getProjectSlug(project.title)}`,
       lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
   ];
-
-  // Programmatic SEO pages - Location pages
-  const locationPages: SitemapPage[] = ALL_LOCATIONS.map((location) => ({
-    url: `${SITE_URL}/hire/location/${location.slug}`,
-    lastModified: currentDate,
-    changeFrequency: "monthly" as const,
-    priority: location.isTechHub ? 0.85 : 0.75,
-  }));
-
-  // Programmatic SEO pages - Skill pages
-  const skillPages: SitemapPage[] = SKILLS.map((skill) => ({
-    url: `${SITE_URL}/hire/${skill.slug}`,
-    lastModified: currentDate,
-    changeFrequency: "monthly" as const,
-    priority: skill.proficiency === "expert" ? 0.85 : 0.75,
-  }));
-
-  // Programmatic SEO pages - Role pages
-  const rolePages: SitemapPage[] = ROLES.map((role) => ({
-    url: `${SITE_URL}/hire/${role.slug}`,
-    lastModified: currentDate,
-    changeFrequency: "monthly" as const,
-    priority: 0.8,
-  }));
-
-  // Programmatic SEO pages - Industry pages
-  const industryPages: SitemapPage[] = INDUSTRIES.map((industry) => ({
-    url: `${SITE_URL}/services/${industry.slug}`,
-    lastModified: currentDate,
-    changeFrequency: "monthly" as const,
-    priority: 0.8,
-  }));
-
-  // Programmatic SEO pages - Use Case pages
-  const useCasePages: SitemapPage[] = USE_CASES.map((useCase) => ({
-    url: `${SITE_URL}/services/use-case/${useCase.slug}`,
-    lastModified: currentDate,
-    changeFrequency: "monthly" as const,
-    priority: 0.85, // High priority for use cases
-  }));
-
-  // Programmatic SEO pages - Skill + Location combination pages
-  // Reduced from 200 to 24 to fix mass non-indexing. Only high-intent combos
-  // are submitted. Other combos still resolve at their URL but are noindexed.
-  const TOP_SKILLS_FOR_COMBOS = [
-    "react",
-    "nextjs",
-    "fullstack-development",
-    "react-native-expo",
-  ];
-
-  const TOP_LOCATIONS_FOR_COMBOS = [
-    "san-francisco",
-    "new-york",
-    "london",
-    "berlin",
-    "remote",
-    "worldwide",
-  ];
-
-  const combinationPages: SitemapPage[] = [];
-  for (const skill of TOP_SKILLS_FOR_COMBOS) {
-    for (const location of TOP_LOCATIONS_FOR_COMBOS) {
-      combinationPages.push({
-        url: `${SITE_URL}/hire/${skill}/in/${location}`,
-        lastModified: currentDate,
-        changeFrequency: "monthly" as const,
-        priority: 0.8, // High priority for combination pages
-      });
-    }
-  }
-
-  const projectPages: SitemapPage[] = projects.map((project) => ({
-    url: `${SITE_URL}/pow/${getProjectSlug(project.title)}`,
-    lastModified: currentDate,
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-  }));
-
-  const allPages: SitemapPage[] = [
-    ...staticPages,
-    ...locationPages,
-    ...skillPages,
-    ...rolePages,
-    ...industryPages,
-    ...useCasePages,
-    ...combinationPages,
-    ...projectPages,
-  ];
-
-  return optimizeSitemapPages(allPages);
 }

@@ -1,9 +1,14 @@
 import { SITE_URL, SEO_CONFIG } from "../seo";
-import type { BreadcrumbItem as BreadcrumbItemType, FAQItem as FAQItemType } from "./programmatic/types";
 
-// Re-export types from programmatic module for backwards compatibility
-export type BreadcrumbItem = BreadcrumbItemType;
-export type FAQItem = FAQItemType;
+export interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
 
 // Local interface definitions for backward compatibility
 export interface BreadcrumbItemLocal {

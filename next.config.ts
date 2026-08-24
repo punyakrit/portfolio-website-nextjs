@@ -28,29 +28,17 @@ const nextConfig: NextConfig = {
     contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
+  serverExternalPackages: ["geoip-lite"],
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
   async redirects() {
     return [
+      // /hire and /services are gone entirely - see src/middleware.ts, which
+      // 308s the whole tree. No per-slug redirects needed here any more.
       {
-        source: "/hire/freelance-developer",
-        destination: "/hire/fullstack-developer",
-        permanent: true,
-      },
-      {
-        source: "/hire/freelance-developer/in/:location",
-        destination: "/hire/fullstack-developer/in/:location",
-        permanent: true,
-      },
-      {
-        source: "/hire/contract-developer",
-        destination: "/hire/fullstack-developer",
-        permanent: true,
-      },
-      {
-        source: "/hire/contract-developer/in/:location",
-        destination: "/hire/fullstack-developer/in/:location",
+        source: "/work",
+        destination: "/",
         permanent: true,
       },
       {
@@ -76,22 +64,9 @@ const nextConfig: NextConfig = {
     } : false,
   },
   experimental: {
-    optimizePackageImports: [
-      "lucide-react",
-      "@radix-ui/react-dropdown-menu",
-      "@radix-ui/react-tooltip",
-      "framer-motion",
-    ],
+    optimizePackageImports: ["lucide-react"],
   },
   webpack: (config, { isServer, dev }) => {
-    if (isServer) {
-      const originalExternals = config.externals;
-      config.externals = [
-        ...(Array.isArray(originalExternals) ? originalExternals : [originalExternals].filter(Boolean)),
-        "geoip-lite",
-      ];
-    }
-
     if (!dev && !isServer) {
       config.optimization = {
         ...config.optimization,

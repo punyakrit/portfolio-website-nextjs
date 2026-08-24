@@ -1,47 +1,41 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import NavBar from "@/components/global/NavBar";
-import Footer from "@/components/home/Footer";
-import HorizontalLine from "@/components/global/HorizontalLine";
-import FixedBottomCta from "@/components/global/FixedBottomCta";
+import Link from "next/link";
+import { ModeToggle } from "@/components/global/ModeToggle";
 
-const CLEAN_PAGE_PATHS = ["/craft-trading-support", "/craft-trading-privacy", "/delete-account", "/tap-master", "/tap-master/privacy", "/privacy"];
+// One centred column. No nav bar - the links live in the masthead, the way
+// they would in a document.
+const CLEAN_PAGE_PATHS = [
+  "/craft-trading-support",
+  "/craft-trading-privacy",
+  "/delete-account",
+  "/tap-master",
+  "/tap-master/privacy",
+  "/privacy",
+];
 
-export function SupportPageLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const pathname = usePathname();
-  const isCleanPage = CLEAN_PAGE_PATHS.includes(pathname ?? "");
+export function SupportPageLayout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname() ?? "";
+  const isCleanPage = CLEAN_PAGE_PATHS.includes(pathname);
+  const isHome = pathname === "/";
 
-  if (isCleanPage) {
-    return <>{children}</>;
-  }
+  if (isCleanPage) return <>{children}</>;
 
   return (
-    <>
-      <FixedBottomCta />
-      <div className="max-w-4xl container mx-auto">
-        <div
-          className="
-      h-full w-full
-      md:bg-[repeating-linear-gradient(135deg,rgba(0,0,0,0.06)_0_1px,transparent_1px_6px)] md:dark:bg-[repeating-linear-gradient(135deg,rgba(255,255,255,0.06)_0_1px,transparent_1px_6px)]
-      md:border-x md:dark:border-[#1b1b1b]
-      flex overflow-auto
-    "
-        >
-          <div className="flex-1 md:mx-14 h-full dark:bg-[#121212] bg-white border-x dark:border-[#1b1b1b] z-10">
-            <NavBar />
-            <div className="mt-12">
-              {children}
-              <HorizontalLine />
-              <Footer />
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
+    <div className="mx-auto w-full max-w-[46rem] px-6 py-14 sm:px-8 sm:py-20">
+      {!isHome && (
+        <p className="mb-10 text-[0.95rem]">
+          <Link href="/">← punyakrit singh makhni</Link>
+        </p>
+      )}
+
+      {children}
+
+      <footer className="mt-20 flex items-baseline justify-between gap-6 border-t border-rule pt-5 text-[0.9rem] text-muted-foreground">
+        <span>punyakrit singh makhni</span>
+        <ModeToggle />
+      </footer>
+    </div>
   );
 }

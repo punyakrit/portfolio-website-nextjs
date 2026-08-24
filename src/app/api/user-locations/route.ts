@@ -49,32 +49,46 @@ export async function GET() {
         }
         const geoip = await getGeoip();
         const allData = await getAllUserLocations()
+        let resolved = 0;
         const locationsWithCoords = allData.map((data) => {
             const ip = data.ip
             let latitude = 0;
             let longitude = 0;
-            
+
             if (geoip) {
                 try {
                     const location = geoip.lookup(ip as string);
                     if (location && location.ll) {
                         latitude = location.ll[0] || 0;
                         longitude = location.ll[1] || 0;
+                        if (latitude !== 0 || longitude !== 0) resolved++;
                     }
                 } catch (lookupError) {
                     console.error(`Error looking up IP ${ip}:`, lookupError);
                 }
             }
-            
+
             return {
                 ...data,
                 latitude,
                 longitude
             }
         })
-        await redis.set("user-locations", locationsWithCoords, {
-            ex: 60 * 60 * 24 * 30, 
-        });
+
+        // Only cache a result geoip actually resolved. Caching a failed pass
+        // writes all-zero coordinates under a 30-day TTL, and because the cache
+        // is checked first, every later request serves those zeros and geoip is
+        // never consulted again - the map stays empty until the key is deleted
+        // by hand. Better to recompute on the next request than to poison it.
+        if (resolved > 0) {
+            await redis.set("user-locations", locationsWithCoords, {
+                ex: 60 * 60 * 24 * 30,
+            });
+        } else if (allData.length > 0) {
+            console.warn(
+                `user-locations: geoip resolved 0 of ${allData.length} IPs - skipping cache write.`
+            );
+        }
         return NextResponse.json(locationsWithCoords, {
             status: 200,
             headers: {

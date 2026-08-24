@@ -1,65 +1,39 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Inter, Poppins, Fondamento } from "next/font/google";
+import { Newsreader } from "next/font/google";
 import "./globals.css";
 
 import Script from "next/script";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { env } from "@/lib/env";
-import DevMode from "@/lib/DevMode";
-import RefreshOverlay from "@/components/global/RefreshOverlay";
-import FirstVisitNotification from "@/components/global/FirstVisitNotification";
 import { SupportPageLayout } from "@/components/global/SupportPageLayout";
+import VisitRecorder from "@/components/global/VisitRecorder";
 import { RootJsonLd } from "@/components/seo/JsonLd";
 import { SEO_CONFIG, PRIMARY_KEYWORDS, SITE_URL } from "@/lib/seo";
-import Provider from "@/providers/Provider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const newsreader = Newsreader({
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-newsreader",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-
-
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
-  variable: "--font-poppins",
-});
-
-const fondamento = Fondamento({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-fondamento",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
-  variable: "--font-inter",
-});
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#121212" },
+    { media: "(prefers-color-scheme: dark)", color: "#100f0e" },
   ],
 };
 
 export const metadata: Metadata = {
   title: {
-    default: `${SEO_CONFIG.name} | Full-Stack Engineer for Hire - Web & Mobile`,
+    default: `${SEO_CONFIG.name} | AI Engineer - Agents, LLM Pipelines, RAG`,
     template: `%s | ${SEO_CONFIG.name}`,
   },
   description:
-    "Looking for a top full-stack engineer? I'm a full-stack developer specializing in React, Next.js, TypeScript & Node.js. Available for remote projects in US, UK, Europe & worldwide. Book a free consultation.",
+    "AI engineer building multi-model agent systems and LLM pipelines that run in production - agent orchestration, RAG, evaluation loops, and the infrastructure underneath them. Python, FastAPI, Gemini, OpenAI, pgvector, TypeScript, Next.js.",
   applicationName: `${SEO_CONFIG.name} Portfolio`,
   category: "Technology",
   keywords: [...PRIMARY_KEYWORDS],
@@ -76,9 +50,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: `${SEO_CONFIG.name} | Full-Stack Engineer for Hire`,
+    title: `${SEO_CONFIG.name} | AI Engineer`,
     description:
-      "Hire a top full-stack engineer for your project. Full-stack developer specializing in React, Next.js, TypeScript. Available for remote projects worldwide.",
+      "AI engineer building agents and multi-model pipelines that hold up in production - agent orchestration, RAG, and evals, shipped end to end.",
     url: SITE_URL,
     siteName: `${SEO_CONFIG.name} Portfolio`,
     images: [
@@ -86,7 +60,7 @@ export const metadata: Metadata = {
         url: `${SITE_URL}/og.jpg`,
         width: 1200,
         height: 630,
-        alt: `${SEO_CONFIG.name} - Full-Stack Engineer`,
+        alt: `${SEO_CONFIG.name} - AI Engineer`,
       },
     ],
     locale: "en_US",
@@ -94,9 +68,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SEO_CONFIG.name} | Full-Stack Engineer`,
+    title: `${SEO_CONFIG.name} | AI Engineer`,
     description:
-      "Full-stack engineer building production-grade web apps with Next.js, React & TypeScript. Available for remote projects globally.",
+      "I build AI agents and multi-model pipelines that hold up in production - systems where models make the judgment calls and deterministic code does the execution.",
     images: [`${SITE_URL}/og.jpg`],
     site: SEO_CONFIG.twitterHandle,
     creator: SEO_CONFIG.twitterHandle,
@@ -157,25 +131,17 @@ export default function RootLayout({
     }');`}
       </Script>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} ${fondamento.variable} ${inter.variable} antialiased dark:bg-[#121212] `}
+        className={newsreader.variable}
       >
-        <Provider>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <RefreshOverlay />
-          <FirstVisitNotification />
-          <DevMode />
+          <VisitRecorder />
           <SupportPageLayout>{children}</SupportPageLayout>
-          <div
-            aria-hidden="true"
-            className="pointer-events-none fixed inset-x-0 bottom-0 z-30 h-24 sm:h-32 bg-gradient-to-t dark:from-[#121212] from-white to-transparent"
-          />
         </ThemeProvider>
-        </Provider>
       </body>
     </html>
   );
