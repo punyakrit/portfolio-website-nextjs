@@ -55,14 +55,6 @@ export const metadata: Metadata = {
       "AI engineer building agents and multi-model pipelines that hold up in production - agent orchestration, RAG, and evals, shipped end to end.",
     url: SITE_URL,
     siteName: `${SEO_CONFIG.name} Portfolio`,
-    images: [
-      {
-        url: `${SITE_URL}/og.jpg`,
-        width: 1200,
-        height: 630,
-        alt: `${SEO_CONFIG.name} - AI Engineer`,
-      },
-    ],
     locale: "en_US",
     type: "website",
   },
@@ -71,7 +63,6 @@ export const metadata: Metadata = {
     title: `${SEO_CONFIG.name} | AI Engineer`,
     description:
       "I build AI agents and multi-model pipelines that hold up in production - systems where models make the judgment calls and deterministic code does the execution.",
-    images: [`${SITE_URL}/og.jpg`],
     site: SEO_CONFIG.twitterHandle,
     creator: SEO_CONFIG.twitterHandle,
   },

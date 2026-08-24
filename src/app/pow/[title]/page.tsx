@@ -58,10 +58,6 @@ export async function generateMetadata({
     path: `/pow/${getSlug(project.title)}`,
     keywords: [project.title, ...project.tech, "AI Engineering Project"],
     tags: project.tech,
-    image: {
-      url: project.image,
-      alt: `${project.title} - Project Screenshot`,
-    },
   });
 }
 

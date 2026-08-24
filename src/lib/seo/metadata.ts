@@ -68,32 +68,17 @@ export function generatePageMetadata(options: MetadataOptions): PageMetadata {
     ...new Set([...keywords, ...PRIMARY_KEYWORDS, ...tags]),
   ];
 
-  const defaultImage = {
-    url: SEO_CONFIG.image,
-    width: 1200,
-    height: 630,
-    alt: `${SEO_CONFIG.name} - ${title}`,
-  };
-
-  const ogImage = image
-    ? {
-        url: image.url.startsWith("http")
-          ? image.url
-          : `${SITE_URL}${image.url.startsWith("/") ? image.url : `/${image.url}`}`,
-        width: image.width || 1200,
-        height: image.height || 630,
-        alt: image.alt || title,
-      }
-    : defaultImage;
+  // No explicit images here. Each route supplies its own card via the
+  // opengraph-image.tsx file convention, and an explicit `images` entry in
+  // metadata would silently override it.
 
   const openGraph: Required<Metadata["openGraph"]> = {
     type,
     locale: "en_US",
     url: canonicalUrl,
-    siteName: `${SEO_CONFIG.name} | Full-Stack Engineer`,
+    siteName: `${SEO_CONFIG.name} | AI Engineer`,
     title: fullTitle,
     description,
-    images: [ogImage],
     ...(publishedTime && { publishedTime }),
     ...(modifiedTime && { modifiedTime }),
     ...(authors.length > 0 && { authors }),
@@ -108,7 +93,6 @@ export function generatePageMetadata(options: MetadataOptions): PageMetadata {
     creator: SEO_CONFIG.twitterHandle,
     title: fullTitle,
     description,
-    images: [ogImage.url],
     ...customTwitter,
   } as Required<Metadata["twitter"]>;
 

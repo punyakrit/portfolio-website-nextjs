@@ -12,7 +12,7 @@ export const SEO_CONFIG = {
     "AI Engineer building multi-model agent systems and LLM pipelines that run in production - agent orchestration, RAG, evaluation loops, and the infrastructure underneath them. Python, TypeScript, Gemini, OpenAI, pgvector, FastAPI, Next.js.",
   url: SITE_URL,
   email: "punyakritsinghmakhni@gmail.com",
-  image: `${SITE_URL}/og.jpg`,
+  image: `${SITE_URL}/profile.jpeg`,
   profileImage: `${SITE_URL}/profile.jpeg`,
   socials: {
     twitter: "https://x.com/punyakrit_22",
@@ -256,14 +256,6 @@ export const defaultOpenGraph = {
   type: "website",
   locale: "en_US",
   siteName: `${SEO_CONFIG.name} | AI Engineer`,
-  images: [
-    {
-      url: SEO_CONFIG.image,
-      width: 1200,
-      height: 630,
-      alt: `${SEO_CONFIG.name} - AI Engineer`,
-    },
-  ],
 };
 
 export const defaultTwitter = {

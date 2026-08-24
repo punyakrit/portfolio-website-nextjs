@@ -20,21 +20,12 @@ export const metadata: Metadata = {
       "AI engineer building agents and multi-model pipelines that hold up in production. An 8-phase video agent across four models, an ad-evaluation agent, and RAG over large codebases.",
     url: SITE_URL,
     type: "profile",
-    images: [
-      {
-        url: `${SITE_URL}/og.jpg`,
-        width: 1200,
-        height: 630,
-        alt: `${SEO_CONFIG.name} - AI Engineer`,
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Punyakrit Singh Makhni | AI Engineer",
     description:
       "I build AI agents and multi-model pipelines that hold up in production - systems where models make the judgment calls and deterministic code does the execution.",
-    images: [`${SITE_URL}/og.jpg`],
     site: SEO_CONFIG.twitterHandle,
     creator: SEO_CONFIG.twitterHandle,
   },
