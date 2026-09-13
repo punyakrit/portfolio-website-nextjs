@@ -32,6 +32,11 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# ...except the public build-time config. Every value in it is a NEXT_PUBLIC_*
+# string that Next already inlines into the shipped client bundle, so it is
+# public whether or not it is in git. Committing it keeps the build reproducible
+# outside the Cloudflare dashboard. Secrets stay out - see the file's header.
+!.env.production
 
 # vercel
 .vercel

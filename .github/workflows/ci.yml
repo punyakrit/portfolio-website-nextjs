@@ -1,0 +1,85 @@
+name: CI
+
+# Checks only. Deployment is NOT done here.
+#
+# Cloudflare Workers Builds is connected to this repo and deploys every push to
+# main itself (build: `npm run cf:build`, deploy: `npx wrangler deploy`). Having
+# this workflow deploy as well would mean two builds racing to upload the same
+# Worker on every push, and the loser silently overwriting the winner. So this
+# runs the checks Workers Builds does not, and stays out of the deploy path -
+# which also means no Cloudflare API token has to live in GitHub secrets.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # postinstall runs `prisma generate`, which writes src/generated/prisma -
+      # that directory is gitignored and does not exist in a fresh checkout.
+      - name: Install dependencies
+        run: npm ci
+
+      # MUST come before tsc. The route validators and PageProps/LayoutProps are
+      # generated into .next/types/ and are not committed. A fresh checkout has no
+      # .next/, so skipping this makes the type check pass by checking less - and
+      # it passes locally only because of a stale .next/ from the last dev run.
+      - name: Generate route types
+        run: npx next typegen
+
+      - name: Type check
+        run: npx tsc --noEmit
+
+      # NON-BLOCKING ON PURPOSE.
+      #
+      # ESLint does not report errors here, it crashes outright:
+      #   TypeError: Converting circular structure to JSON
+      # thrown from @eslint/eslintrc's validator while FlatCompat expands
+      # eslint-config-next v16. It fails the same way on main, from before the
+      # Cloudflare migration, so it is not a regression - and a crash is not a
+      # signal about the code. Gating on a linter that cannot run would mean
+      # editing app code to satisfy a tooling bug.
+      #
+      # FLIP `continue-on-error` BACK TO false once eslint-config-next works with
+      # flat config natively (so eslint.config.mjs can drop FlatCompat). Verify
+      # with `npx eslint .` exiting 0 or 1 rather than crashing.
+      - name: Lint (non-blocking - see comment)
+        run: npx eslint .
+        continue-on-error: true
+
+      - name: Build Worker
+        run: npm run cf:build
+
+      # The build must never ship secrets. next-env.mjs is the file OpenNext bakes
+      # .env values into and uploads inside the Worker; scripts/cf-build.mjs hides
+      # the .env files so it comes out empty. If that ever stops working - or a
+      # secret is added to .env.production - this fails the check loudly instead
+      # of letting the next deploy publish it.
+      - name: Assert no secrets were baked into the bundle
+        run: |
+          f=.open-next/cloudflare/next-env.mjs
+          if [ ! -f "$f" ]; then
+            echo "::error::$f is missing - the OpenNext build layout changed; re-check the env snapshot path."
+            exit 1
+          fi
+          echo "--- $f ---"
+          cat "$f"
+          if [ "$(grep -cE 'export const (production|development|test) = \{\}' "$f")" -eq 3 ]; then
+            echo "OK: env snapshot is empty; build-time values travelled via the shell."
+          else
+            echo "::error::$f is not empty - .env values were snapshotted into the Worker bundle."
+            exit 1
+          fi

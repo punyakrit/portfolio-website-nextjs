@@ -41,9 +41,12 @@
       "binding": "WORKER_SELF_REFERENCE",
       "service": "portfolio-website"
     }
-  ],
+  ]
 
-  "vars": {
-    "NEXT_PUBLIC_INVISIBLE_MODE": "true"
-  }
+  // No "vars" block on purpose. NEXT_PUBLIC_* values are inlined into the client
+  // bundle by Next at BUILD time, so declaring one here as a runtime binding does
+  // nothing except look authoritative while being ignored - and the one that used
+  // to sit here contradicted .env.production, which is what the build actually
+  // reads. Public build-time config lives in .env.production; server-side values
+  // are Worker secrets set with `wrangler secret put`.
 }
