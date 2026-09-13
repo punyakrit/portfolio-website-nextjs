@@ -5,7 +5,10 @@ import type { NextRequest } from "next/server";
 // site was repositioned from client acquisition to AI engineering work. Anything
 // still indexed gets a 308 to a real page instead of a 404, so existing link
 // equity lands somewhere useful rather than being thrown away.
-export function middleware(req: NextRequest) {
+//
+// Renamed from middleware.ts for Next 16. On Cloudflare this runs through
+// OpenNext's Node-runtime proxy path, so it must not export `runtime`.
+export function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   // Skill and role pages described what I build -> the project write-ups do that now.

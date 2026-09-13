@@ -1,0 +1,49 @@
+/**
+ * Cloudflare Workers config for the Next.js site, built through @opennextjs/cloudflare.
+ *
+ * Notes that are easy to get wrong and expensive to debug:
+ *  - `nodejs_compat` is required: Next's server runtime and @prisma/adapter-pg
+ *    both reach for Node built-ins.
+ *  - `main` points at the OpenNext build output, not at any file in src/.
+ *  - NEXT_INC_CACHE_R2_BUCKET is the binding name @opennextjs/cloudflare's
+ *    r2IncrementalCache looks up by convention. Renaming it silently disables
+ *    the cache rather than erroring.
+ *  - WORKER_SELF_REFERENCE lets the memory queue call this Worker back to
+ *    regenerate ISR pages. `service` must equal `name` below.
+ *  - No secrets live in this file. Server-side values are set with
+ *    `wrangler secret put` and arrive as bindings at runtime.
+ */
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "portfolio-website",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-09-23",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+
+  "observability": {
+    "enabled": true
+  },
+
+  "r2_buckets": [
+    {
+      "binding": "NEXT_INC_CACHE_R2_BUCKET",
+      "bucket_name": "portfolio-website-inc-cache"
+    }
+  ],
+
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "portfolio-website"
+    }
+  ],
+
+  "vars": {
+    "NEXT_PUBLIC_INVISIBLE_MODE": "true"
+  }
+}

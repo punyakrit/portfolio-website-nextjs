@@ -16,6 +16,14 @@ export async function generateStaticParams() {
   return projects.map((project) => ({ title: getSlug(project.title) }));
 }
 
+// Every card is prerendered at build time, and nothing may be rendered on
+// demand. renderOgImage reads its two .ttf files off disk, which only exists
+// while Next is building - a Worker has no filesystem. Left at the default
+// (true), a request for an unknown slug would try to render the fallback card
+// at runtime and 500 on the font read. false makes those 404 instead, without
+// executing the renderer.
+export const dynamicParams = false;
+
 // Each case study gets its own card, built from the same data the page renders.
 export default async function Image({
   params,

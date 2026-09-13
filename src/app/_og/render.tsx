@@ -10,13 +10,37 @@ let fontCache: { regular: Buffer; semibold: Buffer } | null = null;
 
 async function loadFonts() {
   if (fontCache) return fontCache;
+
+  // Deliberately inside the function, not at module scope. A top-level
+  // `await readFile(...)` here would throw during *module evaluation*, which
+  // takes down every route whose module graph reaches this file - while the OG
+  // route that owns it keeps working, because it is served as a prerendered
+  // asset. The failure would point at the wrong pages entirely.
+  //
+  // This path is build-time only. process.cwd() and the src/ tree exist while
+  // Next prerenders; inside a Worker neither does. Every caller is prerendered
+  // (all opengraph-image routes are static or SSG with dynamicParams = false),
+  // so this is never reached at runtime. If that ever changes, the error below
+  // names the real cause instead of surfacing a bare ENOENT from deep in satori.
   const dir = path.join(process.cwd(), "src/app/_og");
-  const [regular, semibold] = await Promise.all([
-    fs.readFile(path.join(dir, "Newsreader-400.ttf")),
-    fs.readFile(path.join(dir, "Newsreader-600.ttf")),
-  ]);
-  fontCache = { regular, semibold };
-  return fontCache;
+  try {
+    const [regular, semibold] = await Promise.all([
+      fs.readFile(path.join(dir, "Newsreader-400.ttf")),
+      fs.readFile(path.join(dir, "Newsreader-600.ttf")),
+    ]);
+    fontCache = { regular, semibold };
+    return fontCache;
+  } catch (cause) {
+    throw new Error(
+      "OG fonts could not be read from " +
+        dir +
+        ". This read only works at build time - there is no filesystem inside a " +
+        "Worker. Reaching it at runtime means an opengraph-image route is being " +
+        "rendered on demand instead of being prerendered; check dynamicParams " +
+        "and generateStaticParams on that route.",
+      { cause }
+    );
+  }
 }
 
 /**

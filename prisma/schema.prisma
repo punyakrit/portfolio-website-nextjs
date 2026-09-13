@@ -2,6 +2,13 @@
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
+  // Workers refuse WebAssembly.Module() on raw bytes ("Wasm code generation
+  // disallowed by embedder"). The default (nodejs) client ships Prisma's query
+  // compiler as base64 and compiles it at runtime, which fails there. The
+  // workerd target emits a client that imports the .wasm statically instead, so
+  // it is part of the uploaded bundle.
+  runtime      = "workerd"
+  moduleFormat = "esm"
 }
 
 datasource db {

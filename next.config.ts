@@ -29,12 +29,49 @@ const nextConfig: NextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   serverExternalPackages: ["geoip-lite"],
+
+  // Next's output-file tracer runs under Node, so it resolves every package
+  // through the "default" export condition. pg-cloudflare - the TCP socket shim
+  // that lets @prisma/adapter-pg talk to Postgres from a Worker - exposes
+  // dist/empty.js under "default" and its real implementation only under the
+  // "workerd" condition. The tracer therefore copies empty.js and nothing else.
+  //
+  // OpenNext then bundles with esbuild using the workerd condition, where
+  // require('pg-cloudflare') resolves to dist/index.js, which was never copied,
+  // and the build dies with "Could not resolve pg-cloudflare". The error names
+  // the package, but the package is fine - the two steps simply disagree about
+  // which export condition applies. Forcing the workerd entry points into the
+  // trace makes them agree.
+  outputFileTracingIncludes: {
+    "**/*": [
+      "./node_modules/pg-cloudflare/dist/**",
+      "./node_modules/pg-cloudflare/esm/**",
+    ],
+  },
+
+  // The tracer is indiscriminate about Prisma's build directory: it copies every
+  // query compiler Prisma ships (mysql, sqlite, cockroachdb, sqlserver - this app
+  // is postgresql only), both the "fast" and "small" variants, the schema engine,
+  // and pglite, an entire Postgres compiled to wasm that only Prisma's local dev
+  // tooling uses. That was ~60MB of wasm in the Worker, none of it reachable.
+  //
+  // The postgresql compiler the app actually needs is NOT excluded here: it is
+  // imported statically from src/generated/prisma/internal and travels with the
+  // module graph rather than through this trace.
+  outputFileTracingExcludes: {
+    "**/*": [
+      "./node_modules/prisma/build/**",
+      "./node_modules/@prisma/dev/**",
+      "./node_modules/@electric-sql/pglite/**",
+      "./node_modules/@electric-sql/pglite-tools/**",
+    ],
+  },
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
   async redirects() {
     return [
-      // /hire and /services are gone entirely - see src/middleware.ts, which
+      // /hire and /services are gone entirely - see src/proxy.ts, which
       // 308s the whole tree. No per-slug redirects needed here any more.
       {
         source: "/work",
