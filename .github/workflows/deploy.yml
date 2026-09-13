@@ -1,0 +1,118 @@
+name: Deploy to Cloudflare Workers
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  # A newer push supersedes an in-flight deploy, but never cancel one midway:
+  # wrangler uploading a half-built bundle is worse than waiting.
+  group: deploy-cloudflare
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    env:
+      # Server-side values reach the build through the SHELL, never through a
+      # .env file. OpenNext snapshots .env FILES into
+      # .open-next/cloudflare/next-env.mjs and ships that inside the Worker;
+      # it never reads process.env. Writing these to a file here would upload
+      # them with the bundle. scripts/cf-build.mjs enforces the same rule
+      # locally by hiding any .env it finds for the duration of the build.
+      #
+      # They still have to be REAL. A page that fetches during prerender bakes
+      # whatever it got into static output - a missing value can silently
+      # produce a permanent error page rather than a build failure.
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+      UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+      # NEXT_PUBLIC_* are inlined into the client bundle at build time, so they
+      # must be present here or they compile to `undefined` in the shipped HTML.
+      NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID }}
+      NEXT_PUBLIC_CLARITY_ID: ${{ secrets.NEXT_PUBLIC_CLARITY_ID }}
+      NEXT_PUBLIC_CLOUDFRONT_URL: ${{ secrets.NEXT_PUBLIC_CLOUDFRONT_URL }}
+      NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION: ${{ secrets.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }}
+      NEXT_PUBLIC_INVISIBLE_MODE: ${{ vars.NEXT_PUBLIC_INVISIBLE_MODE || 'true' }}
+      NEXT_PUBLIC_DEV_MODE: ${{ vars.NEXT_PUBLIC_DEV_MODE || 'false' }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # postinstall runs `prisma generate`, which is what writes
+      # src/generated/prisma - that directory is gitignored and does not exist
+      # in a fresh checkout.
+      - name: Install dependencies
+        run: npm ci
+
+      # MUST come before tsc. PageProps/LayoutProps and the route validators
+      # live in .next/types/ and are generated, not committed. A fresh checkout
+      # has no .next/, so skipping this makes the type check pass by checking
+      # less - and it passes locally only because of a stale .next/ left behind
+      # by the last dev run.
+      - name: Generate route types
+        run: npx next typegen
+
+      - name: Type check
+        run: npx tsc --noEmit
+
+      # NON-BLOCKING ON PURPOSE.
+      #
+      # ESLint currently crashes before it lints anything:
+      #   TypeError: Converting circular structure to JSON
+      # thrown from @eslint/eslintrc's config validator when FlatCompat expands
+      # eslint-config-next v16. It fails identically on main, from before this
+      # migration, so it is not a regression introduced here - and a crash is
+      # not a signal about the code.
+      #
+      # It is left running so the output stays visible, but it does not gate the
+      # deploy: a broken linter must not be able to stop a site from shipping.
+      # The alternative - editing app code until a crashing linter is happy -
+      # would be changing real code to satisfy a tooling bug.
+      #
+      # FLIP `continue-on-error` BACK TO false once eslint-config-next is on a
+      # version that works with flat config natively (so eslint.config.mjs can
+      # drop FlatCompat entirely). Verify with `npx eslint .` exiting 0 or 1
+      # rather than crashing.
+      - name: Lint (non-blocking - see comment)
+        run: npx eslint .
+        continue-on-error: true
+
+      - name: Build Worker
+        run: npm run cf:build
+
+      # Fails the deploy rather than shipping secrets. next-env.mjs is the file
+      # OpenNext bakes .env values into; if the build ever regains a .env file,
+      # this catches it before upload instead of after.
+      - name: Assert no secrets were baked into the bundle
+        run: |
+          f=.open-next/cloudflare/next-env.mjs
+          if [ ! -f "$f" ]; then
+            echo "::error::$f is missing - the OpenNext build layout changed; re-check the env snapshot path."
+            exit 1
+          fi
+          echo "--- $f ---"
+          cat "$f"
+          if grep -qE 'export const (production|development|test) = \{\s*\}' "$f" && \
+             [ "$(grep -cE 'export const .* = \{\}' "$f")" -eq 3 ]; then
+            echo "OK: env snapshot is empty; secrets are travelling via the shell."
+          else
+            echo "::error::$f is not empty - .env values were snapshotted into the Worker bundle."
+            exit 1
+          fi
+
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # The bundle is already built above; just upload it.
+          command: deploy
