@@ -1,6 +1,5 @@
 "use client";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { bannerImages } from "@/lib/image";
 import { env } from "@/lib/env";
 
@@ -88,15 +87,27 @@ export default function Hero() {
         className="relative w-full h-[200px] sm:h-[270px] overflow-hidden rounded-[0.875rem] transition-opacity duration-[600ms] ease-in-out"
         style={{ opacity }}
       >
-        <Image
-          key={currentImage}
-          src={currentImage}
-          alt="Punyakrit Singh Makhni - Full Stack Engineer"
-          fill
-          priority
-          sizes="(max-width: 672px) 100vw, 672px"
-          className="object-cover rounded-[0.875rem]"
-        />
+      {/* Raw <img>, not next/image, and not a style preference.
+          /_next/image cannot fetch these. On Workers, OpenNext's optimizer
+          serves same-origin files through env.ASSETS.fetch() but reaches remote
+          ones with a bare `await fetch(url)` that sends NO User-Agent header,
+          and the CloudFront distribution in front of these files answers 403 to
+          a UA-less request. Verified: `curl -A "" <cdn>/bg.jpeg` -> 403, while
+          the same URL with any UA -> 200. The handler propagates that status, so
+          every banner came back Forbidden in production while working in dev,
+          where the optimizer runs under Node and does send a UA.
+          About.tsx already avoids next/image here for a related reason. If the
+          CloudFront/WAF rule is ever changed to allow UA-less requests, this can
+          go back to next/image. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        key={currentImage}
+        src={currentImage}
+        alt="Punyakrit Singh Makhni - Full Stack Engineer"
+        fetchPriority="high"
+        decoding="async"
+        className="absolute inset-0 h-full w-full rounded-[0.875rem] object-cover"
+      />
       </div>
 
       {/* Edge fades. These use the background token rather than the hardcoded

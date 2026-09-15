@@ -1,6 +1,5 @@
 "use client";
 import React, { useRef, useEffect } from "react";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 // Autoplay video with image fallback.
@@ -69,16 +68,20 @@ function ProjectMedia({
     );
   }
 
+  // Same reason as Hero: CodeLens, Pulse and Craft Trading posters are
+  // CloudFront-hosted, and /_next/image cannot fetch them from the Worker
+  // because it sends no User-Agent and CloudFront 403s that.
   return (
-    <Image
+    /* eslint-disable-next-line @next/next/no-img-element */
+    <img
       src={image}
       alt={alt}
-      fill
+      loading="lazy"
+      decoding="async"
       className={cn(
-        "pointer-events-none transition-transform duration-700 ease-out group-hover:scale-105",
+        "pointer-events-none absolute inset-0 h-full w-full transition-transform duration-700 ease-out group-hover:scale-105",
         isMobile ? "object-contain" : "object-cover"
       )}
-      sizes="(max-width: 768px) 100vw, 600px"
     />
   );
 }
