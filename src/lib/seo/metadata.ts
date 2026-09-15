@@ -76,7 +76,7 @@ export function generatePageMetadata(options: MetadataOptions): PageMetadata {
     type,
     locale: "en_US",
     url: canonicalUrl,
-    siteName: `${SEO_CONFIG.name} | AI Engineer`,
+    siteName: `${SEO_CONFIG.name} | Full Stack Engineer`,
     title: fullTitle,
     description,
     ...(publishedTime && { publishedTime }),
@@ -134,7 +134,16 @@ export function createMetadata(options: MetadataOptions): Metadata {
   const pageMetadata = generatePageMetadata(options);
 
   return {
-    title: pageMetadata.title,
+    // The BARE title, not pageMetadata.title. generatePageMetadata appends
+    // " | <name>" for the OpenGraph and Twitter cards, which have no template
+    // of their own and do need the full form. The document <title> does have
+    // one - the root layout sets `template: "%s | <name>"` - so handing it the
+    // already-suffixed string produced "RemJobs - Case Study | Punyakrit Singh
+    // Makhni | Punyakrit Singh Makhni". `absolute` opts out of the template for
+    // the rare page that legitimately spells the name itself.
+    title: options.title.includes(SEO_CONFIG.name)
+      ? { absolute: options.title }
+      : options.title,
     description: pageMetadata.description,
     keywords: pageMetadata.keywords,
     authors: [{ name: SEO_CONFIG.name, url: SITE_URL }],

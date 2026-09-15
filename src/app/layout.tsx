@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Newsreader } from "next/font/google";
+import { Geist, Geist_Mono, Newsreader } from "next/font/google";
 import "./globals.css";
 
 import Script from "next/script";
@@ -9,6 +9,22 @@ import { SupportPageLayout } from "@/components/global/SupportPageLayout";
 import VisitRecorder from "@/components/global/VisitRecorder";
 import { RootJsonLd } from "@/components/seo/JsonLd";
 import { SEO_CONFIG, PRIMARY_KEYWORDS, SITE_URL } from "@/lib/seo";
+
+// The restored UI is a sans-serif interface, not the serif document. Geist is
+// the body/UI face and Geist Mono backs the `font-mono` utilities and the
+// explicit `var(--font-geist-mono)` references in home/Stack.tsx and
+// pow/ProjectCard.tsx, which resolved to nothing while only Newsreader was
+// loaded. Newsreader stays loaded and exposed as --font-newsreader so anything
+// that still wants the serif can ask for it.
+const geistSans = Geist({
+  subsets: ["latin"],
+  variable: "--font-geist-sans",
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+});
 
 const newsreader = Newsreader({
   subsets: ["latin"],
@@ -29,11 +45,11 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: `${SEO_CONFIG.name} | AI Engineer - Agents, LLM Pipelines, RAG`,
+    default: `${SEO_CONFIG.name} | Full Stack Engineer - Web, Mobile, AI Features`,
     template: `%s | ${SEO_CONFIG.name}`,
   },
   description:
-    "AI engineer building multi-model agent systems and LLM pipelines that run in production - agent orchestration, RAG, evaluation loops, and the infrastructure underneath them. Python, FastAPI, Gemini, OpenAI, pgvector, TypeScript, Next.js.",
+    "Full stack engineer shipping product end to end - web, mobile, and the AI features inside them. Next.js, React, React Native, TypeScript, Node.js, Python, FastAPI, PostgreSQL. Remote, open to full stack engineer roles.",
   applicationName: `${SEO_CONFIG.name} Portfolio`,
   category: "Technology",
   keywords: [...PRIMARY_KEYWORDS],
@@ -50,9 +66,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: `${SEO_CONFIG.name} | AI Engineer`,
+    title: `${SEO_CONFIG.name} | Full Stack Engineer`,
     description:
-      "AI engineer building agents and multi-model pipelines that hold up in production - agent orchestration, RAG, and evals, shipped end to end.",
+      "Full stack engineer building and shipping product end to end - web, mobile, and the AI features inside them.",
     url: SITE_URL,
     siteName: `${SEO_CONFIG.name} Portfolio`,
     locale: "en_US",
@@ -60,9 +76,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SEO_CONFIG.name} | AI Engineer`,
+    title: `${SEO_CONFIG.name} | Full Stack Engineer`,
     description:
-      "I build AI agents and multi-model pipelines that hold up in production - systems where models make the judgment calls and deterministic code does the execution.",
+      "I build and ship full stack products end to end - Next.js, React, React Native, TypeScript, Node.js - and the AI features inside them.",
     site: SEO_CONFIG.twitterHandle,
     creator: SEO_CONFIG.twitterHandle,
   },
@@ -97,32 +113,8 @@ export default function RootLayout({
       <head>
         <RootJsonLd />
       </head>
-      <Script
-        async
-        src={`https://www.googletagmanager.com/gtag/js?id=${
-          env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID as string
-        }`}
-      />
-      <Script id="google-analytics">
-        {`
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', '${env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID as string}');`}
-      </Script>
-      <Script id="microsoft-clarity">
-        {`
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", '${
-      env.NEXT_PUBLIC_CLARITY_ID as string
-    }');`}
-      </Script>
       <body
-        className={newsreader.variable}
+        className={`${geistSans.variable} ${geistMono.variable} ${newsreader.variable} antialiased`}
       >
         <ThemeProvider
           attribute="class"
@@ -133,6 +125,36 @@ export default function RootLayout({
           <VisitRecorder />
           <SupportPageLayout>{children}</SupportPageLayout>
         </ThemeProvider>
+        {/* Analytics live inside <body>. They used to sit between </head>
+            and <body> as direct children of <html>, which is invalid: the
+            parser hoists stray elements into the body, so the server HTML
+            and the client tree disagreed and React logged "Encountered a
+            script tag while rendering React component". next/script
+            injects these itself, so body is the correct home. */}
+        <Script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${
+            env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID as string
+          }`}
+        />
+        <Script id="google-analytics">
+          {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '${env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID as string}');`}
+        </Script>
+        <Script id="microsoft-clarity">
+          {`
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", '${
+        env.NEXT_PUBLIC_CLARITY_ID as string
+      }');`}
+        </Script>
       </body>
     </html>
   );

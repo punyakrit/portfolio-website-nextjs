@@ -101,47 +101,13 @@ export function generateWebSiteSchema() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
-    name: `${SEO_CONFIG.name} | Full-Stack Engineer`,
+    name: `${SEO_CONFIG.name} | Full Stack Engineer`,
     url: SITE_URL,
     description: SEO_CONFIG.description,
     publisher: {
       "@id": `${SITE_URL}/#person`,
     },
     inLanguage: "en-US",
-  };
-}
-
-export function generateProfessionalServiceSchema() {
-  return {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "@id": `${SITE_URL}/#service`,
-    name: `${SEO_CONFIG.name} - Full-Stack Web Development`,
-    description:
-      "Professional full-stack web development services. I build production-grade web applications using Next.js, React, TypeScript, and Node.js. Available for remote projects globally.",
-    url: SITE_URL,
-    provider: {
-      "@id": `${SITE_URL}/#person`,
-    },
-    areaServed: [
-      {
-        "@type": "Place",
-        name: "Worldwide",
-      },
-    ],
-    serviceType: [
-      "Web Development",
-      "Full-Stack Development",
-      "Frontend Development",
-      "Backend Development",
-      "React Development",
-      "Next.js Development",
-    ],
-    availableChannel: {
-      "@type": "ServiceChannel",
-      serviceUrl: "https://cal.com/punyakrit",
-      serviceType: "Online",
-    },
   };
 }
 

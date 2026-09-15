@@ -3,7 +3,9 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <div>
+    // SupportPageLayout no longer supplies horizontal padding - each page
+    // brings its own, the way the restored sections do.
+    <div className="px-4 sm:px-6 md:px-8 py-12">
       <h1 className="text-[1.4rem] font-semibold tracking-tight">
         Page not found
       </h1>

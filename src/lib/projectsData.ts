@@ -18,16 +18,66 @@ interface Project {
   category: "web" | "mobile";
 }
 
-// Ordered deliberately: the AI systems lead, because that is the work I want to
-// be read first. FeaturedProjects on the homepage shows [0] and [1] in full and
-// blurs [2] as the "show more" teaser.
+// Ordered deliberately. RemJobs leads because it is the clearest full-stack
+// evidence on the page - scrapers, schema, search, auth, billing and front end
+// are all mine, and it is live with numbers anyone can check. FeaturedProjects
+// on the homepage shows [0] and [1] in full and blurs [2] as the "show more"
+// teaser.
 export const projects: Project[] = [
+{
+  category: "web",
+  title: "RemJobs",
+  description:
+    "A remote job board that reads company career pages and the hiring systems behind them - Greenhouse, Ashby, Lever - the moment they change. A scheduled worker sweeps every source on a 45-minute cycle. Browsing is free; the alert is the product.",
+  image: "/remjobs.jpg",
+  link: "https://www.remjobs.works/",
+  video: "",
+  // Three system metrics, no traffic number.
+  //
+  // The traffic figure was dropped rather than relabelled. It is site visits,
+  // not signups, so "users" would read to a hiring manager as adoption; and a
+  // visit count is the weakest thing this card can say about the engineering
+  // anyway. What is left describes the machine: how many sources it watches,
+  // how much it has indexed, and how often it sweeps.
+  //
+  // Rounded down deliberately - the live counters move every sweep, so an exact
+  // figure goes stale the day it ships and invites a reader to diff it against
+  // the site. "Roles indexed" is cumulative (expired roles included); the site
+  // header shows currently-open roles, which is the smaller number.
+  stats: ["4,900+ career pages watched", "100,000+ roles indexed", "45-min sweep cycle"],
+  summary:
+    "Job aggregator with a scheduled scraper, Postgres full-text search and an email alert engine. Live.",
+  tech: [
+    "Next.js",
+    "TypeScript",
+    "Python",
+    "FastAPI",
+    "PostgreSQL",
+    "Supabase",
+    "Redis",
+    "APScheduler",
+    "Clerk",
+    "Dodo Payments",
+    "Railway",
+  ],
+  problem:
+    "A job board is only worth opening if it is fresher than the company's own careers page. That means continuously re-reading thousands of sources that each break differently, storing the result so it can be searched and filtered in milliseconds, and then deciding - per subscriber, per role - which of tens of thousands of postings is worth an email. Done naively you either miss the window that makes an early application worth anything, or you send noise until people unsubscribe.",
+  solution:
+    "FastAPI and Supabase Postgres behind an APScheduler worker that sweeps every source on a 45-minute cycle, with a separate priority pass for the sources that move fastest. Search, faceting and salary filters run as Postgres RPCs against generated tsvector columns rather than in application code, so a filtered query stays a single round trip. Alerts match subscribers against new rows through freshness gates and a defined dispatch order, and delivery receipts make sends idempotent so a retry cannot double-email. Upstash Redis handles rate limiting. Twenty-seven migrations carry the schema, and Clerk and Dodo Payments handle auth and plans.",
+  whyThis:
+    "The architecture decision I would defend in an interview is what is not deployed. The HTTP API exists and runs locally, but nothing calls it in production - the Next.js site reads Supabase directly under row-level security, so the only thing running on Railway is the scraping worker. That takes an always-on service, and every failure mode it owns, off the critical path of every page view. It is also the project where the full stack is genuinely end to end: the scrapers, the schema, the search, the auth, the billing, the programmatic SEO routes and the front end are all mine.",
+},
 {
   category: "web",
   title: "AI Demo Video Builder",
   description:
     "A multi-model agent pipeline that turns a silent screen recording into a narrated, captioned product demo. Four models across eight phases - one perceives the video, one directs the edit, two render it - with deterministic code holding the seams.",
-  image: `${env.NEXT_PUBLIC_CLOUDFRONT_URL}/ai-demo-video.png`,
+  // A real frame from the pipeline's own output (storage/keep/
+  // 2026-08-22_FINAL_with_avatar.mp4): the screen recording it was given,
+  // with the presenter and captions it generated on top. The CloudFront
+  // object this used to point at returns 403, so the card rendered its alt
+  // text instead of an image.
+  image: "/ai-demo-video.jpg",
   github: "https://github.com/punyakrit/Ai-demo-video",
   video: "",
   stats: ["8-phase agent pipeline", "4 models orchestrated", "410 tests passing"],

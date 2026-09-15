@@ -1,7 +1,6 @@
 import {
   generatePersonSchema,
   generateWebSiteSchema,
-  generateProfessionalServiceSchema,
   generateBreadcrumbSchema,
   generateFAQSchema,
   generateArticleSchema,
@@ -40,7 +39,6 @@ export function RootJsonLd() {
   const schemas = [
     generatePersonSchema(),
     generateWebSiteSchema(),
-    generateProfessionalServiceSchema(),
   ].filter(Boolean);
 
   return <JsonLd data={schemas} />;

@@ -6,10 +6,10 @@ export const SITE_NAME = "Punyakrit Singh Makhni";
 export const SEO_CONFIG = {
   name: "Punyakrit Singh Makhni",
   title: "Punyakrit Singh Makhni",
-  jobTitle: "AI Engineer",
+  jobTitle: "Full Stack Engineer",
   location: "Remote",
   description:
-    "AI Engineer building multi-model agent systems and LLM pipelines that run in production - agent orchestration, RAG, evaluation loops, and the infrastructure underneath them. Python, TypeScript, Gemini, OpenAI, pgvector, FastAPI, Next.js.",
+    "Full stack engineer shipping product end to end - web, mobile, and the AI features inside them. Next.js, React, React Native, TypeScript, Node.js, Python, FastAPI, PostgreSQL. Remote, open to full stack engineer roles.",
   url: SITE_URL,
   email: "punyakritsinghmakhni@gmail.com",
   image: `${SITE_URL}/profile.jpeg`,
@@ -26,14 +26,16 @@ export const SEO_CONFIG = {
 // ignored by major search engines, so this is kept short and free of
 // superlatives ("best"/"top"/"senior") and location stuffing on purpose.
 export const PRIMARY_KEYWORDS: string[] = [
-  "AI Engineer",
-  "AI Agent Engineer",
-  "LLM Engineer",
-  "Applied AI Engineer",
-  "Agent Orchestration",
-  "RAG Engineer",
-  "Multimodal AI",
-  "Full-Stack AI Engineer",
+  "Full Stack Engineer",
+  "Full Stack Developer",
+  "Next.js",
+  "React",
+  "React Native",
+  "TypeScript",
+  "Node.js",
+  "Python",
+  "AI Features",
+  "LLM Integration",
 ];
 
 export function generatePersonSchema() {
@@ -53,23 +55,21 @@ export function generatePersonSchema() {
       SEO_CONFIG.socials.linkedin,
     ],
     knowsAbout: [
-      "Artificial Intelligence",
-      "AI Agents",
-      "LLM Orchestration",
-      "Multimodal AI",
-      "Retrieval-Augmented Generation",
-      "Prompt Engineering",
-      "LLM Evaluation",
-      "Gemini",
-      "OpenAI",
-      "pgvector",
+      "Full-Stack Development",
+      "Web Development",
+      "Mobile Development",
+      "Next.js",
+      "React",
+      "React Native",
+      "TypeScript",
+      "Node.js",
       "Python",
       "FastAPI",
-      "TypeScript",
-      "Next.js",
       "PostgreSQL",
       "AWS",
       "Docker",
+      "LLM Integration",
+      "AI Features",
     ],
     worksFor: {
       "@type": "Organization",
@@ -83,47 +83,13 @@ export function generateWebSiteSchema() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
-    name: `${SEO_CONFIG.name} | AI Engineer`,
+    name: `${SEO_CONFIG.name} | Full Stack Engineer`,
     url: SITE_URL,
     description: SEO_CONFIG.description,
     publisher: {
       "@id": `${SITE_URL}/#person`,
     },
     inLanguage: "en-US",
-  };
-}
-
-export function generateProfessionalServiceSchema() {
-  return {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "@id": `${SITE_URL}/#service`,
-    name: `${SEO_CONFIG.name} - AI Engineering`,
-    description:
-      "AI engineering: multi-model agent systems, LLM pipelines, RAG, and evaluation loops, shipped to production on Python, FastAPI, TypeScript, and Next.js.",
-    url: SITE_URL,
-    provider: {
-      "@id": `${SITE_URL}/#person`,
-    },
-    areaServed: [
-      {
-        "@type": "Place",
-        name: "Worldwide",
-      },
-    ],
-    serviceType: [
-      "AI Engineering",
-      "AI Agent Development",
-      "LLM Application Development",
-      "Retrieval-Augmented Generation",
-      "Multimodal AI Pipelines",
-      "Full-Stack Development",
-    ],
-    availableChannel: {
-      "@type": "ServiceChannel",
-      serviceUrl: "https://cal.com/punyakrit",
-      serviceType: "Online",
-    },
   };
 }
 
@@ -155,9 +121,9 @@ export function generatePortfolioSchema(
     "@context": "https://schema.org",
     "@type": "ItemList",
     "@id": `${SITE_URL}/pow#portfolio`,
-    name: "AI Engineering Portfolio",
+    name: "Full Stack Engineering Portfolio",
     description:
-      "AI agent systems, LLM pipelines, and production applications built by Punyakrit Singh Makhni",
+      "Web and mobile products, and the AI features inside them, built by Punyakrit Singh Makhni",
     itemListElement: projects.map((project, index) => ({
       "@type": "ListItem",
       position: index + 1,
@@ -255,7 +221,7 @@ export function generateFAQSchema(
 export const defaultOpenGraph = {
   type: "website",
   locale: "en_US",
-  siteName: `${SEO_CONFIG.name} | AI Engineer`,
+  siteName: SEO_CONFIG.name,
 };
 
 export const defaultTwitter = {

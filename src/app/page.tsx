@@ -1,87 +1,110 @@
 import React from "react";
 import type { Metadata } from "next";
-import Masthead from "@/components/doc/Masthead";
-import Section from "@/components/doc/Section";
-import ProofOfWork from "@/components/doc/ProofOfWork";
-import Experience from "@/components/doc/Experience";
-import Stack from "@/components/doc/Stack";
-import CommitsSection from "@/components/doc/CommitsSection";
+import Hero from "@/components/home/Hero";
+import About from "@/components/home/About";
+import HorizontalLine from "@/components/global/HorizontalLine";
+import Experience from "@/components/home/Experience";
+import FeaturedProjects from "@/components/pow/FeaturedProjects";
+import Github from "@/components/home/Github";
+import Stack from "@/components/home/Stack";
+import Cta from "@/components/home/Cta";
+import World from "@/components/home/World";
 import { BreadcrumbJsonLd, FAQJsonLd } from "@/components/seo/JsonLd";
 import { SITE_URL, SEO_CONFIG } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Punyakrit Singh Makhni | AI Engineer - Agents, LLM Pipelines, RAG",
+  title:
+    "Punyakrit Singh Makhni | Full Stack Engineer - Web, Mobile, AI Features",
   description:
-    "I'm Punyakrit Singh Makhni, an AI engineer who builds multi-model agent systems and LLM pipelines that run in production - agent orchestration, RAG, evals, and the infrastructure underneath. Python, FastAPI, Gemini, OpenAI, pgvector, TypeScript, Next.js.",
+    "I'm Punyakrit Singh Makhni, a full stack engineer who ships product end to end - Next.js, React, React Native, TypeScript, Node.js, Python - including the AI features inside it. Remote, open to full stack engineer roles.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Punyakrit Singh Makhni | AI Engineer",
+    title: "Punyakrit Singh Makhni | Full Stack Engineer",
     description:
-      "AI engineer building agents and multi-model pipelines that hold up in production. An 8-phase video agent across four models, an ad-evaluation agent, and RAG over large codebases.",
+      "Full stack engineer shipping product end to end - web, mobile, and the AI features inside them. A multi-model video agent, an ad-evaluation agent, an iOS app on the App Store.",
     url: SITE_URL,
     type: "profile",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Punyakrit Singh Makhni | AI Engineer",
+    title: "Punyakrit Singh Makhni | Full Stack Engineer",
     description:
-      "I build AI agents and multi-model pipelines that hold up in production - systems where models make the judgment calls and deterministic code does the execution.",
+      "I build and ship full stack products end to end - Next.js, React, React Native, TypeScript, Node.js - and the AI features inside them.",
     site: SEO_CONFIG.twitterHandle,
     creator: SEO_CONFIG.twitterHandle,
   },
 };
 
-const faqs = [
+const homepageFAQs = [
   {
-    question: "What kind of AI systems has Punyakrit built?",
+    question: "What has Punyakrit built as a full stack engineer?",
     answer:
-      "Multi-model agent pipelines and LLM applications in production. An AI Demo Video Builder that orchestrates four models across an eight-phase pipeline to turn screen recordings into narrated demos. Muze CMO, an AI marketing agent that reads live Meta and Google Ads data, predicts whether a creative will perform before spend, and generates new image and video ads. InfiniteUGC, an AI video pipeline used by 50+ brands across 32+ languages. And CodeLens, RAG over large codebases using pgvector.",
+      "Production web and mobile products, end to end. An AI Demo Video Builder that orchestrates four models across an eight-phase pipeline to turn screen recordings into narrated demos. Muze CMO, a marketing agent that reads live Meta and Google Ads data, predicts whether a creative will perform before spend, and generates new image and video ads. InfiniteUGC, a video pipeline used by 50+ brands across 32+ languages. CodeLens, retrieval over large codebases using pgvector. And an iOS app shipped on the App Store.",
   },
   {
-    question: "How does Punyakrit approach building reliable AI agents?",
+    question: "How does Punyakrit approach shipping AI features inside product?",
     answer:
       "By drawing a hard line between judgment and execution: the model makes editorial decisions, deterministic code carries them out. In the AI Demo Video Builder that means a reconciliation phase with zero model calls, evidence grading that rejects unsupported claims, and a plan that passes 32 validation checks before any rendering starts.",
   },
   {
     question: "What is Punyakrit looking for?",
     answer:
-      "AI engineer roles at startups building agent systems, LLM products, or applied AI infrastructure. Remote, working across US and European time zones.",
+      "Full stack engineer roles at startups - building product end to end, including the AI features inside it. Remote, working across US and European time zones.",
   },
 ];
 
-export default function HomePage() {
+function HomePage() {
   return (
-    <>
+    <div>
       <BreadcrumbJsonLd items={[{ name: "Home", url: SITE_URL }]} />
-      <FAQJsonLd faqs={faqs} />
+      <FAQJsonLd faqs={homepageFAQs} />
 
-      <Masthead />
+      <Hero />
+      <About />
 
-      <Section label="where i've worked" id="experience">
-        <Experience />
-      </Section>
+      <HorizontalLine />
 
-      <Section label="what i've built" id="work">
-        <ProofOfWork />
-      </Section>
+      <section aria-labelledby="experience-heading">
+        <Experience completeView={false} />
+      </section>
 
-      <Section label="what i work with" id="stack">
+      <HorizontalLine />
+
+      {/* FeaturedProjects, Github, Stack and World render their own headings but
+          do not expose ids for them, so these landmarks are named with aria-label
+          rather than a dangling aria-labelledby reference. */}
+      <section aria-label="Featured projects">
+        <FeaturedProjects />
+      </section>
+
+      <HorizontalLine />
+
+      <section aria-label="GitHub contributions">
+        <Github />
+      </section>
+
+      <div className="hidden md:block">
+        <HorizontalLine />
+      </div>
+
+      <section aria-label="Stack I use">
         <Stack />
-      </Section>
+      </section>
 
-      <Section label="commits" id="commits">
-        <CommitsSection />
-      </Section>
+      <HorizontalLine />
 
-      <Section label="get in touch" id="contact">
-        <p className="leading-relaxed">
-          looking for ai engineer roles at startups.{" "}
-          <a href="https://cal.com/punyakrit" target="_blank" rel="noopener noreferrer">
-            book a call
-          </a>{" "}
-          or <a href="mailto:punyakritsinghmakhni@gmail.com">email me</a>.
-        </p>
-      </Section>
-    </>
+      {/* Cta renders its own <section aria-labelledby="contact-heading">, so it
+          is mounted bare - wrapping it would nest a second landmark on the same
+          heading id, which is what the old page did. */}
+      <Cta />
+
+      <HorizontalLine />
+
+      <section aria-label="Where visitors come from">
+        <World />
+      </section>
+    </div>
   );
 }
+
+export default HomePage;

@@ -13,9 +13,11 @@ export const metadata: Metadata = {
 
 export default function WorldPage() {
   return (
-    <>
-      <h1 className="doc-label">where people read this from</h1>
+    <div className="py-8">
+      <h1 className="doc-label mx-4 sm:mx-6 md:mx-8">
+        where people read this from
+      </h1>
       <World />
-    </>
+    </div>
   );
 }
