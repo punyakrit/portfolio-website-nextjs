@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import { Map, MapMarker, MarkerContent, MarkerTooltip } from "@/components/ui/map";
 
 interface UserLocation {
-  ip: string;
   visitCount: number;
   latitude: number;
   longitude: number;

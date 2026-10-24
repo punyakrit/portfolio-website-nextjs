@@ -8,8 +8,8 @@
  * OpenNext's `compileEnvFiles` reads the .env FILES off disk
  * (.env, .env.<mode>, .env.local, .env.<mode>.local) and writes every key it
  * finds into `.open-next/cloudflare/next-env.mjs`, which is then bundled into
- * the Worker and uploaded. DATABASE_URL, UPSTASH_REDIS_REST_TOKEN and
- * NOTION_API_KEY would all ship inside the deployed script. It never reads
+ * the Worker and uploaded. DATABASE_URL and NOTION_API_KEY would both ship
+ * inside the deployed script. It never reads
  * `process.env`, so anything passed through the shell is NOT snapshotted.
  *
  * But the build genuinely needs those values: NEXT_PUBLIC_* are inlined into the

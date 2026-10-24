@@ -12,6 +12,12 @@
  *    regenerate ISR pages. `service` must equal `name` below.
  *  - No secrets live in this file. Server-side values are set with
  *    `wrangler secret put` and arrive as bindings at runtime.
+ *  - `keep_names: false` fixes the white flash before dark mode. Wrangler's
+ *    esbuild pass defaults to keepNames, which inserts `__name(fn, "fn")` calls
+ *    into every named function, including the one next-themes turns into the
+ *    inline theme script with `fn.toString()`. `__name` exists only in the
+ *    Worker, so in the browser that script threw a ReferenceError before
+ *    setting the `dark` class, and the page painted light until React hydrated.
  */
 {
   "$schema": "node_modules/wrangler/config-schema.json",
@@ -19,6 +25,7 @@
   "main": ".open-next/worker.js",
   "compatibility_date": "2025-09-23",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "keep_names": false,
 
   "assets": {
     "directory": ".open-next/assets",

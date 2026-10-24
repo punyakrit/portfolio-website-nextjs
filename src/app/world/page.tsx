@@ -3,7 +3,8 @@ import type { Metadata } from "next";
 import World from "@/components/home/World";
 
 // Test page. Renders the visitor map, which reads /api/user-locations ->
-// Prisma (UserLog) -> geoip-lite, cached in Upstash Redis for 30 days.
+// Prisma (UserLog coordinates recorded from Cloudflare's request.cf), cached
+// for an hour by unstable_cache.
 // Kept out of the sitemap and out of the index on purpose.
 export const metadata: Metadata = {
   title: "World",

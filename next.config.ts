@@ -28,8 +28,6 @@ const nextConfig: NextConfig = {
     contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-  serverExternalPackages: ["geoip-lite"],
-
   // Next's output-file tracer runs under Node, so it resolves every package
   // through the "default" export condition. pg-cloudflare - the TCP socket shim
   // that lets @prisma/adapter-pg talk to Postgres from a Worker - exposes

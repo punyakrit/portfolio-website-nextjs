@@ -32,6 +32,11 @@ model UserLog{
   lastVisitedAt DateTime @default(now())
   createdAt DateTime @default(now())
   ip String
+  // Where the latest visit came from, taken from Cloudflare's request.cf when
+  // the visit is written. Null for rows written outside a Worker until
+  // scripts/backfill-geo.mjs fills them from the stored IP.
+  latitude Float?
+  longitude Float?
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])

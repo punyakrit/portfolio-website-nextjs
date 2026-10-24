@@ -1,5 +1,6 @@
 import { PrismaClient } from "@/generated/prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 
 /**
  * Built on first use, not on import.
@@ -18,6 +19,32 @@ import { PrismaPg } from "@prisma/adapter-pg";
  */
 const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
 
+/**
+ * Inside a Worker the client is per request, not global.
+ *
+ * PrismaPg keeps a pg pool, and a pooled socket belongs to the request that
+ * opened it: Workers do not allow one request to do I/O on another request's
+ * socket. With a single global client, request B picked up the idle connection
+ * request A left in the pool, and the runtime killed B as hung ("Worker's code
+ * had hung and would never generate a response"). The broken socket was then
+ * dropped, so request C reconnected and worked - every other database call
+ * failed, which is how half of all visits went unrecorded.
+ *
+ * The key is the request's Cloudflare context object, which OpenNext creates
+ * fresh for each request, so the WeakMap lets each client go with its request.
+ */
+const clientsByRequest = new WeakMap<object, PrismaClient>();
+
+function getRequestScope(): object | null {
+  try {
+    return getCloudflareContext();
+  } catch {
+    // `next dev` and the build run on plain Node, where a socket can serve any
+    // request, so the global client below is fine there.
+    return null;
+  }
+}
+
 function createClient(): PrismaClient {
   const connectionString = process.env.DATABASE_URL;
 
@@ -33,6 +60,16 @@ function createClient(): PrismaClient {
 }
 
 function getClient(): PrismaClient {
+  const scope = getRequestScope();
+  if (scope) {
+    let client = clientsByRequest.get(scope);
+    if (!client) {
+      client = createClient();
+      clientsByRequest.set(scope, client);
+    }
+    return client;
+  }
+
   if (!globalForPrisma.prisma) {
     globalForPrisma.prisma = createClient();
   }

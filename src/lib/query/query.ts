@@ -2,6 +2,7 @@
 import { headers } from "next/headers"
 import { unstable_cache } from "next/cache"
 import { prisma } from "../db/prisma"
+import { getRequestCoordinates } from "../request-geo"
 
 export const upsertUser = async (username: string) => {
     try {   
@@ -45,6 +46,7 @@ export const userLog = async (username: string) => {
     try {
         const headersList = await headers()
         const ip = headersList.get("x-forwarded-for") || headersList.get("x-real-ip") || "unknown"
+        const coordinates = getRequestCoordinates()
         const existingLog = await prisma.userLog.findFirst({
             where: {
                 userId: username
@@ -59,7 +61,10 @@ export const userLog = async (username: string) => {
                 data: {
                     visitCount: { increment: 1 },
                     lastVisitedAt: new Date(),
-                    ip: ip
+                    ip: ip,
+                    // Only overwrite with a real fix, so a visit Cloudflare
+                    // could not place keeps the last known location.
+                    ...(coordinates ?? {})
                 }
             })
             return { userLog, visitCount: userLog.visitCount }
@@ -70,7 +75,8 @@ export const userLog = async (username: string) => {
                     visitCount: 1,
                     lastVisitedAt: new Date(),
                     createdAt: new Date(),
-                    ip: ip
+                    ip: ip,
+                    ...(coordinates ?? {})
                 }
             })
             return { userLog, visitCount: userLog.visitCount }
@@ -245,18 +251,36 @@ export async function getUserLikeStatus(blogSlug: string, userId: string) {
 }
 
 
-export async function getAllUserLocations() {
-    try {
-        const users = await prisma.userLog.findMany({
-            select: {
-                ip: true,
-                visitCount: true
-            }
-        })
-        return users
-    }
-    catch (error) {
-        console.error(error)
-        return []
-    }
+// One point per distinct location with the visits summed, so the map payload
+// carries no IPs and stays small however many rows UserLog grows to.
+//
+// Deliberately no try/catch: unstable_cache stores whatever the function
+// returns, so swallowing a database error here would cache an empty map for
+// the full revalidate window. Letting it throw keeps the failure uncached and
+// the next request tries again.
+async function _getVisitorLocations() {
+    const rows = await prisma.userLog.groupBy({
+        by: ["latitude", "longitude"],
+        where: {
+            latitude: { not: null },
+            longitude: { not: null }
+        },
+        _sum: { visitCount: true }
+    })
+    return rows.map((row) => ({
+        latitude: row.latitude as number,
+        longitude: row.longitude as number,
+        visitCount: row._sum.visitCount ?? 0
+    }))
 }
+
+// Replaces the Upstash Redis cache, which no longer exists. On Cloudflare this
+// is persisted by OpenNext's incremental cache (R2), so the database is read
+// at most once an hour, not once per map view.
+export const getVisitorLocations = unstable_cache(
+    _getVisitorLocations,
+    ["visitor-locations"],
+    {
+        revalidate: 60 * 60
+    }
+)
