@@ -15,7 +15,7 @@ import GithubCalendarWrapper from './GithubCalendarWrapper'
 // a one-line message instead of taking the homepage down. The `revalidate` hint
 // is honoured because open-next.config.ts wires a real R2 incrementalCache;
 // without that override it would silently refetch on every request.
-async function getContributions(username: string): Promise<Activity[] | null> {
+export async function getContributions(username: string): Promise<Activity[] | null> {
   try {
     const res = await fetch(
       `https://github-contributions-api.jogruber.de/v4/${username}?y=last`,

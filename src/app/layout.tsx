@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Newsreader } from "next/font/google";
+import { Archivo, Geist_Mono, Newsreader } from "next/font/google";
 import "./globals.css";
 
 import Script from "next/script";
@@ -7,18 +7,17 @@ import { ThemeProvider } from "@/providers/theme-provider";
 import { env } from "@/lib/env";
 import { SupportPageLayout } from "@/components/global/SupportPageLayout";
 import VisitRecorder from "@/components/global/VisitRecorder";
+import { MotionProvider } from "@/components/global/MotionProvider";
 import { RootJsonLd } from "@/components/seo/JsonLd";
 import { SEO_CONFIG, PRIMARY_KEYWORDS, SITE_URL } from "@/lib/seo";
 
-// The restored UI is a sans-serif interface, not the serif document. Geist is
-// the body/UI face and Geist Mono backs the `font-mono` utilities and the
-// explicit `var(--font-geist-mono)` references in home/Stack.tsx and
-// pow/ProjectCard.tsx, which resolved to nothing while only Newsreader was
-// loaded. Newsreader stays loaded and exposed as --font-newsreader so anything
-// that still wants the serif can ask for it.
-const geistSans = Geist({
+// Archivo sets everything, with its width axis opened up for headlines.
+// Newsreader italic is for captions and water labels on the map, the way an
+// atlas sets them. Geist Mono stays for the small labels on /pow.
+const archivo = Archivo({
   subsets: ["latin"],
-  variable: "--font-geist-sans",
+  axes: ["wdth"],
+  variable: "--font-archivo",
 });
 
 const geistMono = Geist_Mono({
@@ -38,18 +37,18 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#100f0e" },
+    { media: "(prefers-color-scheme: light)", color: "#F5F7F8" },
+    { media: "(prefers-color-scheme: dark)", color: "#10151E" },
   ],
 };
 
 export const metadata: Metadata = {
   title: {
-    default: `${SEO_CONFIG.name} | Full Stack Engineer - Web, Mobile, AI Features`,
+    default: `${SEO_CONFIG.name} | Full-Stack AI Engineer`,
     template: `%s | ${SEO_CONFIG.name}`,
   },
   description:
-    "Full stack engineer shipping product end to end - web, mobile, and the AI features inside them. Next.js, React, React Native, TypeScript, Node.js, Python, FastAPI, PostgreSQL. Remote, open to full stack engineer roles.",
+    "Full-stack AI engineer. I built RemJobs, 400K+ live jobs from 250K+ startups, searchable from Claude and ChatGPT. Open to remote full-stack, AI and founding engineer roles.",
   applicationName: `${SEO_CONFIG.name} Portfolio`,
   category: "Technology",
   keywords: [...PRIMARY_KEYWORDS],
@@ -66,9 +65,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: `${SEO_CONFIG.name} | Full Stack Engineer`,
+    title: `${SEO_CONFIG.name} | Full-Stack AI Engineer`,
     description:
-      "Full stack engineer building and shipping product end to end - web, mobile, and the AI features inside them.",
+      "Full-stack AI engineer. I built RemJobs, 400K+ live jobs from 250K+ startups, searchable from Claude and ChatGPT. Open to remote full-stack, AI and founding engineer roles.",
     url: SITE_URL,
     siteName: `${SEO_CONFIG.name} Portfolio`,
     locale: "en_US",
@@ -76,9 +75,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SEO_CONFIG.name} | Full Stack Engineer`,
+    title: `${SEO_CONFIG.name} | Full-Stack AI Engineer`,
     description:
-      "I build and ship full stack products end to end - Next.js, React, React Native, TypeScript, Node.js - and the AI features inside them.",
+      "Full-stack AI engineer. I built RemJobs, 400K+ live jobs from 250K+ startups, searchable from Claude and ChatGPT. Open to remote full-stack, AI and founding engineer roles.",
     site: SEO_CONFIG.twitterHandle,
     creator: SEO_CONFIG.twitterHandle,
   },
@@ -114,16 +113,19 @@ export default function RootLayout({
         <RootJsonLd />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${newsreader.variable} antialiased`}
+        suppressHydrationWarning
+        className={`${archivo.variable} ${geistMono.variable} ${newsreader.variable} antialiased`}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >
           <VisitRecorder />
-          <SupportPageLayout>{children}</SupportPageLayout>
+          <MotionProvider>
+            <SupportPageLayout>{children}</SupportPageLayout>
+          </MotionProvider>
         </ThemeProvider>
         {/* Analytics live inside <body>. They used to sit between </head>
             and <body> as direct children of <html>, which is invalid: the

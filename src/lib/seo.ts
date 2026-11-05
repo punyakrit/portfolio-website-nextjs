@@ -6,10 +6,10 @@ export const SITE_NAME = "Punyakrit Singh Makhni";
 export const SEO_CONFIG = {
   name: "Punyakrit Singh Makhni",
   title: "Punyakrit Singh Makhni",
-  jobTitle: "Full Stack Engineer",
+  jobTitle: "Full-Stack AI Engineer",
   location: "Remote",
   description:
-    "Full stack engineer shipping product end to end - web, mobile, and the AI features inside them. Next.js, React, React Native, TypeScript, Node.js, Python, FastAPI, PostgreSQL. Remote, open to full stack engineer roles.",
+    "Full-stack AI engineer. I built RemJobs, 400K+ live jobs from 250K+ startups, searchable from Claude and ChatGPT. Open to remote full-stack, AI and founding engineer roles.",
   url: SITE_URL,
   email: "punyakritsinghmakhni@gmail.com",
   image: `${SITE_URL}/profile.jpeg`,
@@ -26,16 +26,19 @@ export const SEO_CONFIG = {
 // ignored by major search engines, so this is kept short and free of
 // superlatives ("best"/"top"/"senior") and location stuffing on purpose.
 export const PRIMARY_KEYWORDS: string[] = [
+  "Full-Stack AI Engineer",
   "Full Stack Engineer",
-  "Full Stack Developer",
+  "AI Engineer",
+  "Founding Engineer",
   "Next.js",
   "React",
   "React Native",
   "TypeScript",
   "Node.js",
   "Python",
-  "AI Features",
+  "AI Agents",
   "LLM Integration",
+  "MCP",
 ];
 
 export function generatePersonSchema() {
@@ -83,7 +86,7 @@ export function generateWebSiteSchema() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
-    name: `${SEO_CONFIG.name} | Full Stack Engineer`,
+    name: `${SEO_CONFIG.name} | Full-Stack AI Engineer`,
     url: SITE_URL,
     description: SEO_CONFIG.description,
     publisher: {
@@ -121,7 +124,7 @@ export function generatePortfolioSchema(
     "@context": "https://schema.org",
     "@type": "ItemList",
     "@id": `${SITE_URL}/pow#portfolio`,
-    name: "Full Stack Engineering Portfolio",
+    name: "Engineering Portfolio",
     description:
       "Web and mobile products, and the AI features inside them, built by Punyakrit Singh Makhni",
     itemListElement: projects.map((project, index) => ({

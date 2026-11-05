@@ -4,12 +4,16 @@ interface Project {
   title: string;
   description: string;
   image: string;
+  /** Natural pixel size of `image`, so it lays out at its own shape before it loads. */
+  imageSize?: [number, number];
   link?: string;
   github?: string;
   appStoreLink?: string;
   video: string;
   images?: string[];
   stats?: string[];
+  /** Four proof points for the homepage card. No tiles = compact row. */
+  tiles?: { value: string; label: string }[];
   summary: string;
   tech: string[];
   problem: string;
@@ -19,53 +23,46 @@ interface Project {
 }
 
 // Ordered deliberately. RemJobs leads because it is the clearest full-stack
-// evidence on the page - scrapers, schema, search, auth, billing and front end
-// are all mine, and it is live with numbers anyone can check. FeaturedProjects
-// on the homepage shows [0] and [1] in full and blurs [2] as the "show more"
-// teaser.
+// evidence on the page - data pipeline, search, map, auth, billing and the MCP
+// server are all mine, and it is live with numbers anyone can check.
 export const projects: Project[] = [
 {
   category: "web",
   title: "RemJobs",
   description:
-    "A remote job board that reads company career pages and the hiring systems behind them - Greenhouse, Ashby, Lever - the moment they change. A scheduled worker sweeps every source on a 45-minute cycle. Browsing is free; the alert is the product.",
+    "A live map of 250K+ startups and 400K+ open jobs, read straight from their hiring systems. Members see who founded each company and how to reach them, and an MCP server puts all of it inside Claude, ChatGPT and Cursor.",
   image: "/remjobs.jpg",
+  imageSize: [1280, 720],
   link: "https://www.remjobs.works/",
   video: "",
-  // Three system metrics, no traffic number.
-  //
-  // The traffic figure was dropped rather than relabelled. It is site visits,
-  // not signups, so "users" would read to a hiring manager as adoption; and a
-  // visit count is the weakest thing this card can say about the engineering
-  // anyway. What is left describes the machine: how many sources it watches,
-  // how much it has indexed, and how often it sweeps.
-  //
-  // Rounded down deliberately - the live counters move every sweep, so an exact
-  // figure goes stale the day it ships and invites a reader to diff it against
-  // the site. "Roles indexed" is cumulative (expired roles included); the site
-  // header shows currently-open roles, which is the smaller number.
-  stats: ["4,900+ career pages watched", "100,000+ roles indexed", "45-min sweep cycle"],
+  stats: ["400K+ live jobs", "250K+ startups", "MCP server with OAuth", "Paying users"],
+  tiles: [
+    { value: "400K+", label: "live jobs" },
+    { value: "250K+", label: "startups" },
+    { value: "MCP", label: "server with OAuth" },
+    { value: "Paying", label: "users since Oct" },
+  ],
   summary:
-    "Job aggregator with a scheduled scraper, Postgres full-text search and an email alert engine. Live.",
+    "A live map of 250K+ startups and 400K+ jobs, searchable from Claude and ChatGPT. Built alone.",
   tech: [
     "Next.js",
     "TypeScript",
+    "Cloudflare Workers",
+    "Durable Objects",
+    "MCP",
     "Python",
-    "FastAPI",
     "PostgreSQL",
     "Supabase",
-    "Redis",
-    "APScheduler",
     "Clerk",
     "Dodo Payments",
-    "Railway",
+    "MapLibre",
   ],
   problem:
-    "A job board is only worth opening if it is fresher than the company's own careers page. That means continuously re-reading thousands of sources that each break differently, storing the result so it can be searched and filtered in milliseconds, and then deciding - per subscriber, per role - which of tens of thousands of postings is worth an email. Done naively you either miss the window that makes an early application worth anything, or you send noise until people unsubscribe.",
+    "Startup jobs are spread across dozens of hiring systems that each work differently, and a job search is only useful if it is current. RemJobs has to read every company's public board on a schedule, work out where each job really is and who can apply, and answer a filtered search across 400K+ jobs fast enough to feel instant, on a budget one person can carry.",
   solution:
-    "FastAPI and Supabase Postgres behind an APScheduler worker that sweeps every source on a 45-minute cycle, with a separate priority pass for the sources that move fastest. Search, faceting and salary filters run as Postgres RPCs against generated tsvector columns rather than in application code, so a filtered query stays a single round trip. Alerts match subscribers against new rows through freshness gates and a defined dispatch order, and delivery receipts make sends idempotent so a retry cannot double-email. Upstash Redis handles rate limiting. Twenty-seven migrations carry the schema, and Clerk and Dodo Payments handle auth and plans.",
+    "A scheduled Cloudflare container reads each company's public board, with one reader per hiring system, then classifies every job by role, location and remote scope. Results are published to KV as shards under new versioned keys. A Durable Object holds the decoded index in memory and a one-minute ping keeps it warm, so a filtered search comes back in 8-16 ms. Clerk handles sign-in and Dodo Payments handles paid plans. The MCP server is stateless: each request is one JSON-RPC message with a Clerk OAuth token, so any Cloudflare location can answer it, and plan limits are checked on every call.",
   whyThis:
-    "The architecture decision I would defend in an interview is what is not deployed. The HTTP API exists and runs locally, but nothing calls it in production - the Next.js site reads Supabase directly under row-level security, so the only thing running on Railway is the scraping worker. That takes an always-on service, and every failure mode it owns, off the critical path of every page view. It is also the project where the full stack is genuinely end to end: the scrapers, the schema, the search, the auth, the billing, the programmatic SEO routes and the front end are all mine.",
+    "The decision I would defend in an interview is how the index gets published. On Oct 29 a half-finished publish left the site reading a corrupted index. Now nothing a reader uses is ever overwritten: new shards land under new keys, and the version key moves last, only after every earlier write worked. A crashed run writes nothing, and the next run resumes from the last good snapshot. It is also the project where the full stack is genuinely end to end: the readers, the index, the map, the auth, the billing and the MCP server are all mine.",
 },
 {
   category: "web",
@@ -78,9 +75,16 @@ export const projects: Project[] = [
   // object this used to point at returns 403, so the card rendered its alt
   // text instead of an image.
   image: "/ai-demo-video.jpg",
+  imageSize: [1100, 560],
   github: "https://github.com/punyakrit/Ai-demo-video",
   video: "",
-  stats: ["8-phase agent pipeline", "4 models orchestrated", "410 tests passing"],
+  stats: ["8-phase agent pipeline", "4 models orchestrated", "32 checks before render", "410 tests passing"],
+  tiles: [
+    { value: "4", label: "models" },
+    { value: "8", label: "phases" },
+    { value: "32", label: "checks before render" },
+    { value: "410", label: "tests" },
+  ],
   summary:
     "Turns a screen recording into a narrated demo. Four models, none of which touch ffmpeg.",
   tech: [
@@ -108,9 +112,16 @@ export const projects: Project[] = [
   description:
     "A production AI video pipeline that turns a plain script into a finished, TikTok-native ad - prompting, AI creator, voice, captions, and edit handled end to end, with no length cap. Runs on AWS infrastructure I built to render, store, and serve video at scale. Used by 50+ brands across 32+ languages.",
   image: "/infiniteugc.jpg",
+  imageSize: [1280, 853],
   link: "https://www.infiniteugc.com/",
   video: "",
   stats: ["50+ brands served", "32+ languages", "No length cap"],
+  tiles: [
+    { value: "50+", label: "brands" },
+    { value: "32+", label: "languages" },
+    { value: "AWS", label: "render pipeline" },
+    { value: "No", label: "length cap" },
+  ],
   summary:
     "Script in, ready-to-post UGC ad out. AWS render pipeline, 50+ brands, 32+ languages.",
   tech: [
@@ -135,10 +146,12 @@ export const projects: Project[] = [
   title: "CodeLens",
   description:
     "RAG over codebases too large to read. Semantic search, automated documentation, and natural-language querying of a repository using pgvector embeddings and LLM reasoning over real code structure.",
-  image: `${env.NEXT_PUBLIC_CLOUDFRONT_URL}/codelens.png`,
+  // Cropped: the full capture shows the demo's placeholder user counts.
+  image: "/work/codelens.jpg",
+  imageSize: [1320, 522],
   link: "https://codelens.punyakrit.dev/",
   github: "https://github.com/punyakrit/codelens",
-  video: `${env.NEXT_PUBLIC_CLOUDFRONT_URL}/codelens.mp4`,
+  video: "",
   stats: ["pgvector embeddings", "Natural-language repo queries"],
   summary:
     "Makes an unfamiliar repo answer questions about itself. Structure-aware retrieval over pgvector.",
@@ -166,10 +179,12 @@ export const projects: Project[] = [
   title: "Pulse",
   description:
     "Real-time uptime and performance monitoring with distributed regional checks, false-positive filtering, and automated alerting.",
-  image: `${env.NEXT_PUBLIC_CLOUDFRONT_URL}/pulse.png`,
+  // Cropped: the full capture shows the demo's placeholder trust badges.
+  image: "/work/pulse.jpg",
+  imageSize: [1300, 600],
   link: "https://pulse.punyakrit.dev",
   github: "https://github.com/punyakrit/pulse",
-  video: `${env.NEXT_PUBLIC_CLOUDFRONT_URL}/pulse.mp4`,
+  video: "",
   summary:
     "Uptime monitoring that corroborates across regions before it pages you.",
   tech: [
@@ -193,6 +208,7 @@ export const projects: Project[] = [
   description:
     "A cross-platform paper-trading simulator for the Indian stock market, live on the App Store. Real-time trading, portfolio management, and social sharing.",
   image: `${env.NEXT_PUBLIC_CLOUDFRONT_URL}/ct1.png`,
+  imageSize: [1284, 2778],
   appStoreLink: "https://apps.apple.com/us/app/craft-trading/id6759801377",
   video: "",
   images: [

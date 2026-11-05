@@ -1,35 +1,32 @@
 import React from "react";
 import type { Metadata } from "next";
-import Hero from "@/components/home/Hero";
-import About from "@/components/home/About";
-import HorizontalLine from "@/components/global/HorizontalLine";
-import Experience from "@/components/home/Experience";
-import FeaturedProjects from "@/components/pow/FeaturedProjects";
-import Github from "@/components/home/Github";
-import Stack from "@/components/home/Stack";
-import Cta from "@/components/home/Cta";
-import World from "@/components/home/World";
+import LandingNav from "@/components/landing/LandingNav";
+import Intro from "@/components/landing/Intro";
+import Work from "@/components/landing/Work";
+import Inside from "@/components/landing/Inside";
+import Route from "@/components/landing/Route";
+import Tools from "@/components/landing/Tools";
+import Close from "@/components/landing/Close";
 import { BreadcrumbJsonLd, FAQJsonLd } from "@/components/seo/JsonLd";
 import { SITE_URL, SEO_CONFIG } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title:
-    "Punyakrit Singh Makhni | Full Stack Engineer - Web, Mobile, AI Features",
+  title: "Punyakrit Singh Makhni | Full-Stack AI Engineer",
   description:
-    "I'm Punyakrit Singh Makhni, a full stack engineer who ships product end to end - Next.js, React, React Native, TypeScript, Node.js, Python - including the AI features inside it. Remote, open to full stack engineer roles.",
+    "Full-stack AI engineer. I built RemJobs, 400K+ live jobs from 250K+ startups, searchable from Claude and ChatGPT. Open to remote full-stack, AI and founding engineer roles.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Punyakrit Singh Makhni | Full Stack Engineer",
+    title: "Punyakrit Singh Makhni | Full-Stack AI Engineer",
     description:
-      "Full stack engineer shipping product end to end - web, mobile, and the AI features inside them. A multi-model video agent, an ad-evaluation agent, an iOS app on the App Store.",
+      "Full-stack AI engineer. I built RemJobs, 400K+ live jobs from 250K+ startups, searchable from Claude and ChatGPT. Open to remote full-stack, AI and founding engineer roles.",
     url: SITE_URL,
     type: "profile",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Punyakrit Singh Makhni | Full Stack Engineer",
+    title: "Punyakrit Singh Makhni | Full-Stack AI Engineer",
     description:
-      "I build and ship full stack products end to end - Next.js, React, React Native, TypeScript, Node.js - and the AI features inside them.",
+      "Full-stack AI engineer. I built RemJobs, 400K+ live jobs from 250K+ startups, searchable from Claude and ChatGPT. Open to remote full-stack, AI and founding engineer roles.",
     site: SEO_CONFIG.twitterHandle,
     creator: SEO_CONFIG.twitterHandle,
   },
@@ -37,9 +34,9 @@ export const metadata: Metadata = {
 
 const homepageFAQs = [
   {
-    question: "What has Punyakrit built as a full stack engineer?",
+    question: "What has Punyakrit built?",
     answer:
-      "Production web and mobile products, end to end. An AI Demo Video Builder that orchestrates four models across an eight-phase pipeline to turn screen recordings into narrated demos. Muze CMO, a marketing agent that reads live Meta and Google Ads data, predicts whether a creative will perform before spend, and generates new image and video ads. InfiniteUGC, a video pipeline used by 50+ brands across 32+ languages. CodeLens, retrieval over large codebases using pgvector. And an iOS app shipped on the App Store.",
+      "Production web and mobile products, end to end. RemJobs, 400K+ live jobs from 250K+ startups, searchable from Claude and ChatGPT through an MCP server he built. An AI Demo Video Builder that orchestrates four models across an eight-phase pipeline to turn screen recordings into narrated demos. Muze CMO, a marketing agent that reads live Meta and Google Ads data, predicts whether a creative will perform before spend, and generates new image and video ads. InfiniteUGC, a video pipeline used by 50+ brands across 32+ languages. CodeLens, retrieval over large codebases using pgvector. And an iOS app shipped on the App Store.",
   },
   {
     question: "How does Punyakrit approach shipping AI features inside product?",
@@ -49,61 +46,26 @@ const homepageFAQs = [
   {
     question: "What is Punyakrit looking for?",
     answer:
-      "Full stack engineer roles at startups - building product end to end, including the AI features inside it. Remote, working across US and European time zones.",
+      "Remote full-stack, AI and founding engineer roles at startups, full-time or contract. He is on IST and works US hours.",
   },
 ];
 
 function HomePage() {
   return (
-    <div>
+    <>
       <BreadcrumbJsonLd items={[{ name: "Home", url: SITE_URL }]} />
       <FAQJsonLd faqs={homepageFAQs} />
 
-      <Hero />
-      <About />
-
-      <HorizontalLine />
-
-      <section aria-labelledby="experience-heading">
-        <Experience completeView={false} />
-      </section>
-
-      <HorizontalLine />
-
-      {/* FeaturedProjects, Github, Stack and World render their own headings but
-          do not expose ids for them, so these landmarks are named with aria-label
-          rather than a dangling aria-labelledby reference. */}
-      <section aria-label="Featured projects">
-        <FeaturedProjects />
-      </section>
-
-      <HorizontalLine />
-
-      <section aria-label="GitHub contributions">
-        <Github />
-      </section>
-
-      <div className="hidden md:block">
-        <HorizontalLine />
-      </div>
-
-      <section aria-label="Stack I use">
-        <Stack />
-      </section>
-
-      <HorizontalLine />
-
-      {/* Cta renders its own <section aria-labelledby="contact-heading">, so it
-          is mounted bare - wrapping it would nest a second landmark on the same
-          heading id, which is what the old page did. */}
-      <Cta />
-
-      <HorizontalLine />
-
-      <section aria-label="Where visitors come from">
-        <World />
-      </section>
-    </div>
+      <LandingNav home />
+      <main>
+        <Intro />
+        <Work />
+        <Inside />
+        <Route />
+        <Tools />
+      </main>
+      <Close />
+    </>
   );
 }
 

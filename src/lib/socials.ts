@@ -12,6 +12,6 @@ export const socials: Readonly<Social> = {
     github: "https://github.com/punyakrit",
     linkedin: "https://www.linkedin.com/in/punyakrit-singh-makhni/",
     email: "punyakritsinghmakhni@gmail.com",
-    resume: "https://drive.google.com/file/d/1daaVg_UljaIcN8DlgF_Cc92knCZcM1UT/view?usp=sharing",
-    cal: "https://cal.com/punyakrit",
+    resume: "/Punyakrit-Singh-Makhni-Resume.pdf",
+    cal: "https://cal.com/punyakrit/15min",
 };

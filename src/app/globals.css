@@ -22,14 +22,29 @@
 */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171614;
-  --muted-foreground: #6f6d68;
-  --rule: rgba(23, 22, 20, 0.14);
+  --background: #f5f7f8;
+  --foreground: #10131a;
+  --muted-foreground: #566171;
+  --rule: rgba(16, 19, 26, 0.13);
+
+  /* From the RemJobs mark: navy, and the one orange dot. */
+  --ink: #10131a;
+  --ink-foreground: #eef1f4;
+  --signal: #ff6a1f;
+  --globe-sea: #ffffff;
+  --globe-edge: #dfe6ea;
+
+  /* Map dots, land with no startups up to the densest cities. */
+  --map-0: #d9e0e5;
+  --map-1: #aab5be;
+  --map-2: #828f9b;
+  --map-3: #5a6876;
+  --map-4: #323e4c;
+  --map-5: #10131a;
 
   /* Surfaces. Distinct from --background so cards, media wells and pills are
      visible; still warm neutrals, not the old oklch greys. */
-  --surface: #f4f3f1;
+  --surface: #e9edf0;
   --card: #ffffff;
   --card-foreground: var(--foreground);
   --popover: #ffffff;
@@ -49,14 +64,23 @@
 }
 
 .dark {
-  --background: #100f0e;
-  --foreground: #e9e7e2;
-  --muted-foreground: #918e87;
-  --rule: rgba(233, 231, 226, 0.16);
+  --background: #0f1319;
+  --foreground: #eef1f4;
+  --muted-foreground: #97a4b2;
+  --rule: rgba(233, 237, 241, 0.15);
   --destructive: #c9705d;
-  --surface: #1c1b19;
-  --card: #191817;
-  --popover: #191817;
+  --surface: #181d25;
+  --card: #161c26;
+  --popover: #161c26;
+  --ink: #0b0f16;
+  --globe-sea: #1b2431;
+  --globe-edge: #0f141c;
+  --map-0: #27313e;
+  --map-1: #43515f;
+  --map-2: #647484;
+  --map-3: #8796a5;
+  --map-4: #b6c1cc;
+  --map-5: #f0f3f6;
 }
 
 @theme inline {
@@ -64,6 +88,10 @@
   --color-foreground: var(--foreground);
   --color-muted-foreground: var(--muted-foreground);
   --color-rule: var(--rule);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-foreground: var(--ink-foreground);
+  --color-signal: var(--signal);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
@@ -79,11 +107,12 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo,
     Consolas, monospace;
   --font-serif: var(--font-newsreader), Georgia, "Times New Roman", serif;
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -98,20 +127,22 @@
     @apply border-border outline-ring/50;
   }
 
+  /* clip, not hidden: hidden turns the page into a scroll container, which
+     silently stops position: sticky from working anywhere inside it. */
   html {
     -webkit-text-size-adjust: 100%;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   body {
     background: var(--background);
     color: var(--foreground);
-    font-family: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
+    font-family: var(--font-archivo), ui-sans-serif, system-ui, -apple-system,
       "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-size: 16px;
     line-height: 1.6;
     max-width: 100vw;
-    overflow-x: hidden;
+    overflow-x: clip;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -162,5 +193,184 @@
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--rule);
     margin-bottom: 1.25rem;
+  }
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Headlines: Archivo opened up a little, at a heavier weight than the body. */
+.font-display {
+  font-variation-settings: "wdth" 112;
+  font-weight: 600;
+}
+
+/* On a phone the map pans sideways. No scrollbar, and the edges fade so it
+   reads as a strip that continues rather than a picture that was cut. */
+.font-display-light {
+  font-variation-settings: "wdth" 100;
+  font-weight: 200;
+  letter-spacing: -0.03em;
+}
+
+/* Endless strips of tools. The track holds two copies and slides by one. */
+.marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  padding-right: clamp(2rem, 4vw, 3.5rem);
+}
+
+/* City names sit on the dots, so they carry a halo in the page colour. */
+.map-label {
+  color: var(--foreground);
+  text-shadow:
+    0 0 3px var(--background),
+    0 0 3px var(--background),
+    0 0 6px var(--background);
+}
+
+/* The light that follows the mouse across a tile. */
+.tile-light {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 300ms ease;
+  background: radial-gradient(
+    340px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 255, 255, 0.14),
+    transparent 70%
+  );
+}
+
+.group:hover .tile-light {
+  opacity: 1;
+}
+
+/* Rings going out from his pin, like a radar. */
+.me-radar {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.me-radar::before,
+.me-radar::after {
+  content: "";
+  position: absolute;
+  left: -20px;
+  top: -20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  border: 2px solid var(--signal);
+  opacity: 0;
+}
+
+/* His pin on the map: his photo in an orange ring, standing on its spot. */
+.me-pin {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  max-width: none;
+  margin: -20px 0 0 -20px;
+  border-radius: 9999px;
+  object-fit: cover;
+  border: 3px solid var(--signal);
+  box-shadow: 0 0 0 3px var(--background), 0 8px 20px rgba(255, 106, 31, 0.45);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .rise {
+    animation: rise 900ms both cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .me-radar::before {
+    animation: radar 2.8s 1.8s ease-out infinite;
+  }
+
+  .me-radar::after {
+    animation: radar 2.8s 3.2s ease-out infinite;
+  }
+
+  .me-pin {
+    animation: me-arrive 600ms 1300ms both cubic-bezier(0.2, 1.5, 0.4, 1);
+  }
+
+  .marquee-track {
+    animation: marquee 46s linear infinite;
+  }
+
+  .marquee-track--back {
+    animation-direction: reverse;
+  }
+
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  .next-stop {
+    animation: next-stop 1.8s ease-in-out infinite;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes me-arrive {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes radar {
+  from {
+    transform: scale(1);
+    opacity: 0.75;
+  }
+  to {
+    transform: scale(3.4);
+    opacity: 0;
+  }
+}
+
+@keyframes next-stop {
+  50% {
+    transform: scale(1.35);
   }
 }

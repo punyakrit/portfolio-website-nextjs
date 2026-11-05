@@ -36,11 +36,15 @@ const GithubCalendarWrapper = ({ data }: GithubCalendarWrapperProps) => {
   // until mount, then let the real theme take over.
   const [mounted, setMounted] = React.useState(false)
   React.useEffect(() => setMounted(true), [])
+  const strip = React.useRef<HTMLDivElement>(null)
+  React.useEffect(() => {
+    if (strip.current) strip.current.scrollLeft = strip.current.scrollWidth
+  }, [])
   const dark = mounted && resolvedTheme === 'dark'
 
   const theme = {
-    light: ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"],
-    dark: ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"],
+    light: ["#ECECE7", "#FFD3BA", "#FFAA78", "#FF7F40", "#E2530E"],
+    dark: ["#1E242D", "#5A3420", "#9A4D22", "#D9621F", "#FF6A1F"],
   }
 
   return (
@@ -49,6 +53,7 @@ const GithubCalendarWrapper = ({ data }: GithubCalendarWrapperProps) => {
           than the page column on most viewports. It scrolls rather than being
           clipped - `overflow-x-hidden` would silently cut months off the end. */}
       <div
+        ref={strip}
         className="w-full max-w-full overflow-x-auto overflow-y-hidden"
         style={{
           WebkitOverflowScrolling: 'touch',
@@ -60,8 +65,8 @@ const GithubCalendarWrapper = ({ data }: GithubCalendarWrapperProps) => {
             than the viewport, plain centring overflows both edges and the left
             months become unreachable by scrolling. Safe alignment falls back to
             flex-start in exactly that case. */}
-        <div className="inline-flex items-center justify-center-safe min-w-full p-2 sm:p-3 md:p-4">
-          <div className="max-w-2xl">
+        <div className="inline-flex items-center min-w-full py-1">
+          <div>
             <CalendarErrorBoundary
               fallback={
                 <div className="min-w-max h-[170px] flex items-center justify-center">
@@ -75,14 +80,13 @@ const GithubCalendarWrapper = ({ data }: GithubCalendarWrapperProps) => {
                 data={data}
                 colorScheme={dark ? "dark" : "light"}
                 fontSize={12}
-                blockSize={10}
-                blockMargin={2}
+                blockSize={9}
+                blockMargin={3}
+                blockRadius={99}
                 maxLevel={4}
                 showWeekdayLabels={true}
+                hideTotalCount
                 theme={theme}
-                labels={{
-                  totalCount: "{{count}} contributions in the last year",
-                }}
               />
             </CalendarErrorBoundary>
           </div>

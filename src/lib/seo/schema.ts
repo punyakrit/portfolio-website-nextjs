@@ -71,7 +71,6 @@ export function generatePersonSchema() {
       SEO_CONFIG.socials.twitter,
       SEO_CONFIG.socials.github,
       SEO_CONFIG.socials.linkedin,
-      "https://launchcraft.studio",
     ],
     knowsAbout: [
       "Web Development",
@@ -87,12 +86,11 @@ export function generatePersonSchema() {
       "Python",
       "AWS",
       "Docker",
+      "AI Agents",
+      "Large Language Models",
+      "Model Context Protocol",
+      "Retrieval-Augmented Generation",
     ],
-    worksFor: {
-      "@type": "Organization",
-      name: "LaunchCraft Studio",
-      url: "https://launchcraft.studio",
-    },
   };
 }
 
@@ -101,7 +99,7 @@ export function generateWebSiteSchema() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
-    name: `${SEO_CONFIG.name} | Full Stack Engineer`,
+    name: `${SEO_CONFIG.name} | Full-Stack AI Engineer`,
     url: SITE_URL,
     description: SEO_CONFIG.description,
     publisher: {

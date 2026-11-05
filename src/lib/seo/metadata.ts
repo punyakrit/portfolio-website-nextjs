@@ -76,7 +76,7 @@ export function generatePageMetadata(options: MetadataOptions): PageMetadata {
     type,
     locale: "en_US",
     url: canonicalUrl,
-    siteName: `${SEO_CONFIG.name} | Full Stack Engineer`,
+    siteName: `${SEO_CONFIG.name} | Full-Stack AI Engineer`,
     title: fullTitle,
     description,
     ...(publishedTime && { publishedTime }),

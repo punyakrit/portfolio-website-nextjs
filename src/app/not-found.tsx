@@ -1,18 +1,19 @@
 import React from "react";
 import Link from "next/link";
+import { WRAP } from "@/components/landing/Section";
 
 export default function NotFound() {
   return (
-    // SupportPageLayout no longer supplies horizontal padding - each page
-    // brings its own, the way the restored sections do.
-    <div className="px-4 sm:px-6 md:px-8 py-12">
-      <h1 className="text-[1.4rem] font-semibold tracking-tight">
+    <div className={`${WRAP} py-20 sm:py-32`}>
+      <p className="font-serif text-lg italic text-muted-foreground">
+        Nothing at this address.
+      </p>
+      <h1 className="mt-3 font-display text-[clamp(2.5rem,5.5vw,4.5rem)] leading-[1.02] tracking-[-0.025em]">
         Page not found
       </h1>
-      <p className="mt-2 leading-relaxed">
-        That page doesn&apos;t exist. Try{" "}
-        <Link href="/">the homepage</Link> or{" "}
-        <Link href="/pow">what i&apos;ve built</Link>.
+      <p className="mt-5 max-w-[48ch] text-lg leading-[1.5] text-muted-foreground">
+        The link may be old. Try <Link href="/" className="text-foreground">the home page</Link> or{" "}
+        <Link href="/pow" className="text-foreground">what I&apos;ve built</Link>.
       </p>
     </div>
   );

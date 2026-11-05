@@ -28,12 +28,16 @@ import {
   SiFigma,
   SiLinux,
   SiNginx,
-  SiKubernetes,
+  SiClaude,
+  SiGooglegemini,
+  SiCloudflare,
   SiSocketdotio,
   SiClerk
 } from 'react-icons/si';
 // react-icons 5.7.0 removed SiAmazon; the AWS mark now lives in the fa6 set.
 import { FaAws } from 'react-icons/fa6';
+import { TbBrandOpenai } from 'react-icons/tb';
+import { Plug, Search, Workflow } from 'lucide-react';
 
 export interface Skill {
   name: string;
@@ -163,9 +167,39 @@ export const skills: Readonly<Skill[]> = [
     category: 'devops'
   },
   {
-    name: 'Kubernetes',
-    icon: SiKubernetes,
+    name: 'Cloudflare',
+    icon: SiCloudflare,
     category: 'devops'
+  },
+  {
+    name: 'Claude',
+    icon: SiClaude,
+    category: 'other'
+  },
+  {
+    name: 'OpenAI',
+    icon: TbBrandOpenai,
+    category: 'other'
+  },
+  {
+    name: 'Gemini',
+    icon: SiGooglegemini,
+    category: 'other'
+  },
+  {
+    name: 'AI Agents',
+    icon: Workflow,
+    category: 'other'
+  },
+  {
+    name: 'MCP',
+    icon: Plug,
+    category: 'other'
+  },
+  {
+    name: 'RAG',
+    icon: Search,
+    category: 'other'
   },
   {
     name: 'Git',

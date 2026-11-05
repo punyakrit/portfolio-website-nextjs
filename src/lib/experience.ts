@@ -50,6 +50,71 @@ interface Role {
 
 export const experience: Readonly<Role[]> = [
     {
+        company: "remjobs",
+        displayName: "RemJobs",
+        url: "https://www.remjobs.works/",
+        position: "Founder & Engineer",
+        oneLiner:
+            "My own product. Everything in it is mine, from the data pipeline to payments.",
+        location: "Remote",
+        startDate: "2026-08-01",
+        endDate: "Present",
+        // Job hunting: no green "Working" badge implying current employment.
+        hideWorkingBadge: true,
+        tech: [
+            getSkillByName("Next.js"),
+            getSkillByName("React"),
+            getSkillByName("TypeScript"),
+            getSkillByName("Python"),
+            getSkillByName("PostgreSQL"),
+            getSkillByName("Supabase"),
+            getSkillByName("Cloudflare"),
+            getSkillByName("MCP"),
+            getSkillByName("Clerk"),
+        ].filter((skill): skill is Skill => skill !== undefined),
+        bullets: [
+            [
+                { type: "text", value: "Built and run it alone: " },
+                { type: "highlight", value: "400K+ live jobs" },
+                { type: "text", value: " from " },
+                { type: "highlight", value: "250K+ startups" },
+                { type: "text", value: ", read straight from their hiring systems. Launched Sep 2026, about 200 visitors a day, " },
+                { type: "highlight", value: "paying users" },
+                { type: "text", value: " since Oct." }
+            ],
+            [
+                { type: "text", value: "Built an " },
+                { type: "highlight", value: "MCP server" },
+                { type: "text", value: " with OAuth so Claude, ChatGPT and Cursor can use RemJobs as a tool, with plan limits checked on every call." }
+            ],
+            [
+                { type: "text", value: "Made the data pipeline " },
+                { type: "highlight", value: "fail safely" },
+                { type: "text", value: ": a crashed run writes nothing, and the next run resumes from the last good snapshot." }
+            ],
+            [
+                { type: "text", value: "Served search from a " },
+                { type: "highlight", value: "warm in-memory index" },
+                { type: "text", value: " in 8-16 ms on Cloudflare." }
+            ]
+        ],
+        links: {
+            image: "/remjobs-logo.png",
+            companyUrl: {
+                url: "https://www.remjobs.works/",
+                icon: getLinkIconByType("companyUrl")?.icon
+            },
+            githubUrl: {
+                url: "",
+                icon: undefined
+            },
+            linkedinUrl: {
+                url: "",
+                icon: undefined
+            }
+        }
+    },
+    {
         company: "gradly.us",
         displayName: "Gradly.us",
         url: "https://gradly.us",
@@ -74,7 +139,6 @@ export const experience: Readonly<Role[]> = [
             getSkillByName("Prisma"),
             getSkillByName("Docker"),
             getSkillByName("AWS"),
-            getSkillByName("Kubernetes"),
             getSkillByName("Tailwind CSS"),
             getSkillByName("Vercel"),
             getSkillByName("Git"),
@@ -172,11 +236,11 @@ export const experience: Readonly<Role[]> = [
         company: "muze",
         displayName: "Muze",
         url: "https://muzecmo.com/",
-        position: "Software Engineer",
+        position: "Software Engineer (Intern, Jun - Aug 2024)",
         oneLiner:
             "Built Muze CMO from scratch - reads live Meta and Google Ads data, scores creative before spend, then generates the next ad.",
         location: "Remote",
-        startDate: "2024-06-01",
+        startDate: "2024-09-01",
         endDate: "2025-10-01",
         tech: [
             getSkillByName("Next.js"),
@@ -241,7 +305,7 @@ export const experience: Readonly<Role[]> = [
         url: "https://github.com/punyakrit",
         position: "Founder & Software Engineer",
         oneLiner:
-            "RemJobs, an AI video pipeline and an App Store app - backend, real-time sync, AI integration and the deploys on each.",
+            "AI Demo Video Builder, InfiniteUGC and an App Store app - backend, real-time sync, AI integration and the deploys on each.",
         location: "Remote",
         startDate: "2023-02-01",
         endDate: "Present",
@@ -265,15 +329,6 @@ export const experience: Readonly<Role[]> = [
             getSkillByName("GitHub")
         ].filter((skill): skill is Skill => skill !== undefined),
         bullets: [
-            [
-                { type: "text", value: "Built " },
-                { type: "highlight", value: "RemJobs" },
-                { type: "text", value: ", a remote job platform: career-page scrapers on a scheduled worker, " },
-                { type: "highlight", value: "Postgres full-text search" },
-                { type: "text", value: ", email alerts and billing. The HTTP API is deliberately " },
-                { type: "highlight", value: "not deployed" },
-                { type: "text", value: " - the site reads Supabase directly under row-level security, so the only always-on service is the scraper." }
-            ],
             [
                 { type: "text", value: "Built AI Demo Video Builder, an " },
                 { type: "highlight", value: "8-phase agent pipeline" },
